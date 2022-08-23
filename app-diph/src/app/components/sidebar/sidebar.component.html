@@ -1,0 +1,91 @@
+<div class="sidebar-top-logo text-center">
+  <img id="sidebar_image_tag" src="assets/images/diph_logo1.png" class="img-thumbnail" width="75%" height="60%">
+</div>
+<div class="sidebar-top-heading text-center">
+  DIPH - Ethiopia
+</div>
+<div class="sidebar-menu-items">
+  <nav class="navigation">
+    <ul class="mainmenu">
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="active" class="menu-items-settings"><i class="fa fa-file-text"></i>
+          Primary Forms</a></li>
+      <li><a routerLink="/dashboard/secondaryforms" routerLinkActive="active" class="menu-items-settings"><i
+            class="fa fa-file-text"></i> Supplementry Forms</a></li>
+      <li><a routerLink="/dashboard/indicatorslist" routerLinkActive="active" class="menu-items-settings"><i
+            class="fa fa-list-ol"></i> Indicators List</a></li>
+      <li><a class="menu-items-settings"><i class="fa fa-address-book"></i> General Guide</a> 
+
+        <ul class="submenu" style="height: 500px;overflow: auto !important;" id="style-1"> 
+          <li><a (click)="navigateToID('general_guide')" class="menu-items-settings" style="cursor:pointer;"><i
+                class="fa fa-circle" aria-hidden="true"></i> General Information</a></li>
+          <li><a (click)="navigateToID('primary_forms')" class="menu-items-settings" style="cursor:pointer;"><i
+                class="fa fa-circle" aria-hidden="true"></i> Primary Forms</a></li>
+          <li><a (click)="navigateToID('supplementry_forms')" class="menu-items-settings" style="cursor:pointer;"><i
+                class="fa fa-circle" aria-hidden="true"></i> Supplementary Forms</a></li>
+          <li><a (click)="navigateToID('roles_responbilities')" class="menu-items-settings" style="cursor:pointer;"><i
+                class="fa fa-circle" aria-hidden="true"></i>Roles & Responsibilities</a></li>
+          <li><a (click)="navigateToID('themeguide')" class="menu-items-settings" style="cursor:pointer;"><i
+                class="fa fa-circle" aria-hidden="true"></i> Theme Guide</a></li>
+          <li><a (click)="navigateToID('indicators_list')" class="menu-items-settings" style="cursor:pointer;"><i
+                class="fa fa-circle" aria-hidden="true"></i> Indicators </a></li>
+          <li><a (click)="navigateToID('Forgot_Password')" class="menu-items-settings" style="cursor:pointer;"><i
+                class="fa fa-circle" aria-hidden="true"></i> Forgot Password</a></li>
+          <li><a (click)="navigateToID('Manage_User')" class="menu-items-settings" style="cursor:pointer;"><i
+                class="fa fa-circle" aria-hidden="true"></i> Manage User</a></li>
+          <li><a (click)="navigateToID('Deleting_a_Form')" class="menu-items-settings" style="cursor:pointer;"><i
+                class="fa fa-circle" aria-hidden="true"></i> Deleting a Form</a></li>
+        </ul>
+      </li>
+      <!--
+     <li><a   routerLink="#" routerLinkActive="active"  class="menu-items-settings"><i class="fa fa-address-book" ></i> Form Filling Guides</a>
+              <ul class="submenu">
+                <li><a   routerLink="/dashboard/primary-guide" routerLinkActive="active"  class="menu-items-settings"><i class="fa fa-circle"></i> Primary Forms</a></li>
+                <li><a   routerLink="/dashboard/supplementary-guide" routerLinkActive="active"  class="menu-items-settings"><i class="fa fa-circle"></i> Supplementry Forms</a></li>                  
+              </ul>
+            </li>
+            <li><a   routerLink="/dashboard/roles-responsibility" routerLinkActive="active"  class="menu-items-settings"><i class="fa fa-tasks" ></i> Roles and Responbilities</a></li>
+            <li><a   routerLink="/dashboard/leader-guide" routerLinkActive="active"  class="menu-items-settings"><i class="fa fa-book" ></i> Theme Leader's Guide</a></li>
+            -->
+
+
+      <!-- <ng-template #loaddefault> -->
+      <li *ngIf="load_manage_user">
+        <a routerLink="#" routerLinkActive="active" class="menu-items-settings"><i class="fa fa-sitemap"></i> Add
+          Hierarchy</a>
+        <ul class="submenu">
+          <li><a routerLink="/dashboard/manage-user" routerLinkActive="active" class="menu-items-settings"><i
+                class="fa fa-circle" aria-hidden="true"></i> Manage User</a></li>
+          <li><a routerLink="/dashboard/manage-district" routerLinkActive="active" class="menu-items-settings"><i
+                class="fa fa-circle" aria-hidden="true"></i> Manage Districts</a></li>
+        </ul>
+      </li>
+      <!--
+      <li>          
+           <a (click)="downloadOfflineFile()" class="menu-items-settings" style="cursor:pointer;"><i class="fa fa-download"></i> Download Offline Form</a>
+      </li>-->
+      <!-- </ng-template> -->
+
+      <!-- <ng-template>
+
+    </ng-template> -->
+
+
+
+
+
+    </ul>
+    <div class="col-sm-12 frontpage_nav">
+      <ul>
+        <li><a href="http://www.facebook.com" target="_blank" title="Facebook"><i class="fa fa-facebook facebook_a"
+              aria-hidden="true"></i><span class="facebook"></span></a></li>
+        <li><a href="http://www.twitter.com" target="_blank" title="Twitter"><i class="fa fa-twitter twitter_a"
+              aria-hidden="true"></i><span class="twitter"></span></a></li>
+        <li><a [routerLink]="['/contactform']" title="Contact Us"><i class="fa fa-phone contact_a"
+              aria-hidden="true"></i><span class="contact"></span></a></li>
+        <li><a [routerLink]="['/feedbackform']" title="Feedback"><i class="fa fa-pencil feedback_a"
+              aria-hidden="true"></i><span class="feedback"></span></a></li>
+      </ul>
+    </div>
+  </nav>
+</div>

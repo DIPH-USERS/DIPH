@@ -1,0 +1,186 @@
+<!-- Floating button on right Side -->
+
+<!-- End of Floating button on right Side -->
+
+<div class="">
+
+  <div style="background-color:#F0F0F0">
+
+    <form #newUser_form="ngForm" (ngSubmit)="onNewUserSubmit(newUser_form.value)">
+      <div class="col-sm-12 sub-header">
+          <div class="wrapper" (click)="previouspage()" style="with:20px; float:left">
+              <!-- <button class="button">Back</button> -->
+              <div class="" id="button-5" style="margin: 0; width:100%">
+                  <div id="translate"></div>
+                  <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left" style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+              </div>
+       </div>
+      <h4>Create New User</h4>
+      </div>
+      <div class="col-sm-12 form-body">
+      <div class="col-sm-6 lt">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Enter Username" id="username"
+          name="username" ngModel required>
+      </div>
+      </div>
+      <div class="col-sm-6 lt">
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Enter Password" id="user_password"
+          name="user_password" ngModel required>
+      </div>
+      </div>
+      <div class="col-sm-6 lt">
+      <div class="form-group">
+          <input type="email" class="form-control" placeholder="Enter Valid Email-Id" id="email"
+          name="email" ngModel required> 
+        
+      </div>
+     </div>
+
+     <div class="col-sm-6 lt">
+      <div class="form-group">
+        <select class="form-control" id="country" name="country"
+          (change)="onSelectCountry($event.target.value)" ngModel required   [attr.disabled]="true">
+          <option value="" selected disabled>Select Country</option>
+          <option *ngFor="let country of countries" value={{country.id}}>{{country.name}}</option>
+        </select>
+      </div>
+     </div>
+     <div class="col-sm-6 lt">
+      <div class="form-group">
+        <select class="form-control" id="region" name="region"
+          (change)="onSelectRegion($event.target.value)" ngModel required >
+          <option value="" selected disabled>Select Region</option>
+          <option *ngFor="let region of regions" value={{region.region_id}}>{{region.region_name}}</option>
+        </select>
+      </div>
+     </div>
+     <div class="col-sm-6 lt">
+      <div class="form-group">
+        <select class="form-control" id="state" name="state"
+          (change)="onSelectState($event.target.value)" ngModel required>
+          <option value="" selected disabled>Select Zone</option>
+          <option *ngFor="let state of states" value={{state.cs_id}}>{{state.state_name}}</option>
+        </select>
+      </div>
+     </div>
+     <div class="col-sm-6 lt">
+      <div class="form-group">
+        <select class="form-control" id="district" name="district" ngModel
+          (change)="onSelectDistrict($event.target.value)" required multiple>
+          <option value="" selected disabled>Select Woreda</option>
+          <option *ngFor="let district of districts" value={{district.district_id}}>{{district.district_name}}</option>
+        </select>
+      </div>
+     </div>
+     <div class="col-sm-6 lt">
+      <div class="form-group">
+        <select class="form-control" id="cycle" name="cycle" 
+        (change)="onSelectCycle($event.target.value)"   ngModel required multiple>
+          <option value="" selected disabled>Select Cycle</option>
+          <option *ngFor="let cycle of cycles" value={{cycle.cycle_id}}>{{cycle.cycle_name}}</option>
+        </select>
+      </div>
+     </div>
+     <div class="col-sm-6 lt">
+      <div class="form-group">
+        <select class="form-control" id="year" name="year" ngModel required multiple>
+          <option value="" selected disabled>Select Year</option>
+          <option *ngFor="let year of years" value={{year.year_id}}>{{year.year_name}}</option>
+        </select>
+      </div>
+     </div>
+     <!-- <div class="col-sm-6 lt">
+      <div class="row">
+      <div class="col-sm-6">
+      <div class="form-group">
+        <select class="form-control" id="createUser" name="createUser" ngModel>
+          <option value="" selected disabled>Grant create user privileges</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      </div>
+      
+      
+      <div class="col-sm-6">
+      <div class="form-group">
+        <select class="form-control" id="editUser" name="editUser" ngModel>
+          <option value="" selected disabled>Grant edit user privileges</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+     </div>
+     </div>
+     </div> -->
+     
+        <!-- <div class="row">
+        <div class="col-sm-6">
+        <div class="form-group">
+        <select class="form-control" id="viewUser" name="viewUser" ngModel>
+          <option value="" selected disabled>Grant view user privileges</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+        </div>
+        </div>
+        <div class="col-sm-6">
+        <div class="form-group">
+        <select class="form-control" id="deleteUser" name="deleteUser" ngModel>
+          <option value="" selected disabled>Grant delete user privileges</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      </div>
+      </div> -->
+      </div>
+      <div style="clear: both;"></div>
+      <div class="col-sm-12 text-center form-footer" style="margin-bottom:0px !important;">
+      <button _ngcontent-dbi-c224="" mat-flat-button="" color="primary" class="mat-flat-button mat-button-base mat-primary" type="submit">Create New User</button> &nbsp;&nbsp;
+      <button _ngcontent-dbi-c224="" mat-raised-button="" color="warn" class="mat-raised-button mat-button-base mat-warn" type="reset" id="reset_user_form">Reset Form</button>
+      </div>
+    
+    </form>
+  </div>
+  <br>
+  <div class="col-sm-12 form-body margin-bottom bottom">
+  <div *ngIf="UsersResponseObj; else loading " class="table-wrapper">
+    <table class="table table-sm table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Username</th>
+          <th>Password</th>
+          <!-- <th>Can Create</th> -->
+          <!-- <th>Can View</th> -->
+          <!-- <th>Can Edit</th> -->
+          <!-- <th>Can Delete</th> -->
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="indicatorTableBody">        
+        <tr class="table-row" *ngFor="let array_index of UsersResponseObj.userList; let i = index">
+          <td>{{array_index.user_nm}}</td>
+          <td> ****** </td>
+          <!-- <td>{{array_index.user_pass}}</td> -->
+          <!-- <td>{{array_index.can_create}}</td> -->
+          <!-- <td>{{array_index.can_view}}</td> -->
+          <!-- <td>{{array_index.can_edit}}</td> -->
+          <!-- <td>{{array_index.can_delete}}</td> -->
+          <td style="width: 100px"><button type="button" (click)="edituserviaadmin(array_index.user_nm)"   color="primary" class="mat-flat-button mat-button-base mat-primary padding-less"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>            
+          <td style="width: 100px"><button type="button" (click)="deleteUser(array_index.user_nm)" color="accent" class="mat-flat-button mat-button-base mat-accent padding-less"><i class="fa fa-trash" aria-hidden="true"></i>
+              </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>
+
+
+<ng-template #loading>
+  <img class="loading-img" src="assets/images/wait.gif" alt="">
+</ng-template>

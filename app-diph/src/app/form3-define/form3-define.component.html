@@ -1,0 +1,1874 @@
+<div *ngIf="loading else loaded">
+    loading ...
+
+</div>
+
+<ng-template #loaded>
+
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
+
+
+    <!-- Floating button on right Side -->
+
+    <!-- End of Floating button on right Side -->
+
+
+    <div [hidden]="savedform" class="">
+        <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+            <div class="col-sm-12 sub-header">
+                <div class="wrapper" (click)="previouspage()" style="width:20px; float:left">
+                    <!-- <button class="button">Back</button> -->
+                    <div class="" id="button-5" style="margin: 0; width:100%">
+                        <div id="translate"></div>
+                        <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i
+                                _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left"
+                                style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+                    </div>
+                </div>
+                <h4>Form-III: Define</h4>
+            </div>
+            <div class="">
+                <div class="col-sm-12 form-body lt">
+                    <div class="">
+
+
+                        <div class="col-sm-6 lt">
+                            <label>Date of the meeting </label>
+                            <div class="col-sm-12 form-control">
+                                <div class="">
+                                    <div class="example-container" style="background-color:white;color:black;">
+                                        <mat-form-field>
+                                            <input matInput [formControl]="date" [matDatepicker]="picker"
+                                                [min]="minDate" placeholder="" name='date_of_verification'
+                                                (click)="picker.open()" (keypress)="picker.open()" readonly>
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" formControlName="form_3_checkdate"
+                                        [ngClass]="{ 'is-invalid': submitted && f.form_3_checkdate.errors }">
+
+                                    <div *ngIf="submitted && f.form_3_checkdate.errors" class="invalid-feedback">
+                                        <div *ngIf="f.form_3_checkdate.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 lt">
+                            <label>Venue of the meeting </label>
+                            <div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="form_3_meeting_venue"
+                                        [ngClass]="{ 'is-invalid': submitted && f.form_3_meeting_venue.errors }">
+
+                                    <div *ngIf="submitted && f.form_3_meeting_venue.errors" class="invalid-feedback">
+                                        <div *ngIf="f.form_3_meeting_venue.errors.required">Field value is required
+                                        </div>
+                                        <!--<div *ngIf="f.form_3_meeting_venue.errors.pattern">Alphabets and spaces only
+                                            allowed</div>-->
+                                        <div *ngIf="f.form_3_meeting_venue.errors.maxlength">Total Characters within and
+                                            equal to 100 length only allowed.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-sm-6 lt">
+                                <label>Theme Leader of the cycle: </label>
+                                <div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="form_3_filled_by"
+                                            [ngClass]="{ 'is-invalid': submitted && f.form_3_filled_by.errors }">
+
+                                        <div *ngIf="submitted && f.form_3_filled_by.errors" class="invalid-feedback">
+                                            <div *ngIf="f.form_3_filled_by.errors.required">Field value is
+                                                required</div>
+                                            <!--<div *ngIf="f.form_3_filled_by.errors.pattern">Alphabets and spaces only
+                                            </div>-->
+                                            <div *ngIf="f.form_3_filled_by.errors.maxlength">Total Characters within and
+                                                equal to 100 length only allowed</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 lt">
+                                <label>Chairperson of the meeting </label>
+                                <div>
+                                    <div class="form-group">
+                                        <select formControlName="form3_chair_person" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f.form3_chair_person.errors }">
+                                            <option *ngFor="let order of  verified_by_name_from_Db; let i = index"
+                                                [value]="verified_by_name_from_Db[i].id">
+                                                {{verified_by_name_from_Db[i].name}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="submitted && f.form3_chair_person.errors" class="invalid-feedback">
+                                            <div *ngIf="f.form3_chair_person.errors.required">Field value is
+                                                required</div>
+                                        </div>
+                                        <div class="form-group" style="margin-top: 10px;">
+                                            <input *ngIf="f.form3_chair_person.value  ==  '15' " type="text"
+                                                [ngClass]="{ 'is-invalid': (submitted && f.form3_chair_person_others.value == null) ||  (submitted && f.form3_chair_person_others.value == 'null')  ||  (submitted && f.form3_chair_person_others.value == '')}"
+                                                formControlName="form3_chair_person_others"
+                                                id="form3_chair_person_others" class="form-control">
+                                            <div *ngIf="(submitted && f.form3_chair_person_others.value == null) ||  (submitted && f.form3_chair_person_others.value == 'null')  ||  (submitted && f.form3_chair_person_others.value == '') "
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="(submitted && f.form3_chair_person_others.value == null) ||  (submitted && f.form3_chair_person_others.value == 'null')  ||  (submitted && f.form3_chair_person_others.value == '')">
+                                                    Field value is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- //Start Actual form here -->
+                <!-- Key Stakeholder -->
+                <div class="col-sm-12 form-body lt" style="margin-top:20px;">
+                    <div class="table-responsive">
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead style="background-color: #00AEC7;color: #FFFFFF">
+                                <tr class="d-flex">
+                                    <th class="col-12">Theme &nbsp;:&nbsp;&nbsp;&nbsp; {{jsonresponse.iphs_theme_name}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--End of Key Stakeholder -->
+
+
+
+
+
+
+
+                    <!-- 1. -->
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr class="d-flex">
+                                    <th class="col-1">1</th>
+                                    <th class="col-3"> Service Delivery</th>
+                                    <th class="col-3"></th>
+                                    <th class="col-5"><input type="checkbox" [checked]="service_data_not_available" (change)="service_data_not_available = !service_data_not_available" /> &nbsp;&nbsp; No Service Delivery Data Available</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="d-flex"   style="background-color: #00AEC7;color: #FFFFFF">
+                                    <td class="col-1">Sl. No.</td>
+                                    <td class="col-3">Description Of Problem From Health System Perspective</td>
+                                    <td class="col-3">Possible Solution To Improve</td>
+                                    <td class="col-5">Action Required (Write In Priority Order)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--continues 1. -->
+
+
+
+
+
+
+
+
+                    <!-- continue 1. -->
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                            </thead>
+                            <tbody>
+                                <tr class="d-flex" id="god">
+                                    <td class="col-1 ">
+                                        <div class="form-group" (click)="onClickAddServiceRow(1)">
+                                            <span class="fa-stack fa-lg">
+                                                <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="service_description_p_f_h_s_p"
+                                                [ngClass]="{ 'is-invalid': submitted && f.service_description_p_f_h_s_p.errors }">
+
+                                            <div *ngIf="submitted && f.service_description_p_f_h_s_p.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.service_description_p_f_h_s_p.errors.required">Field value
+                                                    is
+                                                    required</div>
+                                                <!--<div *ngIf="f.service_description_p_f_h_s_p.errors.pattern">Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div *ngIf="f.service_description_p_f_h_s_p.errors.maxlength">Total
+                                                    Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="service_possible_s_t_i"
+                                                [ngClass]="{ 'is-invalid': submitted && f.service_possible_s_t_i.errors }">
+
+                                            <div *ngIf="submitted && f.service_possible_s_t_i.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.service_possible_s_t_i.errors.required">Field value is
+                                                    required</div>
+                                                <!--<div *ngIf="f.service_possible_s_t_i.errors.pattern">Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div *ngIf="f.service_possible_s_t_i.errors.maxlength">Total Characters
+                                                    within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-5">
+
+                                        <div class="form-group">
+
+                                            <!-- Action Required variable not made in Reactive Form Technique -->
+                                            <div
+                                                *ngFor="let obj of first_service_document_action_required; let j = index">
+                                                <div class="input-group">
+                                                    <div class="" *ngIf="j==0"
+                                                        (click)="onclickAddFirstServiceActionRow()">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-plus-circle  fa-fw"
+                                                            style="color:#00BF6F"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group" *ngIf="j!=0"
+                                                        (click)="onclickRemoveFirstServiceActionRow(j)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': (submitted && first_service_document_action_required[j]=='')}"
+                                                        [value]="first_service_document_action_required[j]"
+                                                        (blur)="first_service_document_action_required[j]=$event.target.value">
+                                                    <div *ngIf="(submitted && first_service_document_action_required[j]=='')"
+                                                        class="invalid-feedback">
+                                                        <div
+                                                            *ngIf="submitted && first_service_document_action_required[j]==''">
+                                                            Field value is
+                                                            required</div>
+                                                        <!--<div
+                                                            *ngIf="validateSpecialCharsAndNum(first_service_document_action_required[j])">
+                                                            Alphabets and spaces only allowed</div>
+                                                        <div
+                                                            *ngIf="validate100charactersallowed(first_service_document_action_required[j])">
+                                                            Total Characters within and equal to 100 length only
+                                                            allowed.</div>-->
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- <div class="input-group">
+                                       
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="service_action_required"
+                                            [ngClass]="{ 'is-invalid': submitted && f.service_action_required.errors }">
+                                    </div>
+                                    <div *ngIf="submitted && f.service_action_required.errors" class="invalid-feedback">
+                                        <div *ngIf="f.service_action_required.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Dynamic Added Rows  -->
+                                <tr class="d-flex" *ngFor="let array_index of service_array.controls; let i = index">
+                                    <td class="col-1 " (click)="onClickRemoveServiceRow(i)">
+                                        <span class="fa-stack fa-lg">
+
+                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                        </span>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="document_description_p_f_h_s_p"
+                                                [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_description_p_f_h_s_p.errors }">
+
+                                            <div *ngIf="submitted && array_index.controls.document_description_p_f_h_s_p.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="document_possible_s_t_i"
+                                                [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_possible_s_t_i.errors }">
+
+                                            <div *ngIf="submitted && array_index.controls.document_possible_s_t_i.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-5">
+                                        <div class="form-group" [formGroup]="array_index">
+
+                                            <div
+                                                *ngFor="let obj of service_array.value[i].document_action_required; let j = index">
+                                                <div class="input-group">
+                                                    <div class="" *ngIf="j==0"
+                                                        (click)="onClickAddServiceActionRow(i)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-plus-circle  fa-fw"
+                                                            style="color:#00BF6F"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group" *ngIf="j!=0"
+                                                        (click)="onClickRemoveServiceActionRow(i,j)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': (submitted && service_array.value[i].document_action_required[j]=='')}"
+                                                        [value]="service_array.value[i].document_action_required[j]"
+                                                        (blur)="service_array.value[i].document_action_required[j]=$event.target.value">
+                                                    <div *ngIf="(submitted && service_array.value[i].document_action_required[j]=='')"
+                                                        class="invalid-feedback">
+                                                        <div
+                                                            *ngIf="service_array.value[i].document_action_required[j]==''">
+                                                            Field
+                                                            value is
+                                                            required</div>
+                                                        <!--<div
+                                                            *ngIf="validateSpecialCharsAndNum(service_array.value[i].document_action_required[j])">
+                                                            Alphabets and spaces only allowed</div>
+                                                        <div
+                                                            *ngIf="validate100charactersallowed(service_array.value[i].document_action_required[j])">
+                                                            Total Characters within and equal to 100 length only
+                                                            allowed.</div>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- <pre>{{service_array.value[i].document_action_required | json }}</pre> -->
+                                            <!-- <div class="input-group">
+
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="document_action_required"
+                                            [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_action_required.errors }">
+                                    </div>
+                                    <div *ngIf="submitted && array_index.controls.document_action_required.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="array_index.controls.document_action_required.errors.required">Field
+                                            value is
+                                            required</div>
+                                    </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- End of Dynamic Added Rows  -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--End of  1. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- 2. -->
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr class="d-flex">
+                                    <th class="col-1">2.</th>
+                                    <th class="col-3">Workforce</th>
+                                    <th class="col-3"></th>
+                                    <th class="col-5"><input type="checkbox" [checked]="workforce_data_not_available" (change)="workforce_data_not_available = !workforce_data_not_available"/> &nbsp;&nbsp; No Workforce Data Available</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="d-flex"   style="background-color: #00AEC7;color: #FFFFFF">
+                                    <td class="col-1">Sl. No.</td>
+                                    <td class="col-3">Description Of Problem From Health System Perspective</td>
+                                    <td class="col-3">Possible Solution To Improve</td>
+                                    <td class="col-5">Action Required (Write In Priority Order)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--continues 2. -->
+
+
+
+
+
+
+
+
+                    <!-- continue 2. -->
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead style="background-color: #007b5e;color: #FFFFFF">
+                            </thead>
+                            <tbody>
+                                <tr class="d-flex" id="god">
+                                    <td class="col-1 ">
+                                        <div class="form-group" (click)="onClickAddWorkforceRow(1)">
+                                            <span class="fa-stack fa-lg">
+
+                                                <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="workforce_service_description_p_f_h_s_p"
+                                                [ngClass]="{ 'is-invalid': submitted && f.workforce_service_description_p_f_h_s_p.errors }">
+
+                                            <div *ngIf="submitted && f.workforce_service_description_p_f_h_s_p.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.workforce_service_description_p_f_h_s_p.errors.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div *ngIf="f.workforce_service_description_p_f_h_s_p.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div *ngIf="f.workforce_service_description_p_f_h_s_p.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="workforce_service_possible_s_t_i"
+                                                [ngClass]="{ 'is-invalid': submitted && f.workforce_service_possible_s_t_i.errors }">
+
+                                            <div *ngIf="submitted && f.workforce_service_possible_s_t_i.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.workforce_service_possible_s_t_i.errors.required">Field
+                                                    value
+                                                    is
+                                                    required</div>
+                                                <!--<div *ngIf="f.workforce_service_possible_s_t_i.errors.pattern">Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div *ngIf="f.workforce_service_possible_s_t_i.errors.maxlength">Total
+                                                    Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-5">
+                                        <div class="form-group">
+
+                                           <!-- Action Required variable not made in Reactive Form Technique -->
+                                            <div
+                                                *ngFor="let obj of first_workforce_document_action_required; let j = index">
+                                                <div class="input-group">
+                                                    <div class="" *ngIf="j==0"
+                                                        (click)="onclickAddFirstWorkforceActionRow()">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-plus-circle  fa-fw"
+                                                            style="color:#00BF6F"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group" *ngIf="j!=0"
+                                                        (click)="onclickRemoveFirstWorkforceActionRow(j)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                        [value]="first_workforce_document_action_required[j]"
+                                                        (blur)="first_workforce_document_action_required[j]=$event.target.value"
+                                                        [ngClass]="{ 'is-invalid': (submitted && first_workforce_document_action_required[j]=='')}">
+
+                                                    <div *ngIf="(submitted && first_workforce_document_action_required[j]=='')"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="first_workforce_document_action_required[j]==''">
+                                                            Field
+                                                            value
+                                                            is
+                                                            required</div>
+                                                        <!--<div
+                                                            *ngIf="validateSpecialCharsAndNum(first_workforce_document_action_required[j])">
+                                                            Alphabets and spaces only allowed</div>
+                                                        <div
+                                                            *ngIf="validate100charactersallowed(first_workforce_document_action_required[j])">
+                                                            Total Characters within and equal to 100 length only
+                                                            allowed.</div>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- <div class="input-group">
+                                       
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="workforce_action_required"
+                                            [ngClass]="{ 'is-invalid': submitted && f.workforce_action_required.errors }">
+                                    </div>
+                                    <div *ngIf="submitted && f.workforce_action_required.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="f.workforce_action_required.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Dynamic Added Rows  -->
+
+                                <!-- WorkforceArray is in form of Reactive Array -->
+                                <tr class="d-flex" *ngFor="let array_index of workforce_array.controls; let i = index">
+                                    <td class="col-1 ">
+                                        <div class="form-group" (click)="onClickRemoveWorkforceRow(i)">
+                                            <span class="fa-stack fa-lg">
+                                                <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="document_description_p_f_h_s_p"
+                                                [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_description_p_f_h_s_p.errors }">
+
+                                            <div *ngIf="submitted && array_index.controls.document_description_p_f_h_s_p.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="document_possible_s_t_i"
+                                                [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_possible_s_t_i.errors }">
+
+                                            <div *ngIf="submitted && array_index.controls.document_possible_s_t_i.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-5">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <div
+                                                *ngFor="let obj of workforce_array.value[i].document_action_required; let j = index">
+                                                <div class="input-group">
+                                                    <div class="" *ngIf="j==0"
+                                                        (click)="onClickAddWorkforceActionRow(i)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-plus-circle  fa-fw"
+                                                            style="color:#00BF6F"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group" *ngIf="j!=0"
+                                                        (click)="onClickRemoveWorkforceActionRow(i,j)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': (submitted && workforce_array.value[i].document_action_required[j]=='')}"
+                                                        [value]="workforce_array.value[i].document_action_required[j]"
+                                                        (change)="workforce_array.value[i].document_action_required[j]=$event.target.value">
+
+                                                    <div *ngIf="(submitted && workforce_array.value[i].document_action_required[j]=='')"
+                                                        class="invalid-feedback">
+                                                        <div
+                                                            *ngIf=" workforce_array.value[i].document_action_required[j]==''">
+                                                            Field
+                                                            value is
+                                                            required</div>
+                                                        <!--<div
+                                                            *ngIf="validateSpecialCharsAndNum(workforce_array.value[i].document_action_required[j])">
+                                                            Alphabets and spaces only allowed</div>
+                                                        <div
+                                                            *ngIf="validate100charactersallowed(workforce_array.value[i].document_action_required[j])">
+                                                            Total Characters within and equal to 100 length only
+                                                            allowed.</div>-->
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- <div class="input-group">
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="document_action_required"
+                                            [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_action_required.errors }">
+                                    </div>
+                                    <div *ngIf="submitted && array_index.controls.document_action_required.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="array_index.controls.document_action_required.errors.required">Field
+                                            value is
+                                            required</div>
+                                    </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!--End of  Dynamic Added Rows  -->
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--End of  2. -->
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- 3. -->
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr class="d-flex">
+                                    <th class="col-1">3.</th>
+                                    <th class="col-3">Supplies & Technology</th>
+                                    <th class="col-3"></th>
+                                    <th class="col-5"><input type="checkbox" [checked]="supply_data_not_available" (change)="supply_data_not_available = !supply_data_not_available"/> &nbsp;&nbsp; No Supplies & Technology Data Available</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="d-flex"   style="background-color: #00AEC7;color: #FFFFFF">
+                                    <td class="col-1">SI. No.</td>
+                                    <td class="col-3">Description of Problem from Health System Perspective</td>
+                                    <td class="col-3">Possible Solution to Improve</td>
+                                    <td class="col-5">Action Required (write in priority order)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--continues 3. -->
+
+
+
+
+
+
+
+
+                    <!-- continue 3. -->
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead style="background-color: #007b5e;color: #FFFFFF">
+                            </thead>
+                            <tbody>
+                                <tr class="d-flex" id="god">
+                                    <td class="col-1 ">
+                                        <div class="form-group" (click)="onClickAddSuppliesRow(1)">
+                                            <span class="fa-stack fa-lg">
+
+                                                <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="supplies_service_description_p_f_h_s_p"
+                                                [ngClass]="{ 'is-invalid': submitted && f.supplies_service_description_p_f_h_s_p.errors }">
+
+                                            <div *ngIf="submitted && f.supplies_service_description_p_f_h_s_p.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.supplies_service_description_p_f_h_s_p.errors.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div *ngIf="f.supplies_service_description_p_f_h_s_p.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div *ngIf="f.supplies_service_description_p_f_h_s_p.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="supplies_service_possible_s_t_i"
+                                                [ngClass]="{ 'is-invalid': submitted && f.supplies_service_possible_s_t_i.errors }">
+
+                                            <div *ngIf="submitted && f.supplies_service_possible_s_t_i.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.supplies_service_possible_s_t_i.errors.required">Field
+                                                    value
+                                                    is
+                                                    required</div>
+                                                <!--<div *ngIf="f.supplies_service_possible_s_t_i.errors.pattern">Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div *ngIf="f.supplies_service_possible_s_t_i.errors.maxlength">Total
+                                                    Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-5">
+                                        <div class="form-group">
+
+                                            <!-- Action Required variable not made in Reactive Form Technique -->
+                                            <div
+                                                *ngFor="let obj of first_supplies_document_action_required; let j = index">
+                                                <div class="input-group">
+                                                    <div class="" *ngIf="j==0"
+                                                        (click)="onclickAddFirstSuppliesActionRow()">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-plus-circle  fa-fw"
+                                                            style="color:#00BF6F"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group" *ngIf="j!=0"
+                                                        (click)="onclickRemoveFirstSuppliesActionRow(j)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': (submitted &&  first_supplies_document_action_required[j]=='')}"
+                                                        [value]="first_supplies_document_action_required[j]"
+                                                        (blur)="first_supplies_document_action_required[j]=$event.target.value">
+                                                    <div *ngIf="(submitted &&  first_supplies_document_action_required[j]=='')"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="first_supplies_document_action_required[j]==''">
+                                                            Field
+                                                            value
+                                                            is
+                                                            required</div>
+                                                        <!--<div
+                                                            *ngIf="validateSpecialCharsAndNum(first_supplies_document_action_required[j])">
+                                                            Alphabets and spaces only allowed</div>
+                                                        <div
+                                                            *ngIf="validate100charactersallowed(first_supplies_document_action_required[j])">
+                                                            Total Characters within and equal to 100 length only
+                                                            allowed.</div>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- <div class="input-group">                                       
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="supplies_action_required"
+                                            [ngClass]="{ 'is-invalid': submitted && f.supplies_action_required.errors }">
+                                    </div>
+                                    <div *ngIf="submitted && f.supplies_action_required.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="f.supplies_action_required.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Dynamic Added Rows -->
+                                <tr class="d-flex" *ngFor="let array_index of supplies_array.controls; let i = index">
+                                    <td class="col-1 ">
+                                        <div class="form-group" (click)="onClickRemoveSuppliesRow(i)">
+                                            <span class="fa-stack fa-lg">
+
+                                                <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="document_description_p_f_h_s_p"
+                                                [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_description_p_f_h_s_p.errors }">
+
+                                            <div *ngIf="submitted && array_index.controls.document_description_p_f_h_s_p.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="document_possible_s_t_i"
+                                                [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_possible_s_t_i.errors }">
+
+                                            <div *ngIf="submitted && array_index.controls.document_possible_s_t_i.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-5">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <div
+                                                *ngFor="let obj of supplies_array.value[i].document_action_required; let j = index">
+                                                <div class="input-group">
+                                                    <div class="" *ngIf="j==0"
+                                                        (click)="onClickAddSuppliesActionRow(i)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-plus-circle  fa-fw"
+                                                            style="color:#00BF6F"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group" *ngIf="j!=0"
+                                                        (click)="onClickRemoveSuppliesActionRow(i,j)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': (submitted && supplies_array.value[i].document_action_required[j]=='')}"
+                                                        [value]="supplies_array.value[i].document_action_required[j]"
+                                                        (change)="supplies_array.value[i].document_action_required[j]=$event.target.value">
+                                                    <div *ngIf="(submitted && supplies_array.value[i].document_action_required[j]=='')"
+                                                        class="invalid-feedback">
+                                                        <div
+                                                            *ngIf=" supplies_array.value[i].document_action_required[j]==''">
+                                                            Field
+                                                            value is
+                                                            required</div>
+                                                        <!--<div
+                                                            *ngIf="validateSpecialCharsAndNum(supplies_array.value[i].document_action_required[j])">
+                                                            Alphabets and spaces only allowed</div>
+                                                        <div
+                                                            *ngIf="validate100charactersallowed(supplies_array.value[i].document_action_required[j])">
+                                                            Total Characters within and equal to 100 length only
+                                                            allowed.</div>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- <div class="input-group">
+                                        
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="document_action_required"
+                                            [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_action_required.errors }">
+                                    </div>
+                                    <div *ngIf="submitted && array_index.controls.document_action_required.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="array_index.controls.document_action_required.errors.required">Field
+                                            value is
+                                            required</div>
+                                    </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- End of Dynamic Added Rows -->
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--End of  3. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- 4. -->
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr class="d-flex">
+                                    <th class="col-1">4.</th>
+                                    <th class="col-3">Health Information</th>
+                                    <th class="col-3"></th>
+                                    <th class="col-5"><input type="checkbox" [checked]="health_data_not_available" (change)="health_data_not_available = !health_data_not_available"/> &nbsp;&nbsp; No Health Information Data Available</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="d-flex"   style="background-color: #00AEC7;color: #FFFFFF">
+                                    <td class="col-1">SI. No.</td>
+                                    <td class="col-3">Description of Problem from Health System Perspective</td>
+                                    <td class="col-3">Possible Solution to Improve</td>
+                                    <td class="col-5">Action Required (write in priority order)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--continues 4. -->
+
+
+
+
+
+
+
+
+                    <!-- continue 4. -->
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead style="background-color: #007b5e;color: #FFFFFF">
+                            </thead>
+                            <tbody>
+                                <tr class="d-flex" id="god">
+                                    <td class="col-1 ">
+                                        <div class="form-group" (click)="onClickAddHealthRow(1)">
+                                            <span class="fa-stack fa-lg">
+
+                                                <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="health_service_description_p_f_h_s_p"
+                                                [ngClass]="{ 'is-invalid': submitted && f.health_service_description_p_f_h_s_p.errors }">
+
+                                            <div *ngIf="submitted && f.health_service_description_p_f_h_s_p.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.health_service_description_p_f_h_s_p.errors.required">
+                                                    Field
+                                                    value
+                                                    is
+                                                    required</div>
+                                                <!--<div *ngIf="f.health_service_description_p_f_h_s_p.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div *ngIf="f.health_service_description_p_f_h_s_p.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="health_service_possible_s_t_i"
+                                                [ngClass]="{ 'is-invalid': submitted && f.health_service_possible_s_t_i.errors }">
+
+                                            <div *ngIf="submitted && f.health_service_possible_s_t_i.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.health_service_possible_s_t_i.errors.required">Field value
+                                                    is
+                                                    required</div>
+                                                <!--<div *ngIf="f.health_service_possible_s_t_i.errors.pattern">Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div *ngIf="f.health_service_possible_s_t_i.errors.maxlength">Total
+                                                    Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-5">
+                                        <div class="form-group">
+                                            <!-- Action Required variable not made in Reactive Form Technique -->
+                                            <div
+                                                *ngFor="let obj of first_health_document_action_required; let j = index">
+                                                <div class="input-group">
+                                                    <div class="" *ngIf="j==0"
+                                                        (click)="onclickAddFirstHealthActionRow()">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-plus-circle  fa-fw"
+                                                            style="color:#00BF6F"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group" *ngIf="j!=0"
+                                                        (click)="onclickRemoveFirstHealthActionRow(j)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': (submitted && first_health_document_action_required[j]=='')}"
+                                                        [value]="first_health_document_action_required[j]"
+                                                        (blur)="first_health_document_action_required[j]=$event.target.value">
+                                                    <div *ngIf="(submitted && first_health_document_action_required[j]=='')"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="first_health_document_action_required[j]==''">Field
+                                                            value is
+                                                            required</div>
+                                                        <!--<div
+                                                            *ngIf="validateSpecialCharsAndNum(first_health_document_action_required[j])">
+                                                            Alphabets and spaces only allowed</div>
+                                                        <div
+                                                            *ngIf="validate100charactersallowed(first_health_document_action_required[j])">
+                                                            Total Characters within and equal to 100 length only
+                                                            allowed.</div>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- <div class="input-group">
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="health_action_required"
+                                            [ngClass]="{ 'is-invalid': submitted && f.health_action_required.errors }">
+                                    </div>
+                                    <div *ngIf="submitted && f.health_action_required.errors" class="invalid-feedback">
+                                        <div *ngIf="f.health_action_required.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Dynamic Added Rows  -->
+                                <tr class="d-flex" *ngFor="let array_index of health_array.controls; let i = index">
+                                    <td class="col-1 ">
+                                        <div class="form-group" (click)="onClickRemoveHealthRow(i)">
+                                            <span class="fa-stack fa-lg">
+
+                                                <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="document_description_p_f_h_s_p"
+                                                [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_description_p_f_h_s_p.errors }">
+
+                                            <div *ngIf="submitted && array_index.controls.document_description_p_f_h_s_p.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="document_possible_s_t_i"
+                                                [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_possible_s_t_i.errors }">
+
+                                            <div *ngIf="submitted && array_index.controls.document_possible_s_t_i.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-5">
+                                        <div class="form-group" [formGroup]="array_index">
+
+
+                                            <div
+                                                *ngFor="let obj of health_array.value[i].document_action_required; let j = index">
+                                                <div class="input-group">
+                                                    <div class="" *ngIf="j==0"
+                                                        (click)="onClickAddHealthActionRow(i)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-plus-circle  fa-fw"
+                                                            style="color:#00BF6F"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group" *ngIf="j!=0"
+                                                        (click)="onClickRemoveHealthActionRow(i,j)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': (submitted && health_array.value[i].document_action_required[j]=='')}"
+                                                        [value]="health_array.value[i].document_action_required[j]"
+                                                        (change)="health_array.value[i].document_action_required[j]=$event.target.value">
+
+                                                    <div *ngIf="(submitted && health_array.value[i].document_action_required[j]=='')"
+                                                        class="invalid-feedback">
+                                                        <div
+                                                            *ngIf=" health_array.value[i].document_action_required[j]=='' ">
+                                                            Field
+                                                            value is
+                                                            required</div>
+                                                        <!--<div
+                                                            *ngIf="validateSpecialCharsAndNum(health_array.value[i].document_action_required[j])">
+                                                            Alphabets and spaces only allowed</div>
+                                                        <div
+                                                            *ngIf="validate100charactersallowed(health_array.value[i].document_action_required[j])">
+                                                            Total Characters within and equal to 100 length only
+                                                            allowed.</div>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- <div class="input-group">
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="document_action_required"
+                                            [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_action_required.errors }">
+                                    </div>
+                                    <div *ngIf="submitted && array_index.controls.document_action_required.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="array_index.controls.document_action_required.errors.required">Field
+                                            value is
+                                            required</div>
+                                    </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- End of Dynamic Added Rows  -->
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--End of  4. -->
+
+
+
+                    <!-- 5. -->
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr class="d-flex">
+                                    <th class="col-1">5.</th>
+                                    <th class="col-3">Finance</th>
+                                    <th class="col-3"></th>
+                                    <th class="col-5"><input type="checkbox" [checked]="finance_data_not_available" (change)="finance_data_not_available = !finance_data_not_available"/> &nbsp;&nbsp; No Finance Data Available</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="d-flex"   style="background-color: #00AEC7;color: #FFFFFF">
+                                    <td class="col-1">SI. No.</td>
+                                    <td class="col-3">Description of Problem from Health System Perspective</td>
+                                    <td class="col-3">Possible Solution to Improve</td>
+                                    <td class="col-5">Action Required (write in priority order)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--continues 5. -->
+
+
+
+
+
+
+
+
+                    <!-- continue 5. -->
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead style="background-color: #007b5e;color: #FFFFFF">
+                            </thead>
+                            <tbody>
+                                <tr class="d-flex" id="god">
+                                    <td class="col-1 ">
+                                        <div class="form-group" (click)="onClickAddFinanceRow(1)">
+                                            <span class="fa-stack fa-lg">
+
+                                                <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="finance_service_description_p_f_h_s_p"
+                                                [ngClass]="{ 'is-invalid': submitted && f.finance_service_description_p_f_h_s_p.errors }">
+
+                                            <div *ngIf="submitted && f.finance_service_description_p_f_h_s_p.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.finance_service_description_p_f_h_s_p.errors.required">
+                                                    Field
+                                                    value
+                                                    is
+                                                    required</div>
+                                                <!--<div *ngIf="f.finance_service_description_p_f_h_s_p.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div *ngIf="f.finance_service_description_p_f_h_s_p.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="finance_service_possible_s_t_i"
+                                                [ngClass]="{ 'is-invalid': submitted && f.finance_service_possible_s_t_i.errors }">
+
+                                            <div *ngIf="submitted && f.finance_service_possible_s_t_i.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.finance_service_possible_s_t_i.errors.required">Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div *ngIf="f.finance_service_possible_s_t_i.errors.pattern">Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div *ngIf="f.finance_service_possible_s_t_i.errors.maxlength">Total
+                                                    Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-5">
+                                        <div class="form-group">
+                                            <!-- Action Required variable not made in Reactive Form Technique -->
+                                            <div
+                                                *ngFor="let obj of first_finance_document_action_required; let j = index">
+                                                <div class="input-group">
+                                                    <div class="" *ngIf="j==0"
+                                                        (click)="onclickAddFirstFinanceActionRow()">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-plus-circle  fa-fw"
+                                                            style="color:#00BF6F"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group" *ngIf="j!=0"
+                                                        (click)="onclickRemoveFirstFinanceActionRow(j)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': (submitted &&  first_finance_document_action_required[j]=='')}"
+                                                        [value]="first_finance_document_action_required[j]"
+                                                        (blur)="first_finance_document_action_required[j]=$event.target.value">
+                                                    <div *ngIf="(submitted &&  first_finance_document_action_required[j]=='')"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="first_finance_document_action_required[j]==''">Field
+                                                            value is
+                                                            required</div>
+                                                        <!--<div
+                                                            *ngIf="validateSpecialCharsAndNum(first_finance_document_action_required[j])">
+                                                            Alphabets and spaces only allowed</div>
+                                                        <div
+                                                            *ngIf="validate100charactersallowed(first_finance_document_action_required[j])">
+                                                            Total Characters within and equal to 100 length only
+                                                            allowed.</div>-->
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <!-- <div class="input-group">
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="finance_action_required"
+                                            [ngClass]="{ 'is-invalid': submitted && f.finance_action_required.errors }">
+                                    </div>
+                                    <div *ngIf="submitted && f.finance_action_required.errors" class="invalid-feedback">
+                                        <div *ngIf="f.finance_action_required.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <!-- Dynamic Added Rows  -->
+                                <tr class="d-flex" *ngFor="let array_index of finance_array.controls; let i = index">
+                                    <td class="col-1 ">
+                                        <div class="form-group" (click)="onClickRemoveFinanceRow(i)">
+                                            <span class="fa-stack fa-lg">
+
+                                                <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="document_description_p_f_h_s_p"
+                                                [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_description_p_f_h_s_p.errors }">
+
+                                            <div *ngIf="submitted && array_index.controls.document_description_p_f_h_s_p.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="document_possible_s_t_i"
+                                                [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_possible_s_t_i.errors }">
+
+                                            <div *ngIf="submitted && array_index.controls.document_possible_s_t_i.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-5">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <div
+                                                *ngFor="let obj of finance_array.value[i].document_action_required; let j = index">
+                                                <div class="input-group">
+                                                    <div class="" *ngIf="j==0"
+                                                        (click)="onClickAddFinanceActionRow(i)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-plus-circle  fa-fw"
+                                                            style="color:#00BF6F"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group" *ngIf="j!=0"
+                                                        (click)="onClickRemoveFinanceActionRow(i,j)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': (submitted && finance_array.value[i].document_action_required[j]=='')}"
+                                                        [value]="finance_array.value[i].document_action_required[j]"
+                                                        (change)="finance_array.value[i].document_action_required[j]=$event.target.value">
+
+                                                    <div *ngIf="(submitted && finance_array.value[i].document_action_required[j]=='')"
+                                                        class="invalid-feedback">
+                                                        <div
+                                                            *ngIf=" finance_array.value[i].document_action_required[j]==''">
+                                                            Field
+                                                            value is
+                                                            required</div>
+                                                        <!--<div
+                                                            *ngIf="validateSpecialCharsAndNum(finance_array.value[i].document_action_required[j])">
+                                                            Alphabets and spaces only allowed</div>
+                                                        <div
+                                                            *ngIf="validate100charactersallowed(finance_array.value[i].document_action_required[j])">
+                                                            Total Characters within and equal to 100 length only
+                                                            allowed.</div>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- <div class="input-group">
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="document_action_required"
+                                            [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_action_required.errors }">
+                                    </div>
+                                    <div *ngIf="submitted && array_index.controls.document_action_required.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="array_index.controls.document_action_required.errors.required">Field
+                                            value is
+                                            required</div>
+                                    </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- End of Dynamic Added Rows -->
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--End of  5. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- 6. -->
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr class="d-flex">
+                                    <th class="col-1">6.</th>
+                                    <th class="col-3">Policy/Governance</th>
+                                    <th class="col-3"></th>
+                                    <th class="col-5"><input type="checkbox" [checked]="policy_data_not_available" (change)="policy_data_not_available = !policy_data_not_available"/> &nbsp;&nbsp; No Policy/Governance Data Available</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="d-flex"   style="background-color: #00AEC7;color: #FFFFFF">
+                                    <td class="col-1">SI. No.</td>
+                                    <td class="col-3">Description of Problem from Health System Perspective</td>
+                                    <td class="col-3">Possible Solution to Improve</td>
+                                    <td class="col-5">Action Required (write in priority order)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--continues 6. -->
+
+
+
+
+
+
+
+
+                    <!-- continue 6. -->
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                            <thead style="background-color: #007b5e;color: #FFFFFF">
+                            </thead>
+                            <tbody>
+                                <tr class="d-flex" id="god">
+                                    <td class="col-1 ">
+                                        <div class="form-group" (click)="onClickAddPolicyRow(1)">
+                                            <span class="fa-stack fa-lg">
+                                                <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="policy_service_description_p_f_h_s_p"
+                                                [ngClass]="{ 'is-invalid': submitted && f.policy_service_description_p_f_h_s_p.errors }">
+
+                                            <div *ngIf="submitted && f.policy_service_description_p_f_h_s_p.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.policy_service_description_p_f_h_s_p.errors.required">
+                                                    Field
+                                                    value
+                                                    is
+                                                    required</div>
+                                                <!--<div *ngIf="f.policy_service_description_p_f_h_s_p.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div *ngIf="f.policy_service_description_p_f_h_s_p.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="policy_service_possible_s_t_i"
+                                                [ngClass]="{ 'is-invalid': submitted && f.policy_service_possible_s_t_i.errors }">
+
+                                            <div *ngIf="submitted && f.policy_service_possible_s_t_i.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.policy_service_possible_s_t_i.errors.required">Field value
+                                                    is
+                                                    required</div>
+                                                <!--<div *ngIf="f.policy_service_possible_s_t_i.errors.pattern">Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div *ngIf="f.policy_service_possible_s_t_i.errors.maxlength">Total
+                                                    Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-5">
+                                        <div class="form-group">
+                                            <!-- Action Required variable not made in Reactive Form Technique -->
+                                            <div
+                                                *ngFor="let obj of first_policy_document_action_required; let j = index">
+                                                <div class="input-group">
+                                                    <div class="" *ngIf="j==0"
+                                                        (click)="onclickAddFirstPolicyActionRow()">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-plus-circle  fa-fw"
+                                                            style="color:#00BF6F"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group" *ngIf="j!=0"
+                                                        (click)="onclickRemoveFirstPolicyActionRow(j)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': (submitted &&  first_policy_document_action_required[j]=='')}"
+                                                        [value]="first_policy_document_action_required[j]"
+                                                        (blur)="first_policy_document_action_required[j]=$event.target.value">
+                                                    <div *ngIf="(submitted &&  first_policy_document_action_required[j]=='')"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="first_policy_document_action_required[j]==''">Field
+                                                            value is
+                                                            required</div>
+                                                        <!--<div
+                                                            *ngIf="validateSpecialCharsAndNum(first_policy_document_action_required[j])">
+                                                            Alphabets and spaces only allowed</div>
+                                                        <div
+                                                            *ngIf="validate100charactersallowed(first_policy_document_action_required[j])">
+                                                            Total Characters within and equal to 100 length only
+                                                            allowed.</div>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- <div class="input-group">
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="policy_action_required"
+                                            [ngClass]="{ 'is-invalid': submitted && f.policy_action_required.errors }">
+                                    </div>
+                                    <div *ngIf="submitted && f.policy_action_required.errors" class="invalid-feedback">
+                                        <div *ngIf="f.policy_action_required.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Dynamic Added Rows  -->
+                                <tr class="d-flex" *ngFor="let array_index of policy_array.controls; let i = index">
+                                    <td class="col-1 ">
+                                        <div class="form-group" (click)="onClickRemovePolicyRow(i)">
+                                            <span class="fa-stack fa-lg">
+
+                                                <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="document_description_p_f_h_s_p"
+                                                [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_description_p_f_h_s_p.errors }">
+
+                                            <div *ngIf="submitted && array_index.controls.document_description_p_f_h_s_p.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div
+                                                    *ngIf="array_index.controls.document_description_p_f_h_s_p.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-3">
+                                        <div class="form-group" [formGroup]="array_index">
+                                            <input type="text" class="form-control" id="p_holder"
+                                                formControlName="document_possible_s_t_i"
+                                                [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_possible_s_t_i.errors }">
+
+                                            <div *ngIf="submitted && array_index.controls.document_possible_s_t_i.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.required">
+                                                    Field
+                                                    value is
+                                                    required</div>
+                                                <!--<div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.pattern">
+                                                    Alphabets
+                                                    and spaces only allowed
+                                                </div>
+                                                <div
+                                                    *ngIf="array_index.controls.document_possible_s_t_i.errors.maxlength">
+                                                    Total Characters within and equal to 100 length only allowed
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-5">
+                                        <div class="form-group" [formGroup]="array_index">
+
+                                            <div
+                                                *ngFor="let obj of policy_array.value[i].document_action_required; let j = index">
+                                                <div class="input-group">
+                                                    <div class="" *ngIf="j==0"
+                                                        (click)="onClickAddPolicyActionRow(i)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-plus-circle  fa-fw"
+                                                            style="color:#00BF6F"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group" *ngIf="j!=0"
+                                                        (click)="onClickRemovePolicyActionRow(i,j)">
+                                                        <span class="fa-stack fa-lg">
+                                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': (submitted && policy_array.value[i].document_action_required[j]=='')}"
+                                                        [value]="policy_array.value[i].document_action_required[j]"
+                                                        (change)="policy_array.value[i].document_action_required[j]=$event.target.value">
+
+                                                    <div *ngIf="(submitted && policy_array.value[i].document_action_required[j]=='')"
+                                                        class="invalid-feedback">
+                                                        <div
+                                                            *ngIf="policy_array.value[i].document_action_required[j]==''">
+                                                            Field
+                                                            value is
+                                                            required</div>
+                                                        <!--<div
+                                                            *ngIf="validateSpecialCharsAndNum(policy_array.value[i].document_action_required[j])">
+                                                            Alphabets and spaces only allowed</div>
+                                                            <div
+                                                            *ngIf="validate100charactersallowed(policy_array.value[i].document_action_required[j])">
+                                                            Total Characters within and equal to 100 length only
+                                                            allowed.</div>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- <div class="input-group">
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="document_action_required"
+                                            [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_action_required.errors }">
+                                    </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- End of Dynamic Added Rows -->
+
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+
+
+                        <div style="clear:both"></div>
+                        <div class="col-sm-12 text-center form-footer"style="margin-bottom:20px;">
+
+                            <a (click)="partialSave()"><button type="button" [disabled]="completeClicked" _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"><i
+                                class="fa fa-edit"></i>Save</button></a>
+                                &nbsp;&nbsp; 
+                            
+                                        <button type="submit" [disabled]="completeClicked" _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary"id="update-form2engage"><i
+                                                class="fa fa-key fa-fw"></i>Complete</button>
+
+                                   
+                                        <a routerLink="/dashboard" routerLinkActive="active"><button type="submit"
+                                            _ngcontent-dbi-c224="" mat-raised-button="" color="warn" style="margin-left: 5px" class="mat-raised-button mat-button-base mat-warn" id="cancel-form2engage"
+                                                ><i
+                                                    class="fa fa-times fa-fw"></i>Cancel</button></a>
+                                    
+                        </div>
+                    </div>
+                    <!--End of  6. -->
+                </div>
+
+            
+        </form>
+    </div>
+</ng-template>
+<div [hidden]="!savedform">
+    <h4>You submitted successfully!</h4>
+</div>

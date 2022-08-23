@@ -1,0 +1,888 @@
+<div *ngIf="loading else loaded">
+  loading ...
+  <div id="coverScreen" class="LockOn">
+  </div>
+</div>
+
+<ng-template #loaded>
+  <!-- <div *ngFor="let user of users">{{user.name}}</div> -->
+
+  <!-- Floating button on right Side -->
+
+<!-- End of Floating button on right Side -->
+
+  <div class="">
+    <form><div id="toPrint">
+        <div class="col-sm-12 sub-header"> 
+            <div class="wrapper" (click)="previouspage()" style="with:20px; float:left">
+                   <!-- <button class="button">Back</button> -->
+                   <div class="" id="button-5" style="margin: 0; width:100%">
+                       <div id="translate"></div>
+                       <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left" style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+                   </div>
+            </div>   
+            <h4>FORM - 1 Part B: Health System Capacity Assessments </h4>
+        </div>
+      <div class="" style="padding: 0%;margin: 0%;">
+
+        <div class="col-sm-12 form-body lt">
+
+          <div id="dashboard_table">
+
+            
+              <div class="col-sm-6 lt">
+                  <label>Date of the meeting </label>
+                  <div  class="col-sm-12 form-control">
+                  <div class="">
+                    {{jsonresponse.date_of_verification}}
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-sm-6 lt">
+                  <label>Venue of the meeting </label>
+                  <div  class="col-sm-12 form-control">
+                  <div class="">
+                    {{jsonresponse.filled_by}}
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 lt">
+                  <label>Chairperson of the meeting </label>
+                  <div  class="col-sm-12 form-control">
+                  <div class="">
+                    {{jsonresponse.verified_by_name}}
+                  </div>
+                </div>
+              </div>
+          </div>
+
+
+        </div>
+        <div class="col-sm-12 form-body lt"  style="margin-top:20px;">
+
+        <div class="table-responsive">
+         
+
+            <table id="state_policy_table" class="table table-sm table-striped table-bordered" style="width: 3000px">
+                <thead class="thead-dark">
+                  <tr class="">
+                    <th class="">SI.No</th>
+                    <th colspan="4">Particulars</th>
+                  </tr>
+                </thead>
+                <tbody>
+    
+                  <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+                    <td class="" style="width:40px;">1</td>
+                    <td class="">District Demographic Details</td>
+                    <td class="" style="width:400px;">Information</td>
+                    <td class="">Source</td>
+                    <td class="">Source Detail</td>
+                  </tr>
+    
+                  <!-- 1.1 -->
+                  <tr class="" id="god">
+                    <td class="">
+                      1.1
+                    </td>
+                    <td class="" style="width:400px;">
+                      Total area(Sq.km)
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.total_area}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.total_area_demogra_id}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.total_area_others}}
+                      </div>
+                    </td>
+    
+                  </tr>
+                  <!--End of  1.1 -->
+    
+    
+                  <!-- 1.2 -->
+                  <tr class="" id="god">
+                    <td class=" ">
+                      1.2
+                    </td>
+                    <td class="">
+                      Total population
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.total_pop}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.total_pop_demogra_id}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.total_pop_others}}
+                      </div>
+                    </td>
+    
+                  </tr>
+                  <!--End of  2.1 -->
+    
+    
+                  <!-- 1.3 -->
+                  <tr class="" id="god">
+                    <td class=" ">
+                      1.3
+                    </td>
+                    <td class="">
+                      Number of women in the reproductive age group
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.num_women_in_reproductive_age_15_49_y}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.num_women_in_reproductive_age_15_49_y_source}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.num_women_in_reproductive_others}}
+                      </div>
+                    </td>
+    
+                  </tr> 
+                  <!--End of 1.3 -->
+    
+    
+    
+                  <!-- 1.4 -->
+                  <tr class="" id="god">
+                    <td class=" ">
+                      1.4
+                    </td>
+                    <td class="">
+                      Number of children under 5 years
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.num_child_under_5_y}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.num_child_under_5_y_demogra_id}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.no_of_child_under5_others}}
+                      </div>
+                    </td>
+    
+                  </tr>
+                  <!--End of  1.4 -->
+    
+    
+    
+    
+    
+                  <!-- 1.5 -->
+                  <tr class="" id="god">
+                    <td class=" ">
+                      1.5
+                    </td>
+                    <td class="">
+                      Rural Population (%)
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.rural_pop}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.rural_pop_demogra_id}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.rural_pop_others}}
+                      </div>
+                    </td>
+    
+                  </tr>
+                  <!--End of  1.5 -->
+    
+    
+    
+    
+                  <!-- 1.6 -->
+                  <!--<tr class="" id="god">
+                    <td class="">
+                      1.6
+                    </td>
+                    <td class="">
+                      Scheduled caste population (%)
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.sc_pop}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.sc_pop_demogra_id}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.sc_pop_others}}
+                      </div>
+                    </td>
+    
+                  </tr>-->
+                  <!--End of  1.6 -->
+    
+    
+    
+    
+                  <!-- 1.7 -->
+                  <!--<tr class="" id="god">
+                    <td class=" ">
+                      1.7
+                    </td>
+                    <td class="">
+                      Scheduled tribe population (%)
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.st_pop}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.st_pop_demogra_id}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.st_pop_others}}
+                      </div>
+                    </td>
+    
+                  </tr>-->
+                  <!--End of 1.7 -->
+    
+    
+    
+                  <!-- 1.8 -->
+                  <tr class="" id="god">
+                    <td class=" ">
+                      1.6
+                    </td>
+                    <td class="">
+                      Population density (persons/sq.km)
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.pop_density}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.pop_density_demogra_id}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.pop_dens_others}}
+                      </div>
+                    </td>
+    
+                  </tr>
+                  <!--End of  1.8 -->
+    
+    
+    
+                  <!-- 1.9 -->
+                  <tr class="" id="god">
+                    <td class=" ">
+                      1.7
+                    </td>
+                    <td class="">
+                      Total literacy (%)
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.total_literacy}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.total_literacy_demogra_id}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.tot_lit_others}}
+                      </div>
+                    </td>
+    
+                  </tr>
+                  <!--End of  1.9 -->
+    
+    
+    
+                  <!-- 1.10 -->
+                  <tr class="" id="god">
+                    <td class="">
+                      1.8
+                    </td>
+                    <td class="">
+                      Female literacy(%)
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.fem_literacy}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.fem_literacy_demogra_id}}
+                      </div>
+                    </td>
+                    <td class="">
+                      <div class="form-group">
+                        {{jsonresponse.female_lit_others}}
+                      </div>
+                    </td>
+    
+                  </tr>
+                  <!--End of  1.10 -->
+    
+                </tbody>
+              </table>
+
+
+
+
+        </div>  
+
+
+
+        <div class="table-responsive">
+            <div style="margin-top:10px;"></div>
+    
+            <table id="IPHS" class="table table-sm table-striped">
+              <thead class="thead-dark">
+                <!-- <thead style="background-color: #007b5e;color: #FFFFFF"> -->
+                <tr>
+                  <!-- <th scope="col">1.11</th>
+                  <th scope="col" colspan="5">Key NGOs</th> -->
+                  <th scope="col" class="text-center" colspan="6"><span style="float:left;">1.11</span><span>Key NGOs/CSOs &nbsp; *</span></th>
+                </tr>
+              </thead>
+              <tbody>
+    
+                <tr style="background-color: #00AEC7;color: #FFFFFF">
+                  <td scope="col" class="text-center w-5">
+                  </td>
+                  <td scope="col" class="text-center w-45"> Ngo Name</td>
+                  <td scope="col" class="text-center w-50">Contact Details (Phone, Email)</td>
+                </tr>
+    
+                <!-- 1.1 -->
+                <tr id="god" *ngFor="let array_index of jsonresponse.key_ngo_info_array; let i = index" >
+                  <td scope="col">
+                    <!-- <div class="form-group" *ngIf="i==0" (click)="onClickAddRowngoInfo(1)">
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-plus-circle  fa-fw" style="color:greenyellow"></i>
+                      </span>
+                    </div>
+                    <div class="form-group" *ngIf="i!=0 && i>0" (click)="onClickRemoveRowngoInfo(i)">
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                      </span>
+                    </div> -->
+                  </td>
+                  <td scope="col">
+                    <div  class="form-group">
+                        {{array_index.ngo_name}}
+                      <!-- <input type="text" class="form-control" formControlName="ngo_name"
+                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.ngo_name.errors }">
+                      <div *ngIf="submitted && array_index.controls.ngo_name.errors" class="invalid-feedback">
+                        <div *ngIf="array_index.controls.ngo_name.errors.required">Field value is required</div>
+                        <div *ngIf="array_index.controls.ngo_name.errors.pattern">Alphabets and spaces only allowed
+                        </div>
+                      </div> -->
+                    </div>
+                  </td>
+                  <td scope="col">
+                    <div  class="form-group">
+                        {{array_index.ngo_details}}
+                      <!-- <input type="text" class="form-control" formControlName="ngo_details"
+                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.ngo_details.errors }">
+                      <div *ngIf="submitted && array_index.controls.ngo_details.errors" class="invalid-feedback">
+                        <div *ngIf="array_index.controls.ngo_details.errors.required">Field value is required</div>
+                        <div *ngIf="array_index.controls.ngo_details.errors.pattern">Alphabets and spaces only allowed
+                        </div>
+                      </div> -->
+                    </div>
+                  </td>
+                </tr>
+    
+              </tbody>
+    
+            </table>
+    
+    
+          </div>
+    
+    
+    
+          <div class="table-responsive">
+            <div style="margin-top:10px;"></div>
+    
+            <table id="IPHS" class="table table-sm table-striped">
+              <thead class="thead-dark">
+                <!-- <thead style="background-color: #007b5e;color: #FFFFFF"> -->
+                <tr>
+                  <!-- <th scope="col">1.12</th>
+                  <th scope="col" colspan="5"> Key private stakeholders</th> -->
+                  <th scope="col" class="text-center"  colspan="6"><span style="float:left;">1.12</span> <span>Key Private Stakeholders</span></th>
+                </tr>
+              </thead>
+              <tbody>
+    
+                <tr style="background-color: #00AEC7;color: #FFFFFF">
+                  <td scope="col" class="text-center w-5">
+                  </td>
+                  <td scope="col" class="text-center w-45"> Private Stakeholder Name</td>
+                  <td scope="col" class="text-center w-50">Contact Details (Phone, Email)</td>
+                </tr>
+    
+                <!-- 1.12 -->
+                <tr id="god"  *ngFor="let array_index of jsonresponse.key_ngo_source_array; let i = index">
+                  <td scope="col">
+                    <!-- <div class="form-group" *ngIf="i==0" (click)="onClickAddRowngoSrc(1)">
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-plus-circle  fa-fw" style="color:greenyellow"></i>
+                      </span>
+                    </div>
+                    <div class="form-group" *ngIf="i!=0 && i>0" (click)="onClickRemoveRowngoSrc(i)">
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                      </span>
+                    </div>
+                  </td> -->
+                  <td scope="col">
+                    <div  class="form-group">
+                        {{array_index.stakeholder_name}}
+                      <!-- <input type="text" class="form-control" formControlName="stakeholder_name"
+                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.stakeholder_name.errors }">
+                      <div *ngIf="submitted && array_index.controls.stakeholder_name.errors" class="invalid-feedback">
+                        <div *ngIf="array_index.controls.stakeholder_name.errors.required">Field value is required</div>
+                        <div *ngIf="array_index.controls.stakeholder_name.errors.pattern">Alphabets and spaces only allowed
+                        </div>
+                      </div> -->
+                    </div>
+                  </td>
+                  <td scope="col">
+                    <div  class="form-group">
+                        {{array_index.contact_details}}
+                      <!-- <input type="text" class="form-control" formControlName="contact_details"
+                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.contact_details.errors }">
+                      <div *ngIf="submitted && array_index.controls.contact_details.errors" class="invalid-feedback">
+                        <div *ngIf="array_index.controls.contact_details.errors.required">Field value is required</div>
+                        <div *ngIf="array_index.controls.contact_details.errors.pattern">Alphabets and spaces only allowed
+                        </div>
+                      </div> -->
+                    </div>
+                  </td>
+                </tr>
+    
+              </tbody>
+    
+            </table>
+    
+    
+          </div>
+    
+    
+
+
+
+
+
+
+
+
+        <div class="table-responsive">
+          <div style="margin-top:10px;"></div>
+
+          <table id="IPHS" class="table table-sm table-striped">
+            <thead  class="thead-dark">
+              <tr >
+                  <th scope="col" class=" text-center" colspan="6"><span style="float: left">2</span><span> WHO Health System Blocks</span></th>
+                <!-- <th class="col-1">2</th>
+                <th class="col-11">WHO Health System Blocks</th> -->
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr class="d-flex" style="background-color: #00AEC7;color: #FFFFFF">
+                <td class="col-3  text-center">Theme</td>
+                <td class="col-4   text-center">Coverage Indicators</td>
+                <td class="col-2  text-center">Source</td>
+                <td class="col-1">Current Data</td>
+                <td class="col-1">Expected</td>
+                <td class="col-1">Gap</td>
+              </tr>
+
+              <!-- 1.1 -->
+              <ng-template #loaddefault>
+                <tr class="d-flex" id="god">
+                  <td class="col-3   text-center">
+                    <div class="form-group">
+                      {{jsonresponse.iphs_theme_name}}
+                    </div>
+                  </td>
+                  <td class="col-4">
+
+                  </td>
+                  <td class="col-2">
+
+                  </td>
+                  <td class="col-1">
+
+                  </td>
+                  <td class="col-1">
+
+                  </td>
+                  <td class="col-1">
+
+                  </td>
+
+                </tr>
+              </ng-template>
+
+
+              <div *ngIf="jsonresponse.total_coverage_indi.length >  0; else loaddefault">
+                <tr *ngFor="let array_index of jsonresponse.total_coverage_indi; let i = index" class="d-flex" id="god">
+                  <td *ngIf="i == 0" class="col-3 " >
+                    <div class="form-group  text-center">
+
+                      {{jsonresponse.iphs_theme_name}}
+                    </div>
+                  </td>
+                  <td *ngIf="i != 0" class="col-3 ">
+
+                  </td>
+                  <td class="col-4">
+                    <div class="form-group  text-center tooltipdiv">
+                      <span class="text-center"><strong>{{array_index.area_name}}</strong></span>
+
+                      <br />
+                      <span>{{array_index.indicator_val}}</span>
+                      <span class="tooltiptextspan">{{array_index.indicator_desc}}</span>
+                    </div>
+                  </td>
+                  <td class="col-2">
+                    <div class="form-group">
+                      {{array_index.source}}
+                    </div>
+                  </td>
+                  <td class="col-1">
+                    <div class="form-group">
+                      {{array_index.data}}
+                    </div>
+                  </td>
+                  <td class="col-1">
+                    <div class="form-group">
+                      {{array_index.expected}}
+                    </div>
+                  </td>
+                  <td class="col-1">
+                    <div class="form-group">
+                      {{array_index.gap}}
+                    </div>
+                  </td>
+
+                </tr>
+              </div>
+              <!--End of  1.1 -->
+
+            </tbody>
+
+          </table>
+        </div>
+<!---->
+        <div class="table-responsive">
+          <div style="margin-top:10px;"></div>
+
+          <table id="IPHS" class="table table-sm table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" class=" text-center" colspan="5"><span style="float: left">3</span><span>Theme</span></th>
+                </tr>
+              </thead>
+              <tbody>
+  
+                <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+                  <td class=""></td>
+                  <td class="">Details</td>
+                  <td class="">Sanctioned (2020-2021) </td>
+                  <td class="">Available / Functional</td>
+                  <td class="">Gap</td>
+                </tr>
+                <tr class="" style="background-color: #d0e9f9; color: #2b5c6b;">
+                  <td class=" ">3.1</td>
+                  <td class="">Infrastruture</td>
+                  <td colspan="3"></td>
+                </tr>
+                <!-- 3.1 -->
+                <tr *ngFor="let array_index of jsonresponse.infra_array; let i = index" class="" id="god" style="background: #f5f5f5">
+                  
+                  <td class=" ">
+                    <!-- <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle-o fa-stack-2x"></i>
+                      <i class="fa fa-plus-circle  fa-fw" style="color:greenyellow"></i>
+                    </span> -->
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_details}}
+                    </div>
+                  </td>
+                  <td class="">
+  
+                    <div class="form-group">
+                      {{array_index.document_sanctioned}}
+                    </div>
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_available_functional}}
+                    </div>
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_gap}}
+                    </div>
+                  </td>
+  
+                </tr>
+                <!--End of  3.1 -->
+          <tr class="" style="background-color: #d0e9f9; color: #2b5c6b;">
+                  <td class=" ">3.2</td>
+                  <td class=" ">General Resources</td>
+                  <td colspan="3"></td>
+                </tr>
+                <tr class="" id="god" style="background: #f5f5f5">
+                  <td class=" "></td>
+                  <td class=" ">Finances</td>
+                  <td colspan="3"></td>
+                </tr>
+                <!-- 3.2 -->
+                <tr *ngFor="let array_index of jsonresponse.fina_array; let i = index" class="" id="god">
+                  
+                  <td class=" ">
+                    <!-- <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle-o fa-stack-2x"></i>
+                      <i class="fa fa-plus-circle  fa-fw" style="color:greenyellow"></i>
+                    </span> -->
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_details}}
+                    </div>
+                  </td>
+                  <td class="">
+  
+                    <div class="form-group">
+                      {{array_index.document_sanctioned}}
+                    </div>
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_available_functional}}
+                    </div>
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_gap}}
+                    </div>
+                  </td>
+  
+                </tr>
+          <tr class="" style="background-color: #d0e9f9; color: #2b5c6b;">
+                  <td class=" "></td>
+                  <td class=" ">Supplies</td>
+                  <td colspan="3"></td>
+                </tr>
+                <!-- 3.2 -->
+                <tr *ngFor="let array_index of jsonresponse.supp_array; let i = index" class="" id="god">
+                  
+                  <td class=" ">
+                    <!-- <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle-o fa-stack-2x"></i>
+                      <i class="fa fa-plus-circle  fa-fw" style="color:greenyellow"></i>
+                    </span> -->
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_details}}
+                    </div>
+                  </td>
+                  <td class="">
+  
+                    <div class="form-group">
+                      {{array_index.document_sanctioned}}
+                    </div>
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_available_functional}}
+                    </div>
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_gap}}
+                    </div>
+                  </td>
+  
+                </tr>
+          <tr class="" style="background-color: #d0e9f9; color: #2b5c6b;">
+                  <td class=" "></td>
+                  <td class=" ">Technology</td>
+                  <td colspan="3"></td>
+                </tr>
+                <!-- 3.2 -->
+                <tr *ngFor="let array_index of jsonresponse.tech_array; let i = index" class="" id="god">
+                  
+                  <td class=" ">
+                    <!-- <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle-o fa-stack-2x"></i>
+                      <i class="fa fa-plus-circle  fa-fw" style="color:greenyellow"></i>
+                    </span> -->
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_details}}
+                    </div>
+                  </td>
+                  <td class="">
+  
+                    <div class="form-group">
+                      {{array_index.document_sanctioned}}
+                    </div>
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_available_functional}}
+                    </div>
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_gap}}
+                    </div>
+                  </td>
+  
+                </tr>
+          <tr class="" style="background-color: #d0e9f9; color: #2b5c6b;">
+                  <td class=" ">3.3</td>
+                  <td class=" ">Human resources</td>
+                  <td colspan="3"></td>
+                </tr>
+                <!-- 3.3 -->
+                <tr *ngFor="let array_index of jsonresponse.hr_array; let i = index" class="" id="god">
+                  
+                  <td class="">
+                    <!-- <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle-o fa-stack-2x"></i>
+                      <i class="fa fa-plus-circle  fa-fw" style="color:greenyellow"></i>
+                    </span> -->
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_details}}
+                    </div>
+                  </td>
+                  <td class="">
+  
+                    <div class="form-group">
+                      {{array_index.document_sanctioned}}
+                    </div>
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_available_functional}}
+                    </div>
+                  </td>
+                  <td class="">
+                    <div class="form-group">
+                      {{array_index.document_gap}}
+                    </div>
+                  </td>
+  
+                </tr>
+              </tbody>
+  
+            </table>
+        </div>
+
+
+
+
+
+
+        
+        </div>
+
+<!---->
+
+</div></div><div>
+          <div style="clear: both"></div>
+          <div class="col-sm-12 form-footer" style="margin-bottom:20px;">
+            <div class="text-center">
+                  <a routerLink="/dashboard" routerLinkActive="active"><button type="submit" _ngcontent-dbi-c224="" mat-raised-button="" color="warn" style="margin-right: 5px" class="mat-raised-button mat-button-base mat-warn" id="cancel-form1a" style="margin-right: 5px"><i class="fa fa-times fa-fw"></i>Close</button>
+                  </a>
+                
+                  <a (click)="onPrint()"><button type="submit"_ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-left: 5px" class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"
+                      ><i class="fa fa-print fa-fw"></i>Print</button>
+                  </a>
+
+                  <a (click)="onPrintExcel()"><button type="submit"_ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-left: 5px" class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"
+                    ><i class="fa fa-print fa-fw"></i>Excel</button>
+                </a>
+            </div>
+            
+            <div class="col-sm-12 footnote">  
+              <br/>              
+              * &nbsp; NGO - Non Governmental Organization, CSO - Civil Society Organization
+            </div>
+            
+          </div>
+
+
+
+
+        </div>
+
+      
+    </form>
+  </div>
+
+
+</ng-template>

@@ -1,0 +1,263 @@
+<div id="coverScreen" class="LockOn">
+</div>
+<div class="" id="dashboard_body">
+
+    <div class="col-sm-12 sub-header">
+
+        <h4>Data Informed Platform For Health</h4>
+
+    </div>
+    <div class="col-sm-12 form-body margin-bottom" id="dash-div">
+
+        <div class="table-wrapper">
+            <!-- Blue with white text -->
+            <!-- <nav class="navbar navbar-expand-sm bg-secondary navbar-dark"> -->
+            <div class="col-sm-12 sub-header text-center">
+                <h4>Primary Forms</h4>
+            </div>
+            <table id="dashboard_table" class="table table-sm table-striped">
+                <thead class="thead-dark">
+                    <tr class="d-flex">
+                        <th class="col-1">No</th>
+                        <th class="col-5">Document Title</th>
+                        <th class="col-3">Status</th>
+                        <th class="col-3">Form Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="d-flex">
+                        <td class="col-1">STEP 1:</td>
+                        <td class="col-5">ASSESS</td>
+                        <td class="col-3">
+                            <!-- <button class="primary-forms-button" id="dashboard-form-1A-1B-btn">Form 1A and Form
+                1B</button> -->
+                        </td>
+                        <td class="col-3">
+                        </td>
+                    </tr>
+                    <tr class="d-flex" id="dashboard-formA">
+                        <td class="col-1">STEP 1A:</td>
+                        <td class="col-5">Document and Database Checklist</td>
+                        <td class="col-3" id="dashboard-formA-new"><a [routerLink]="['form1a']"><button class="new-form-button"><i
+                    class="fa fa-edit"></i>
+                  New</button></a>
+                        </td>
+                        <td class="col-3" id="dashboard-formA-view">
+                            <a [routerLink]="['form1aview']"><button class="view-form-button"><i class="fa fa-eye"></i>
+                  View</button></a>
+                            <span id="dashboard-formA-view-span"><a [routerLink]="['form1aedit']"><button class="edit-form-button"
+                    style="margin-left: 10px;margin-right: 10px;"><i class="fa fa-edit"></i>
+                    Edit</button></a>
+                <button class="delete-form-button" (click)="onClickdeleteform1ADetails()"><i
+                    class="fa fa-times fa-fw"></i>
+                  Delete</button>                 
+                </span>
+                        </td>
+                        <td class="col-3">
+                            <div *ngIf="form1AStatus == 'completed'" class="dot-green" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="form1AStatus == 'progress'" class="dot-yellow" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="form1AStatus == 'new'" class="dot-red" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="d-flex" id="dashboard-formB">
+                        <td class="col-1">STEP 1B:</td>
+                        <td class="col-5">Health System Capacity Assessments</td>
+
+                        <td class="col-3" id="dashboard-formB-new">
+                            <a routerLink="/dashboard/form1b" routerLinkActive="active"><button class="new-form-button"><i
+                    class="fa fa-edit"></i> New</button></a>
+                        </td>
+                        <td class="col-3" id="dashboard-formB-view">
+                            <a [routerLink]="['form1bview']"><button class="view-form-button"><i class="fa fa-eye"></i>
+                  View</button></a>
+                            <span id="dashboard-formB-view-span"><a [routerLink]="['form1bedit']"><button class="edit-form-button"
+                    style="margin-left: 10px;margin-right: 10px;"><i class="fa fa-edit"></i>
+                    Edit</button></a>
+                <button class="delete-form-button" (click)="onClickdeleteform1BDetails()"><i
+                    class="fa fa-times fa-fw"></i>
+                  Delete</button>
+                 
+                </span>
+                        </td>
+                        <td class="col-3">
+                            <div *ngIf="form1BStatus == 'completed'" class="dot-green" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="form1BStatus == 'progress'" class="dot-yellow" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="form1BStatus == 'new'" class="dot-red" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="d-flex">
+                        <td class="col-1">STEP 2:</td>
+                        <td class="col-5">ENGAGE</td>
+                        <td class="col-3" id="dashboard-form2engage-new">
+                            <a routerLink="/dashboard/form2engage" routerLinkActive="active"><button class="new-form-button"><i
+                    class="fa fa-edit"></i> New</button></a>
+                        </td>
+                        <td class="col-3" id="dashboard-form2engage-view">
+                            <a [routerLink]="['form2engageview']"><button class="view-form-button"><i class="fa fa-eye"></i>
+                  View</button></a>
+                            <span id="dashboard-form2engage-view-span"><a [routerLink]="['form2engageedit']"><button
+                    class="edit-form-button" style="margin-left: 10px;margin-right: 10px;"><i class="fa fa-edit"></i>
+                    Edit</button></a>
+                <button class="delete-form-button" (click)="onClickdeleteform2EngageDetails()"><i
+                    class="fa fa-times fa-fw"></i>
+                  Delete</button>                 
+                </span>
+                        </td>
+                        <td class="col-3">
+                            <div *ngIf="formEngageStatus == 'completed'" class="dot-green" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="formEngageStatus == 'progress'" class="dot-yellow" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="formEngageStatus == 'new'" class="dot-red" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="d-flex">
+                        <td class="col-1">STEP 3:</td>
+                        <td class="col-5">DEFINE</td>
+                        <td class="col-3" id="dashboard-form3define-new">
+                            <a routerLink="/dashboard/form3define" routerLinkActive="active"><button class="new-form-button"><i
+                    class="fa fa-edit"></i> New</button></a>
+                        </td>
+                        <td class="col-3" id="dashboard-form3define-view">
+                            <a [routerLink]="['form3defineview']"><button class="view-form-button"><i class="fa fa-eye"></i>
+                  View</button></a>
+                            <span id="dashboard-form3define-view-span"><a [routerLink]="['form3defineedit']"><button
+                    class="edit-form-button" style="margin-left: 10px;margin-right: 10px;"><i class="fa fa-edit"></i>
+                    Edit</button></a>
+                <button class="delete-form-button" (click)="onClickdeleteform3DefineDetails()"><i
+                    class="fa fa-times fa-fw"></i>
+                  Delete</button></span>
+                        </td>
+                        <td class="col-3">
+                            <div *ngIf="formDefineStatus == 'completed'" class="dot-green" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="formDefineStatus == 'progress'" class="dot-yellow" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="formDefineStatus == 'new'" class="dot-red" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="d-flex">
+                        <td class="col-1">STEP 4:</td>
+                        <td class="col-5">PLAN</td>
+                        <td class="col-3" id="dashboard-form4plan-new">
+                            <a routerLink="/dashboard/form4plan" routerLinkActive="active"><button class="new-form-button"><i
+                    class="fa fa-edit"></i> New</button></a>
+                        </td>
+                        <td class="col-3" id="dashboard-form4plan-view">
+                            <a [routerLink]="['form4planview']"><button class="view-form-button"><i class="fa fa-eye"></i>
+                  View</button></a>
+                            <span id="dashboard-form4plan-view-span"><a [routerLink]="['form4planedit']"><button
+                    class="edit-form-button" style="margin-left: 10px;margin-right: 10px;"><i class="fa fa-edit"></i>
+                    Edit</button></a>
+                <button class="delete-form-button" (click)="onClickdeleteform4PlanDetails()"><i
+                    class="fa fa-times fa-fw"></i>
+                  Delete</button></span>
+                        </td>
+                        <td class="col-3">
+                            <div *ngIf="formPlanStatus == 'completed'" class="dot-green" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="formPlanStatus == 'progress'" class="dot-yellow" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="formPlanStatus == 'new'" class="dot-red" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="d-flex">
+                        <td class="col-1">STEP 5:</td>
+                        <td class="col-5">FOLLOW-UP</td>
+
+                        <td class="col-3" id="dashboard-form5followup-new">
+                            <a routerLink="/dashboard/form5followup" routerLinkActive="active"><button class="new-form-button"><i
+                    class="fa fa-edit"></i> New</button></a>
+                        </td>
+                        <td class="col-3" id="dashboard-form5followup-view">
+                            <a [routerLink]="['form5followupview']"><button class="view-form-button"><i class="fa fa-eye"></i>
+                  View</button></a>
+                            <span id="dashboard-form5followup-view-span"><a [routerLink]="['form5followupedit']"><button
+                    class="edit-form-button" style="margin-left: 10px;margin-right: 10px;"><i class="fa fa-edit"></i>
+                    Edit</button></a>
+                <button class="delete-form-button" (click)="onClickdeleteform5FollowupDetails()"><i
+                    class="fa fa-times fa-fw"></i>
+                  Delete</button></span>
+                        </td>
+                        <td class="col-3">
+                            <div *ngIf="formFollowUpStatus == 'completed'" class="dot-green" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="formFollowUpStatus == 'progress'" class="dot-yellow" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="formFollowUpStatus == 'new'" class="dot-red" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br><br>
+
+        <div class="row">
+
+            <div class="col">
+                <table id="dashboard_table" class="table table-sm table-borderless">
+                    <tbody>
+                        <tr class="d-flex">
+                            <td> <span class="dot-red"></span> </td>
+                            <td> Not Started </td>
+                        </tr>
+                        <tr class="d-flex">
+                            <td> <span class="dot-yellow"></span> </td>
+                            <td> In Progress </td>
+                        </tr>
+                        <tr class="d-flex">
+                            <td> <span class="dot-green"></span> </td>
+                            <td> Completed </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+                <p><b>Upload Offline Data</b></p>
+                <input type="file" id="myFile" name="filename" (change)="uploadFile($event.target.files)">
+
+                <div class="mt-3">
+                    <a (click)="validateAndUpload()"><button type="button" class="btn btn-primary">Submit</button></a>
+                </div>
+            </div>
+            <div class="col">
+                <a (click)="downloadOfflineFile()" class="menu-items-settings" style="cursor:pointer;">
+                    <button type="button" class="btn download-form-button btn-danger"><i class="fa fa-download"></i>&nbsp; Download Online Form(s)</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+</script>

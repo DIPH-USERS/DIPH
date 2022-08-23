@@ -1,0 +1,80 @@
+<div class="">
+
+    <div class="col-sm-12 sub-header">
+        <h4>Data Informed Platform For Health</h4>
+    </div>
+    <div class="col-sm-12 form-body margin-bottom">
+
+        <div class="table-wrapper">
+            <!-- Blue with white text -->
+            <!-- <nav class="navbar navbar-expand-sm bg-secondary navbar-dark"> -->
+            <div class="col-sm-12 sub-header text-center">
+                <h4>Supplementry Forms</h4>
+            </div>
+            <table id="dashboard_table" class="table table-sm table-striped">
+                <thead class="thead-dark">
+                    <tr class="d-flex">
+                        <th class="col-1">No</th>
+                        <th class="col-5">Document Title</th>
+                        <th class="col-3">Status</th>
+                        <th class="col-3">Form Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="d-flex">
+                        <td class="col-1">1A.1</td>
+                        <td class="col-5">DATA EXTRACTION FROM STATE, REGIONAL AND DISTRICT/WOREDA LEVEL HEALTH DOCUMENTS</td>
+                        <td class="col-3" id="dashboard-supplementaryform1a-new">
+                            <a routerLink="/dashboard/supplementaryform1a" routerLinkActive="active"><button
+                  class="new-form-button"><i class="fa fa-edit"></i> New</button></a>
+                        </td>
+                        <td class="col-3" id="dashboard-supplementaryform1a-view">
+                            <a routerLink="/dashboard/supplementaryform1aview" routerLinkActive="active"><button class="view-form-button"><i class="fa fa-edit"></i>
+                  View</button></a>
+                            <span id="dashboard-supplementaryform1a-view-span"><a routerLink="/dashboard/supplementaryform1aedit"  routerLinkActive="active"><button class="edit-form-button"
+                  style="margin-left: 10px;margin-right: 10px;"><i class="fa fa-edit"></i>
+                  Edit</button></a>
+              <button class="delete-form-button" (click)="onClickdeletesupplementaryform1aDetails()"><i
+                  class="fa fa-times fa-fw"></i>
+                Delete</button></span>
+                        </td>
+                        <td class="col-3">
+                            <div *ngIf="supplementryFormStatus == 'completed'" class="dot-green" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="supplementryFormStatus == 'progress'" class="dot-yellow" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <div *ngIf="supplementryFormStatus == 'new'" class="dot-red" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <br><br>
+        <table id="dashboard_table" class="table table-sm table-borderless">
+            <tbody>
+                <tr class="d-flex">
+                    <td> <span class="dot-red"></span> </td>
+                    <td> Not Started </td>
+                </tr>
+                <tr class="d-flex">
+                    <td> <span class="dot-yellow"></span> </td>
+                    <td> In Progress </td>
+                </tr>
+                <tr class="d-flex">
+                    <td> <span class="dot-green"></span> </td>
+                    <td> Completed </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

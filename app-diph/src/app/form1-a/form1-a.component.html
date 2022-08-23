@@ -1,0 +1,857 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+ <!-- Floating button on right Side -->
+
+<!-- End of Floating button on right Side -->
+
+
+
+<div [hidden]="savedform" class="">
+
+  
+
+  <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+      <div class="col-sm-12 sub-header"> 
+          <div class="wrapper" (click)="previouspage()" style="width:20px; float:left">
+              <!-- <button class="button">Back</button> -->
+              <div class="" id="button-5" style="margin: 0; width:100%">
+                  <div id="translate"></div>
+                  <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left" style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+              </div>
+       </div>    
+          <h4>Form - 1 Part A: Document And Database Checklist</h4>   
+    </div>
+    <div class="col-sm-12 form-body">
+     
+      <div class="">              
+                <div class="col-sm-6 lt">
+                <label>Date of the meeting </label>
+                <div  class="col-sm-12 form-control">
+                  <div class="example-container" style="background-color:white;color:black;">
+                    <mat-form-field>
+                      
+                      <input matInput [formControl]="date" [matDatepicker]="picker" [min]="minDate" 
+                      (click)="picker.open()"  (keypress)="picker.open()"  readonly  
+                        placeholder="" name='date_of_verification'>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <!-- <input type="text" formControlName="date_of_verification" id="date_of_verification"
+                    class="form-control" placeholder="Click to select your date"> -->
+                </div>
+
+              </div>
+              <div class="col-sm-6 lt">
+                  <label>Venue of the meeting </label>
+                <div class="form-group">
+                  <input type="text" formControlName="filled_by" id="filled_by" placeholder="Enter venue of the meeting"
+                    [ngClass]="{ 'is-invalid': submitted && f.filled_by.errors }" class="form-control">
+                  <div *ngIf="submitted && f.filled_by.errors" class="invalid-feedback">
+                    <div *ngIf="f.filled_by.errors.required">Field value is required</div>
+                    <!--<div *ngIf="f.filled_by.errors.pattern">Alphabets and spaces only allowed</div>-->
+                    <div *ngIf="f.filled_by.errors.maxlength">Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+
+              </div>
+            
+            
+           
+              
+                <div class="col-sm-6 lt">
+                <label>Chairperson of the meeting </label>
+                <div class="form-group">
+                  <select formControlName="verified_by_name"
+                    [ngClass]="{ 'is-invalid': submitted && f.verified_by_name.errors }" class="form-control">
+                    <option *ngFor="let order of  verified_by_name_from_Db; let i = index"
+                      [value]="verified_by_name_from_Db[i].id">
+                      {{verified_by_name_from_Db[i].name}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.verified_by_name.errors" class="invalid-feedback">
+                    <div *ngIf="f.verified_by_name.errors.required">Field value is required</div>
+                  </div>
+                  <div class="form-group" style="margin-top: 10px;">
+                    <input *ngIf="f.verified_by_name.value  ==  '15' " type="text"
+                    [ngClass]="{ 'is-invalid': (submitted && f.verified_by_other_actual_name.value == null) ||  (submitted && f.verified_by_other_actual_name.value == 'null')  ||  (submitted && f.verified_by_other_actual_name.value == '')}"
+                      formControlName="verified_by_other_actual_name" id="verified_by_other_actual_name"
+                      class="form-control">
+                    <div *ngIf="(submitted && f.verified_by_other_actual_name.value == null) ||  (submitted && f.verified_by_other_actual_name.value == 'null')  ||  (submitted && f.verified_by_other_actual_name.value == '')" class="invalid-feedback">
+                      <div *ngIf="(submitted && f.verified_by_other_actual_name.value == null) ||  (submitted && f.verified_by_other_actual_name.value == 'null')  ||  (submitted && f.verified_by_other_actual_name.value == '')">Field value is required</div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+           
+
+        
+
+
+      </div>
+
+      <div class="table-responsive">
+        <div style="margin-top:20px;"></div>
+
+        <table id="state_policy_table" class="table table-sm ">
+          <thead class="thead-dark">
+            <tr class="d-flex">
+              <th class="col-2">SI.No</th>
+              <th class="col-5">Document</th>
+              <th class="col-1">Availability (Yes/No)</th>
+              <th class="col-4">Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="d-flex" style="background-color: #00AEC7;color: #FFFFFF">
+              <td colspan="4">1: Policy And Planning Documents</td>
+            </tr>
+            <tr class="d-flex" style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">1.1: State Policy</td>
+            </tr>
+            <tr class="d-flex" id="god">
+              <td class="col-2 "  (click)="onClickAddRow(1)">
+                  <div class="form-group">
+                    1.1.1
+                <span class="fa-stack fa-lg">
+
+                  <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                </span>
+                </div>
+              </td>
+              
+              <td class="col-5">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="state_policy_first_doc_val" placeholder="State level policy and planning document" 
+                    [ngClass]="{ 'is-invalid': submitted && f.state_policy_first_doc_val.errors }">
+                  <div *ngIf="submitted && f.state_policy_first_doc_val.errors" class="invalid-feedback">
+                    <div *ngIf="f.state_policy_first_doc_val.errors.required">Field value is required</div>
+                   <!-- <div *ngIf="f.state_policy_first_doc_val.errors.pattern">Alphabets and spaces only allowed</div>-->
+                    <div *ngIf="f.state_policy_first_doc_val.errors.maxlength">Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div class="form-group">
+                  <select formControlName="state_policy_first_availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.state_policy_first_availability.errors }">
+
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                  <div *ngIf="submitted && f.state_policy_first_availability.errors" class="invalid-feedback">
+                    <div *ngIf="f.state_policy_first_availability.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-4" >
+                <div class="form-group"    *ngIf="f.state_policy_first_availability.value == '1' " > 
+                  <input type="text" class="form-control" formControlName="state_policy_first_d_source"
+                    [ngClass]="{ 'is-invalid': (submitted && f.state_policy_first_availability.value   == '1' &&  f.state_policy_first_d_source.value == '') || (submitted && f.state_policy_first_availability.value   == '1' &&  validate100charactersallowed(this.f.state_policy_first_d_source.value)) }">
+                  <!-- <div *ngIf="submitted && f.state_policy_first_d_source.errors" class="invalid-feedback">
+                    <div *ngIf="f.state_policy_first_d_source.errors.required">Field value is required</div>
+                  </div> -->
+                  <div *ngIf="(submitted && f.state_policy_first_availability.value   == '1' &&  f.state_policy_first_d_source.value == '') " class="invalid-feedback">
+                    <div >Field value is required</div>
+                  </div>
+                  <div *ngIf="submitted && f.state_policy_first_availability.value   == '1' &&   validate100charactersallowed(this.f.state_policy_first_d_source.value) " class="invalid-feedback">
+                    <div >Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>   
+                </div>
+              </td>
+            </tr>
+
+
+            <tr *ngFor="let array_index of sp.controls; let i = index" class="d-flex">
+              <td class="col-2 " (click)="onClickRemove(i)">
+                  
+                    1.1.{{i+2}}
+                <span class="fa-stack fa-lg">
+
+                  <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                </span>
+                
+              </td>
+              <td class="col-5">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="text" class="form-control" formControlName="document_val"  placeholder="State level policy and planning document" 
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_val.errors }" />
+                  <div *ngIf="submitted && array_index.controls.document_val.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_val.errors.required">Field value is required</div>
+                    <!--<div *ngIf="array_index.controls.document_val.errors.pattern">Alphabets and spaces only allowed
+                    </div>-->
+                    <div *ngIf="array_index.controls.document_val.errors.maxlength">Total Characters within and equal to 5000 length only allowed
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+
+                <div [formGroup]="array_index" class="form-group">
+                  <select formControlName="document_availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_availability.errors }">
+
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                  <div *ngIf="submitted && array_index.controls.document_availability.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_availability.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-4">
+                <div [formGroup]="array_index" class="form-group"    *ngIf="array_index.controls.document_availability.value ==  '1' " >
+                  <input type="text" class="form-control" formControlName="document_source"                   
+                    [ngClass]="{ 'is-invalid': (submitted &&  array_index.controls.document_availability.value == '1'   &&  array_index.controls.document_source.value == '') || (submitted &&  array_index.controls.document_availability.value == '1'   &&  validate100charactersallowed(array_index.controls.document_source.value)) }">
+                  <!-- <div *ngIf="submitted && array_index.controls.document_source.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_source.errors.required">Field value is required</div>
+                  </div> -->
+                  <div *ngIf="submitted &&  array_index.controls.document_availability.value == '1'   &&  array_index.controls.document_source.value == '' " class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_source.value == '' ">Field value is required</div>
+                  </div> 
+                  <div *ngIf="(submitted &&  array_index.controls.document_availability.value == '1'   &&  validate100charactersallowed(array_index.controls.document_source.value))" class="invalid-feedback">
+                    <div >Total Characters within and equal to 5000 length only allowed.</div>
+                  </div> 
+                </div> 
+              </td>
+            </tr>  
+
+
+            <tr class="d-flex" style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">1.2: District Policy</td>
+            </tr>
+            <tr class="d-flex" id="god">
+              <td class="col-2 add-new-row" (click)="onClickAddRowDistrict(1)">
+                  <div class="form-group">
+                    1.2.1
+                <span class="fa-stack fa-lg">
+
+                  <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                </span>
+                </div>
+              </td>
+              <td class="col-5">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="district_policy_first_doc_val"  placeholder="District level policy and planning document" 
+                    [ngClass]="{ 'is-invalid': submitted && f.district_policy_first_doc_val.errors }">
+                  <div *ngIf="submitted && f.district_policy_first_doc_val.errors" class="invalid-feedback">
+                    <div *ngIf="f.district_policy_first_doc_val.errors.required">Field value is required</div>
+                    <!--<div *ngIf="f.district_policy_first_doc_val.errors.pattern">Alphabets and spaces only allowed</div>-->
+                    <div *ngIf="f.district_policy_first_doc_val.errors.maxlength">Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div class="form-group">
+                  <select formControlName="district_policy_first_availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.district_policy_first_availability.errors }">
+
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                  <div *ngIf="submitted && f.district_policy_first_availability.errors" class="invalid-feedback">
+                    <div *ngIf="f.district_policy_first_availability.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-4">
+                <div class="form-group"  *ngIf="f.district_policy_first_availability.value == '1' " >
+                  <input type="text" class="form-control" formControlName="district_policy_first_d_source"  
+                                    
+                    [ngClass]="{ 'is-invalid': (submitted && f.district_policy_first_availability.value   == '1' &&  f.district_policy_first_d_source.value == '') || (submitted && f.district_policy_first_availability.value   == '1' &&  validate100charactersallowed(this.f.district_policy_first_d_source.value))  }">
+                  <!-- <div *ngIf="submitted && f.district_policy_first_d_source.errors" class="invalid-feedback">
+                    <div *ngIf="f.district_policy_first_d_source.errors.required">Field value is required</div>
+                  </div> -->
+                  <div *ngIf="submitted && f.district_policy_first_availability.value   == '1' &&  f.district_policy_first_d_source.value == '' " class="invalid-feedback">
+                    <div >Field value is required</div>
+                  </div>
+                  <div *ngIf="submitted && f.district_policy_first_availability.value   == '1' &&   validate100charactersallowed(this.f.district_policy_first_d_source.value) " class="invalid-feedback">
+                    <div >Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <!-- Row for Dynamic  District  Policy documents -->
+
+            <tr *ngFor="let array_count of dp.controls; let j = index" class="d-flex">
+              <td class="col-2 " (click)="onClickRemoveDistrict(j)">
+                  <div class="form-group">
+                    1.2.{{j+2}}
+                <span class="fa-stack fa-lg">
+
+                  <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                </span>
+                </div>
+              </td>
+              <td class="col-5">
+                <div [formGroup]="array_count" class="form-group">
+                  <input type="text" class="form-control" formControlName="document_val"  placeholder="District level policy and planning document" 
+                    [ngClass]="{ 'is-invalid': submitted && array_count.controls.document_val.errors }" />
+                  <div *ngIf="submitted && array_count.controls.document_val.errors" class="invalid-feedback">
+                    <div *ngIf="array_count.controls.document_val.errors.required">Field value is required</div>
+                    <!--<div *ngIf="array_count.controls.document_val.errors.pattern">Alphabets and spaces only allowed
+                    </div>-->
+                    <div *ngIf="array_count.controls.document_val.errors.maxlength">Total Characters within and equal to 5000 length only allowed
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+
+                <div [formGroup]="array_count" class="form-group">
+                  <select formControlName="document_availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && array_count.controls.document_availability.errors }">
+
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                  <div *ngIf="submitted && array_count.controls.document_availability.errors" class="invalid-feedback">
+                    <div *ngIf="array_count.controls.document_availability.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="form-group  col-4">
+                <div [formGroup]="array_count" class="form-group"   *ngIf="array_count.controls.document_availability.value ==  '1' " >
+                  <input type="text" class="form-control" formControlName="document_source"  
+                    [ngClass]="{ 'is-invalid': (submitted &&  array_count.controls.document_availability.value == '1'   &&  array_count.controls.document_source.value == '') || (submitted &&  array_count.controls.document_availability.value == '1'   &&  validate100charactersallowed(array_count.controls.document_source.value))  }">
+                  <!-- <div *ngIf="submitted && array_count.controls.document_source.errors" class="invalid-feedback">
+                    <div *ngIf="array_count.controls.document_source.errors.required">Field value is required</div>
+                  </div> -->
+                  <div *ngIf="submitted &&  array_count.controls.document_availability.value == '1'   &&  array_count.controls.document_source.value == '' " class="invalid-feedback">
+                    <div *ngIf="array_count.controls.document_source.value == '' ">Field value is required</div>
+                  </div>
+                  <div *ngIf="(submitted &&  array_count.controls.document_availability.value == '1'   &&  validate100charactersallowed(array_count.controls.document_source.value))" class="invalid-feedback">
+                    <div >Total Characters within and equal to 5000 length only allowed.</div>
+                  </div> 
+                </div>
+              </td>
+            </tr>
+
+            <!-- End of Row for Dynamic  District  Policy documents -->
+
+
+
+
+            <tr class="d-flex" style="background-color: #00AEC7;color: #FFFFFF">
+              <td colspan="4">2: Management And Services Provision</td>
+            </tr>
+            <tr class="d-flex" style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">2.1: Health Department</td>
+            </tr>
+            <tr class="d-flex" id="god">
+              <td class="col-2 add-new-row" (click)="onClickAddRowHealthDept(1)">
+                  <div class="form-group">
+                    2.1.1
+                <span class="fa-stack fa-lg">
+
+                  <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                </span>
+                </div>
+              </td>
+              <td class="col-5">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="health_dept_first_doc_val"   placeholder="Health Department related document"  
+                    [ngClass]="{ 'is-invalid': submitted && f.health_dept_first_doc_val.errors }">
+                  <div *ngIf="submitted && f.health_dept_first_doc_val.errors" class="invalid-feedback">
+                    <div *ngIf="f.health_dept_first_doc_val.errors.required">Field value is required</div>
+                    <!--<div *ngIf="f.health_dept_first_doc_val.errors.pattern">Alphabets and spaces only allowed</div>-->
+                    <div *ngIf="f.health_dept_first_doc_val.errors.maxlength">Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div class="form-group">
+                  <select formControlName="health_dept_first_availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.health_dept_first_availability.errors }">
+
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                  <div *ngIf="submitted && f.health_dept_first_availability.errors" class="invalid-feedback">
+                    <div *ngIf="f.health_dept_first_availability.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-4">
+                <div class="form-group"    *ngIf="f.health_dept_first_availability.value == '1' " >
+                  <input type="text" class="form-control" formControlName="health_dept_first_d_source"
+                    [ngClass]="{ 'is-invalid': (submitted && f.health_dept_first_availability.value   == '1' &&  f.health_dept_first_d_source.value == '') || (submitted && f.health_dept_first_availability.value   == '1' &&  validate100charactersallowed(this.f.health_dept_first_d_source.value))  }">
+                  <!-- <div *ngIf="submitted && f.health_dept_first_d_source.errors" class="invalid-feedback">
+                    <div *ngIf="f.health_dept_first_d_source.errors.required">Field value is required</div>
+                  </div> -->
+                  <div *ngIf="submitted && f.health_dept_first_availability.value   == '1' &&  f.health_dept_first_d_source.value == '' " class="invalid-feedback">
+                    <div >Field value is required</div>
+                  </div>
+                  <div *ngIf="submitted && f.health_dept_first_availability.value   == '1' &&   validate100charactersallowed(this.f.health_dept_first_d_source.value) " class="invalid-feedback">
+                    <div >Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Row for Dynamic  Health Department documents -->
+
+            <tr *ngFor="let array_counting of hp.controls; let z = index" class="d-flex">
+              <td class="col-2 " (click)="onClickRemoveHealthDept(z)">
+                  <div class="form-group">
+                    2.1.{{z+2}}
+                <span class="fa-stack fa-lg">
+
+                  <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                </span>
+                </div>
+              </td>
+              <td class="col-5">
+                <div [formGroup]="array_counting" class="form-group">
+                  <input type="text" class="form-control" formControlName="document_val"    placeholder="Health Department related document" 
+                    [ngClass]="{ 'is-invalid': submitted && array_counting.controls.document_val.errors }" />
+                  <div *ngIf="submitted && array_counting.controls.document_val.errors" class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_val.errors.required">Field value is required</div>
+                    <!--<div *ngIf="array_counting.controls.document_val.errors.pattern">Alphabets and spaces only allowed
+                    </div>-->
+                    <div *ngIf="array_counting.controls.document_val.errors.maxlength">Total Characters within and equal to 5000 length only allowed
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+
+                <div [formGroup]="array_counting" class="form-group">
+                  <select formControlName="document_availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && array_counting.controls.document_availability.errors }">
+
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                  <div *ngIf="submitted && array_counting.controls.document_availability.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_availability.errors.required">Dropdown is required
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="form-group  col-4">
+                <div [formGroup]="array_counting" class="form-group"     *ngIf="array_counting.controls.document_availability.value ==  '1' " > 
+                  <input type="text" class="form-control" formControlName="document_source"
+                    [ngClass]="{ 'is-invalid': (submitted &&  array_counting.controls.document_availability.value == '1'   &&  array_counting.controls.document_source.value == '')  || (submitted &&  array_counting.controls.document_availability.value == '1'   &&  validate100charactersallowed(array_counting.controls.document_source.value))  }">
+                  <!-- <div *ngIf="submitted && array_counting.controls.document_source.errors" class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_source.errors.required">Field value is required</div>
+                  </div> -->
+                  <div *ngIf="submitted &&  array_counting.controls.document_availability.value == '1'   &&  array_counting.controls.document_source.value == '' " class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_source.value == '' ">Field value is required</div>
+                  </div>
+                  <div *ngIf="(submitted &&  array_counting.controls.document_availability.value == '1'   &&  validate100charactersallowed(array_counting.controls.document_source.value))" class="invalid-feedback">
+                    <div >Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <!-- End of Row for Dynamic  Health Department documents -->
+
+
+
+
+
+
+            <tr class="d-flex" style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">2.2: Non-Health Department</td>
+            </tr>
+            <tr class="d-flex" id="god">
+              <td class="col-2 add-new-row" (click)="onClickAddRowNonHealthDept(1)">
+                  <div class="form-group">
+                    2.2.1
+                <span class="fa-stack fa-lg">
+
+                  <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                </span>
+                </div>
+              </td>
+              <td class="col-5">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="non_health_dept_first_doc_val"    placeholder="Non-Health Department related document" 
+                    [ngClass]="{ 'is-invalid': submitted && f.non_health_dept_first_doc_val.errors }">
+                  <div *ngIf="submitted && f.non_health_dept_first_doc_val.errors" class="invalid-feedback">
+                    <div *ngIf="f.non_health_dept_first_doc_val.errors.required">Field value is required</div>
+                    <!--<div *ngIf="f.non_health_dept_first_doc_val.errors.pattern">Alphabets and spaces only allowed</div>-->
+                    <div *ngIf="f.non_health_dept_first_doc_val.errors.maxlength">Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div class="form-group">
+                  <select formControlName="non_health_dept_first_availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.non_health_dept_first_availability.errors }">
+
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                  <div *ngIf="submitted && f.non_health_dept_first_availability.errors" class="invalid-feedback">
+                    <div *ngIf="f.non_health_dept_first_availability.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-4">
+                <div class="form-group"    *ngIf="f.non_health_dept_first_availability.value == '1' " > 
+                  <input type="text" class="form-control" formControlName="non_health_dept_first_d_source"
+                    [ngClass]="{ 'is-invalid': (submitted && f.non_health_dept_first_availability.value   == '1' &&  f.non_health_dept_first_d_source.value == '') || (submitted && f.non_health_dept_first_availability.value   == '1' &&  validate100charactersallowed(this.f.non_health_dept_first_d_source.value))   }">
+                  <!-- <div *ngIf="submitted && f.non_health_dept_first_d_source.errors" class="invalid-feedback">
+                    <div *ngIf="f.non_health_dept_first_d_source.errors.required">Field value is required</div>
+                  </div> -->
+                  <div *ngIf="submitted && f.non_health_dept_first_availability.value   == '1' &&  f.non_health_dept_first_d_source.value == ''  " class="invalid-feedback">
+                    <div >Field value is required</div>
+                  </div>
+                  <div *ngIf="submitted && f.non_health_dept_first_availability.value   == '1' &&   validate100charactersallowed(this.f.non_health_dept_first_d_source.value) " class="invalid-feedback">
+                    <div >Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+
+            <!-- Row for Dynamic  Non-Health Department documents -->
+
+            <tr *ngFor="let array_counting of nhp.controls; let z = index" class="d-flex">
+              <td class="col-2 " (click)="onClickRemoveNonHealthDept(z)">
+                  <div class="form-group">
+                    2.2.{{z+2}}
+                <span class="fa-stack fa-lg">
+
+                  <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                </span>
+                </div>
+              </td>
+              <td class="col-5">
+                <div [formGroup]="array_counting" class="form-group">
+                  <input type="text" class="form-control" formControlName="document_val"    placeholder="Non-Health Department related document" 
+                    [ngClass]="{ 'is-invalid': submitted && array_counting.controls.document_val.errors }" />
+                  <div *ngIf="submitted && array_counting.controls.document_val.errors" class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_val.errors.required">Field value is required</div>
+                    <!--<div *ngIf="array_counting.controls.document_val.errors.pattern">Alphabets and spaces only allowed
+                    </div>-->
+                    <div *ngIf="array_counting.controls.document_val.errors.maxlength">Total Characters within and equal to 5000 length only allowed
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+
+                <div [formGroup]="array_counting" class="form-group">
+                  <select formControlName="document_availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && array_counting.controls.document_availability.errors }">
+
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                  <div *ngIf="submitted && array_counting.controls.document_availability.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_availability.errors.required">Dropdown is required
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="form-group  col-4">
+                <div [formGroup]="array_counting" class="form-group"    *ngIf="array_counting.controls.document_availability.value ==  '1' " >
+                  <input type="text" class="form-control" formControlName="document_source"
+                    [ngClass]="{ 'is-invalid': (submitted &&  array_counting.controls.document_availability.value == '1'   &&  array_counting.controls.document_source.value == '')  || (submitted &&  array_counting.controls.document_availability.value == '1'   &&  validate100charactersallowed(array_counting.controls.document_source.value))  }">
+                  <!-- <div *ngIf="submitted && array_counting.controls.document_source.errors" class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_source.errors.required">Field value is required</div>
+                  </div> -->
+                  <div *ngIf="submitted &&  array_counting.controls.document_availability.value == '1'   &&  array_counting.controls.document_source.value == '' " class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_source.value == '' ">Field value is required</div>
+                  </div>
+                  <div *ngIf="(submitted &&  array_counting.controls.document_availability.value == '1'   &&  validate100charactersallowed(array_counting.controls.document_source.value))" class="invalid-feedback">
+                    <div >Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>  
+                </div>
+              </td>
+            </tr>
+
+            <!-- End of Row for  Dynamic  Non-Health Department documents -->
+
+
+
+
+
+
+
+
+            <tr class="d-flex" style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">2.3: Private Sector (For Profit And Non-Governmental Organisation)</td>
+            </tr>
+            <tr class="d-flex" id="god">
+              <td class="col-2 add-new-row" (click)="onClickAddRowPrivSec(1)">
+                  <div class="form-group">
+                    2.3.1
+                <span class="fa-stack fa-lg">
+
+                  <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                </span>
+                </div>
+              </td>
+              <td class="col-5">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="private_sec_first_doc_val"    placeholder="Private Sector related document" 
+                    [ngClass]="{ 'is-invalid': submitted && f.private_sec_first_doc_val.errors }">
+                  <div *ngIf="submitted && f.private_sec_first_doc_val.errors" class="invalid-feedback">
+                    <div *ngIf="f.private_sec_first_doc_val.errors.required">Field value is required</div>
+                    <!--<div *ngIf="f.private_sec_first_doc_val.errors.pattern">Alphabets and spaces only allowed</div>-->
+                    <div *ngIf="f.private_sec_first_doc_val.errors.maxlength">Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div class="form-group">
+                  <select formControlName="private_sec_first_availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.private_sec_first_availability.errors }">
+
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                  <div *ngIf="submitted && f.private_sec_first_availability.errors" class="invalid-feedback">
+                    <div *ngIf="f.private_sec_first_availability.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-4">
+                <div class="form-group"   *ngIf="f.private_sec_first_availability.value == '1' " >
+                  <input type="text" class="form-control" formControlName="private_sec_first_d_source"
+                    [ngClass]="{ 'is-invalid': (submitted && f.private_sec_first_availability.value   == '1' &&  f.private_sec_first_d_source.value == '') || (submitted && f.private_sec_first_availability.value   == '1' &&  validate100charactersallowed(this.f.private_sec_first_d_source.value))    }">
+                  <!-- <div *ngIf="submitted && f.private_sec_first_d_source.errors" class="invalid-feedback">
+                    <div *ngIf="f.private_sec_first_d_source.errors.required">Field value is required</div>
+                  </div> -->
+                  <div *ngIf="submitted && f.private_sec_first_availability.value   == '1' &&  f.private_sec_first_d_source.value == ''   " class="invalid-feedback">
+                    <div >Field value is required</div>
+                  </div>
+                  <div *ngIf="submitted && f.private_sec_first_availability.value   == '1' &&   validate100charactersallowed(this.f.private_sec_first_d_source.value) " class="invalid-feedback">
+                    <div >Total Characters within and equal to 5000 length only allowed.</div>
+                  </div> 
+                </div>
+              </td>
+            </tr>
+
+
+
+            <!-- Row for Dynamic  Private Sector documents -->
+
+            <tr *ngFor="let array_counting of pv.controls; let z = index" class="d-flex">
+              <td class="col-2 " (click)="onClickRemovePrivSec(z)">
+                  <div class="form-group">
+                    2.3.{{z+2}}
+                <span class="fa-stack fa-lg">
+
+                  <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                </span>
+                </div>
+              </td>
+              <td class="col-5">
+                <div [formGroup]="array_counting" class="form-group">
+                  <input type="text" class="form-control" formControlName="document_val"    placeholder="Private Sector related document" 
+                    [ngClass]="{ 'is-invalid': submitted && array_counting.controls.document_val.errors }" />
+                  <div *ngIf="submitted && array_counting.controls.document_val.errors" class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_val.errors.required">Field value is required</div>
+                    <!--<div *ngIf="array_counting.controls.document_val.errors.pattern">Alphabets and spaces only allowed
+                    </div>-->
+                    <div *ngIf="array_counting.controls.document_val.errors.maxlength">Total Characters within and equal to 5000 length only allowed
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+
+                <div [formGroup]="array_counting" class="form-group">
+                  <select formControlName="document_availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && array_counting.controls.document_availability.errors }">
+
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                  <div *ngIf="submitted && array_counting.controls.document_availability.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_availability.errors.required">Dropdown is required
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="form-group  col-4">
+                <div [formGroup]="array_counting" class="form-group"   *ngIf="array_counting.controls.document_availability.value ==  '1' " >
+                  <input type="text" class="form-control" formControlName="document_source"
+                    [ngClass]="{ 'is-invalid': (submitted &&  array_counting.controls.document_availability.value == '1'   &&  array_counting.controls.document_source.value == '')   || (submitted &&  array_counting.controls.document_availability.value == '1'   &&  validate100charactersallowed(array_counting.controls.document_source.value)) }">
+                  <!-- <div *ngIf="submitted && array_counting.controls.document_source.errors" class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_source.errors.required">Field value is required</div>
+                  </div> -->
+                  <div *ngIf="submitted &&  array_counting.controls.document_availability.value == '1'   &&  array_counting.controls.document_source.value == '' " class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_source.value == '' ">Field value is required</div>
+                  </div>
+                  <div *ngIf="(submitted &&  array_counting.controls.document_availability.value == '1'   &&  validate100charactersallowed(array_counting.controls.document_source.value))" class="invalid-feedback">
+                    <div >Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <!-- End of Row for  Dynamic  Private Sector documents -->
+
+
+
+
+            <tr class="d-flex" style="background-color: #00AEC7;color: #FFFFFF">
+              <td colspan="4">3: Large Scale District Level Surveys</td>
+            </tr>
+            <tr class="d-flex" id="god">
+              <td class="col-2 add-new-row" (click)="onClickAddLargeScaleDistrict(1)">
+                <div class="form-group">
+                  3.1
+                <span class="fa-stack fa-lg">
+
+                  <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                </span>
+                </div>
+              </td>
+              <td class="col-5">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="large_scale_district_first_doc_val"    placeholder="Large-scale district level survey document" 
+                    [ngClass]="{ 'is-invalid': submitted && f.large_scale_district_first_doc_val.errors }">
+                  <div *ngIf="submitted && f.large_scale_district_first_doc_val.errors" class="invalid-feedback">
+                    <div *ngIf="f.large_scale_district_first_doc_val.errors.required">Field value is required</div>
+                    <!--<div *ngIf="f.large_scale_district_first_doc_val.errors.pattern">Alphabets and spaces only allowed
+                    </div>-->
+                    <div *ngIf="f.large_scale_district_first_doc_val.errors.maxlength">Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div class="form-group">
+                  <select formControlName="large_scale_district_first_availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.large_scale_district_first_availability.errors }">
+
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                  <div *ngIf="submitted && f.large_scale_district_first_availability.errors" class="invalid-feedback">
+                    <div *ngIf="f.large_scale_district_first_availability.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-4">
+                <div class="form-group"   *ngIf="f.large_scale_district_first_availability.value == '1' " >
+                  <input type="text" class="form-control" formControlName="large_scale_district_first_d_source"
+                    [ngClass]="{ 'is-invalid': (submitted && f.large_scale_district_first_availability.value   == '1' &&  f.large_scale_district_first_d_source.value == '') || (submitted && f.large_scale_district_first_availability.value   == '1' &&  validate100charactersallowed(this.f.large_scale_district_first_d_source.value))    }">
+                  <!-- <div *ngIf="submitted && f.large_scale_district_first_d_source.errors" class="invalid-feedback">
+                    <div *ngIf="f.large_scale_district_first_d_source.errors.required">Field value is required</div>
+                  </div> -->
+                  <div *ngIf="submitted && f.large_scale_district_first_availability.value   == '1' &&  f.large_scale_district_first_d_source.value == '' " class="invalid-feedback">
+                    <div >Field value is required</div>
+                  </div>
+                  <div *ngIf="submitted && f.large_scale_district_first_availability.value   == '1' &&   validate100charactersallowed(this.f.large_scale_district_first_d_source.value) " class="invalid-feedback">
+                    <div >Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <!-- Row for Dynamic Large Scale District Level documents -->
+
+            <tr *ngFor="let array_counting of lsd.controls; let z = index" class="d-flex">
+              <td class="col-2 " (click)="onClickRemoveLargeScaleDistrict(z)">
+                  <div class="form-group">
+                    3.{{z+2}}
+                <span class="fa-stack fa-lg">
+
+                  <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                </span>
+                </div>
+              </td>
+              <td class="col-5">
+                <div [formGroup]="array_counting" class="form-group">
+                  <input type="text" class="form-control" formControlName="document_val"    placeholder="Large-scale district level survey document" 
+                    [ngClass]="{ 'is-invalid': submitted && array_counting.controls.document_val.errors }" />
+                  <div *ngIf="submitted && array_counting.controls.document_val.errors" class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_val.errors.required">Field value is required</div>
+                    <!--<div *ngIf="array_counting.controls.document_val.errors.pattern">Alphabets and spaces only allowed
+                    </div>-->
+                    <div *ngIf="array_counting.controls.document_val.errors.maxlength">Total Characters within and equal to 5000 length only allowed
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+
+                <div [formGroup]="array_counting" class="form-group">
+                  <select formControlName="document_availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && array_counting.controls.document_availability.errors }">
+
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                  <div *ngIf="submitted && array_counting.controls.document_availability.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_availability.errors.required">Dropdown is required
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="form-group  col-4">
+                <div [formGroup]="array_counting" class="form-group"    *ngIf="array_counting.controls.document_availability.value ==  '1' " >
+                  <input type="text" class="form-control" formControlName="document_source"
+                    [ngClass]="{ 'is-invalid': (submitted &&  array_counting.controls.document_availability.value == '1'   &&  array_counting.controls.document_source.value == '')  || (submitted &&  array_counting.controls.document_availability.value == '1'   &&  validate100charactersallowed(array_counting.controls.document_source.value))  }">
+                  <!-- <div *ngIf="submitted && array_counting.controls.document_source.errors" class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_source.errors.required">Field value is required</div>
+                  </div> --> 
+                  <div *ngIf="submitted &&  array_counting.controls.document_availability.value == '1'   &&  array_counting.controls.document_source.value == '' " class="invalid-feedback">
+                    <div *ngIf="array_counting.controls.document_source.value == '' ">Field value is required</div>
+                  </div>
+                  <div *ngIf="(submitted &&  array_counting.controls.document_availability.value == '1'   &&  validate100charactersallowed(array_counting.controls.document_source.value))" class="invalid-feedback">
+                    <div >Total Characters within and equal to 5000 length only allowed.</div>
+                  </div>  
+                </div>
+              </td>
+            </tr>
+
+            <!-- End of Row for Dynamic Large Scale District Level documents -->
+
+
+
+
+          </tbody>
+        </table>
+      
+
+
+        <div>
+            <div class="col-sm-12 text-center form-footer">
+ 
+              <a (click)="partialSave()"><button type="button" [disabled]="completeClicked" _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"><i
+                class="fa fa-edit"></i>Save</button></a>
+                &nbsp;&nbsp;
+                <button type="submit" [disabled]="completeClicked" _ngcontent-dbi-c224="" mat-flat-button="" color="primary" class="mat-flat-button mat-button-base mat-primary" id="update-form1a"><i
+                  class="fa fa-key fa-fw"></i>Complete</button>
+                  &nbsp;&nbsp;
+                  <a routerLink="/dashboard" routerLinkActive="active"><button type="submit"
+                    _ngcontent-dbi-c224="" mat-raised-button="" color="warn" class="mat-raised-button mat-button-base mat-warn" id="cancel-form1a"><i
+                        class="fa fa-times fa-fw"></i>Cancel</button></a>
+
+           
+          </div> 
+
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+<div [hidden]="!savedform">
+  <h4>You submitted successfully!</h4>
+</div>

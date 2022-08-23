@@ -1,0 +1,83 @@
+#coverScreen {
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    opacity: 0.8;
+    background-image: url("../../assets/images/worldmap.png");  
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-position: center; 
+	background-size: cover;
+} 
+.box-header img{width: 78%; margin-bottom: 10px}
+.button {
+    display: inline-flex;
+    height: 40px;
+    width: 150px;
+    
+    margin: 20px 20px 20px 20px;
+    
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: .8em;
+    letter-spacing: 1.5px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor:pointer !important;
+    }
+
+a {
+    color: #BFC0C0;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: bold;
+    }
+    
+    /* Sixth Button */
+    
+    #button-6 {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background-color: black;
+    }
+    
+    #button-6 a {
+      position: relative;
+      transition: all .45s ease-Out;
+      background-color: black;
+    }
+    
+    #spin {
+      width: 0;
+      height: 0;
+      opacity: 0;
+      left: 70px;
+      top: 20px;
+      transform: rotate(0deg);
+      background: none;
+      position: absolute;
+      transition: all .5s ease-Out;
+    }
+    
+    #button-6:hover #spin {
+      width: 200%;
+      height: 500%;
+      opacity: 1;
+      left: -70px;
+      top: -70px;
+      background: #BFC0C0;
+      transform: rotate(80deg);
+    }
+    
+    #button-6:hover a {
+      color: #2D3142;
+      background: #BFC0C0;
+      font-weight: bold;
+    }

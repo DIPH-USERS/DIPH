@@ -1,0 +1,281 @@
+<div *ngIf="loading else loaded">
+    loading ...
+    <div id="coverScreen" class="LockOn">
+    </div>
+</div>
+
+<ng-template #loaded>
+    <!-- Floating button on right Side -->
+ 
+    <!-- End of Floating button on right Side -->
+    <div class="">
+        <form>
+                <div class="col-sm-12 sub-header"> 
+                        <div class="wrapper" (click)="previouspage()" style="with:20px; float:left">
+                               <!-- <button class="button">Back</button> -->
+                               <div class="" id="button-5" style="margin: 0; width:100%">
+                                   <div id="translate"></div>
+                                   <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left" style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+                               </div>
+                        </div>   
+                         <h4>Form II:- Engage</h4>   
+                </div>
+            <div class=""><div id="toPrint">
+                
+                        <div class="col-sm-12 form-body lt">
+
+                        
+                                <div class="col-sm-6 lt">
+                                        <label>Date of the meeting </label>
+                                        <div  class="col-sm-12 form-control">
+                                        <div class="">
+                                            {{jsonresponse.form_2_date_of_meeting}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 lt">
+                                        <label>Venue of the meeting </label>
+                                        <div  class="col-sm-12 form-control">
+                                        <div class="">
+                                            {{jsonresponse.form_2_venue}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 lt">
+                                        <label>Chairperson of the meeting </label>
+                                        <div  class="col-sm-12 form-control">
+                                        <div class="">
+                                            {{jsonresponse.form_2_filled}}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                    </div>
+
+
+                    <!-- //Start Actual form here -->
+                    <div class="col-sm-12 form-body lt" style="margin-top:20px;">
+
+                    <div class="table-responsive">
+                       
+
+                            <table id="state_policy_table" class="table table-sm table-striped">
+                                    <thead class="thead-dark">
+                                        <tr class="">
+                                            <th class="">1</th>
+                                            <th class="">Key Stakeholder</th>
+                                            <th class="">Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let array_index of jsonresponse.primary_stake_array; let i = index"
+                                            class="" id="god">
+                                            <td class="" *ngIf="i==0">
+                                                a
+                                            </td>
+                                            <td class="" *ngIf="i!=0">
+        
+                                            </td>
+                                            <td class="" *ngIf="i==0">
+                                                <div class="form-group">
+                                                    Primary Stakeholder
+                                                </div>
+                                            </td>
+                                            <td class="" *ngIf="i!=0">
+                                                <div class="form-group">
+        
+                                                </div>
+                                            </td>
+        
+                                            <td class="">
+                                                {{array_index.document_name}}
+                                            </td>
+                                        </tr>
+        
+                                        <tr class=""
+                                            *ngFor="let array_index of jsonresponse.secondary_stake_array; let i = index">
+                                            <td class=" " *ngIf="i==0">
+                                                b
+                                            </td>
+                                            <td class=" " *ngIf="i!=0">
+        
+                                            </td>
+                                            <td class="" *ngIf="i==0">
+                                                <div class="form-group">
+                                                    Secondary Stakeholder
+                                                </div>
+                                            </td>
+                                            <td class="" *ngIf="i!=0">
+                                                <div class="form-group">
+        
+                                                </div>
+                                            </td>
+                                            <td class="">
+                                                <div class="form-group">
+                                                    {{array_index.document_name}}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                    </div>
+                    
+                
+
+
+
+
+
+
+
+                
+                    <!-- //Start Actual form here -->
+
+                    <div class="table-responsive">
+                        <div style="margin-top:20px;"></div>
+
+                        <table id="state_policy_table" class="table table-sm table-striped">
+                                <thead class="thead-dark">
+                                    <tr class="">
+                                        <th class="text-left">2.&nbsp;Defining Primary Role (Department-Wise)</th>
+                                        <th class="">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let array_index of jsonresponse.definingprimaryrole_array; let i = index"
+                                        class="" id="god">
+                                       
+    
+                                        <td class="text-left">
+    
+                                            {{array_index.document_select_stakeholder}}
+    
+                                        </td>
+    
+                                        <td class="">
+                                            <div class="form-group">
+                                                {{array_index.document_desc}}
+    
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="dark-header">
+                                        <th class="text-left">3.&nbsp;Current Effort To Address The Issue</th>
+                                        <th class="">Description</th>
+                                    </tr>
+                                    <tr *ngFor="let array_index of jsonresponse.efforttoaddressissue_array; let i = index"
+                                        class="" id="god">
+                                        
+    
+                                        <td class="text-left">
+    
+                                            {{array_index.document_select_stakeholder}}
+    
+                                        </td>
+    
+                                        <td class="">
+                                            <div class="form-group">
+                                                {{array_index.document_desc}}
+    
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="dark-header">
+                                        <th class="text-left">4.&nbsp;How To Enhance Engagement And Efficiency</th>
+                                        <th class="">Description</th>
+                                    </tr>
+                                    <tr *ngFor="let array_index of jsonresponse.enhanceefficiency_array; let i = index"
+                                        class="" id="god">
+                                        
+    
+                                        <td class="text-left">
+    
+                                            {{array_index.document_select_stakeholder}}
+    
+                                        </td>
+    
+                                        <td class="">
+                                            <div class="form-group">
+                                                {{array_index.document_desc}}
+    
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="dark-header">
+                                        <th class="text-left">
+                                            5.&nbsp;Theme Lead By Department</th>
+                                        <th class="">Description</th>
+                                    </tr>
+                                    <tr *ngFor="let array_index of jsonresponse.themeleadbydpt_array; let i = index"
+                                        class="" id="god">
+                                        
+    
+                                        <td class="text-left">
+    
+                                            {{array_index.document_select_stakeholder}}
+    
+                                        </td>
+    
+                                        <td class="">
+                                            <div class="form-group">
+                                                {{array_index.document_desc}}
+    
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <!-- //Start Actual form here -->
+
+                    
+
+                </div></div> <div>
+                                <div style="clear:both"></div>
+                                <div class="col-sm-12 text-center form-footer"style="margin-bottom:20px;">
+                               
+                                            <a routerLink="/dashboard" routerLinkActive="active"><button type="submit"
+                                                _ngcontent-dbi-c224="" mat-raised-button="" color="warn" style="margin-right: 5px" class="mat-raised-button mat-button-base mat-warn" id="cancel-form1a"><i
+                                                        class="fa fa-times fa-fw"></i>Close</button>
+                                            </a>
+                                        
+                                            <a (click)="onPrint()"><button type="submit"  _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-left: 5px" class="mat-flat-button mat-button-base mat-primary"
+                                                    id="cancel-form1a" ><i
+                                                        class="fa fa-print fa-fw"></i>Print</button>
+                                            </a>
+
+                                            <a (click)="onPrintExcel()"><button type="submit"  _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-left: 5px" class="mat-flat-button mat-button-base mat-primary"
+                                                id="cancel-form1a" ><i
+                                                    class="fa fa-print fa-fw"></i>Excel</button>
+                                             </a>
+                                       
+                            </div>
+
+
+
+
+                        
+                    </div>
+
+
+                
+
+            
+            </div>
+        </form>
+    </div>
+
+
+</ng-template>

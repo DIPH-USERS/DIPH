@@ -1,0 +1,64 @@
+<!-- <p>front-page works!</p> -->
+<div id="coverScreen" class="LockOn" >
+
+    <form (ngSubmit)="onSubmit()" style="height:100%; background: #e3e6e88c;">
+       <div class="" style="height: 100%">
+        <div class="col-md-10 offset-md-1 col-12" style="height: 100%">
+        <div class="row" style="height: calc(100% - 80px)">
+        <div class="col-lg-8 col-md-12 col-sm-12 col-12 text-content box-whole">
+                
+            <div>
+                    <div class="col-sm-12 text-center" style="background:rgba(266,266,266,0.5)">
+                            <img src='assets/images/diph_logo.png' class="img-fluid" id="logo_img" />
+                    </div>     
+                <div style="background:#fff; padding:20px"><b>The Data-Informed Platform for Health (DIPH)</b> is a health system-strengthening strategy to promote the use of district data for structured health decision-making. </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-12 col-md-12 col-12  box-whole">
+            <div class="row">
+                <div class="col-sm-12 box">
+                    <div class="box-header text-center">
+                        
+                        <h2 style="color: #394554; font: 20px/20px 'Alegreya SC', serif;" class="text-center">Data
+                            Informed Platform for Health</h2>
+                    </div>
+                    <div class="box-body text-center">
+                        <button type="submit" class="btn btn-primary mb-2">Login</button>
+                    </div>
+                    
+
+                    <div class="box-footer text-center">
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</div>
+    </form>
+
+
+</div>
+<div class="col-sm-12 frontpage_nav">
+        <ul>
+            <li><a href="http://www.facebook.com" target="_blank" title="Facebook"><i class="fa fa-facebook facebook_a" aria-hidden="true"></i><span class="facebook"></span></a></li>
+            <li><a href="http://www.twitter.com"  target="_blank" title="Twitter"><i class="fa fa-twitter twitter_a" aria-hidden="true"></i><span class="twitter"></span></a></li>
+            <li><a [routerLink]="['/contactform']"  title="Contact Us"><i class="fa fa-phone contact_a" aria-hidden="true"></i><span class="contact"></span></a></li>
+            <li><a [routerLink]="['/feedbackform']"  title="Feedback"><i class="fa fa-pencil feedback_a" aria-hidden="true"></i><span class="feedback"></span></a></li>
+        </ul>
+ </div>
+ <footer class="footer">
+    
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                    <p>
+                        DIPH is developed by the <span class="big"><a href="https://www.lshtm.ac.uk/" target="_blank">London School of Hygiene & Tropical Medicine</a></span> with IT support from the <span class="big"><a href="https://www.tattvafoundation.org/"  target="_blank">Tattva Foundation.</a></span></p>
+            </div>
+        </div>
+    </div>
+
+</footer>

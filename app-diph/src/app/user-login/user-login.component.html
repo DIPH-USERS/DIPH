@@ -1,0 +1,81 @@
+<div id="coverScreen" class="LockOn">
+</div>
+<div id="backScreen">
+    <div style="height:100%">
+        <!-- Floating button on right Side -->
+        <div class="wrapper bar" (click)="previouspage()">
+            <!-- <button class="button">Back</button> -->
+            <div class="button" id="button-5">
+                <div id="translate"></div>
+                <a style="font-size:18px; color:#000"><i class="fa fa-long-arrow-left" aria-hidden="true" style="margin-right: 5px;"></i><span>Back</span></a>
+            </div>
+        </div>
+        <!-- End of Floating button on right Side -->
+        <div class="col-md-4 offset-md-4 col-12" style="height: 100%">
+                <div class="row" style="height: 100%;">
+                <div class="box-whole" style="width: 100%">
+                <div class="">
+                <div class="box">
+                <div class="box-header text-center">
+                    <h2 class="text-center" style="color: #394554; font: 20px/20px 'Alegreya SC', serif;">Data Informed Platform for Health</h2>
+                </div>
+                <div class="box-body text-center">
+                    <form #login_form="ngForm" (ngSubmit)="onLogin(login_form.value)">
+                        <div class="col-sm-12">
+                        <div class="form-group">
+
+                            <input type="text" id="username" name="username" class="form-control"
+                                placeholder="Enter Your Username" ngModel>
+
+                        </div>
+                        </div>
+                        <div class="col-sm-12">
+                        <div class="form-group  mb-5">
+
+
+                            <input type="password" id="password" name="password" class="form-control"
+                                placeholder="Enter Your Password" ngModel>
+
+                        </div>
+                        </div>
+                      
+                        
+                        <div class="form-group text-center">
+                            <button type="submit" _ngcontent-twp-c1="" class="btn btn-primary mb-2">Login</button>
+                        </div>
+                        <div class="col-sm-12">
+                                <div class="justify-content-end">
+                                    <a (click)="forgotpasswordclick()"  id="forgotpassword">Forgot Password?</a>
+                                </div>
+                         </div>
+                        
+                        <!-- <div class="form-group row text-center">
+                            <button (click)="previouspage()" type="button"
+                                class="btn btn-dark center-button btn-block">Back</button>
+                        </div> -->
+                    </form>
+                </div>
+                <div class="box-footer" id="footer-font">
+                        <p id="footer-p" class="text-white">DIPH is developed by the <span class="big"><a href="https://www.lshtm.ac.uk/" target="_blank">London School of Hygiene & Tropical Medicine</a></span> with IT support from the <span class="big"><a href="https://www.tattvafoundation.org/"  target="_blank">Tattva Foundation.</a></span></p>
+
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                    <p>
+                        The Ethiopian Public Health Institute is the national implementation partner for DIPH</p>
+            </div>
+        </div>
+    </div>
+
+</footer>

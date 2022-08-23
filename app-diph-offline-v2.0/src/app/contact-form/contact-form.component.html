@@ -1,0 +1,197 @@
+<div style="background-color:#F0F0F0; margin: 15px;">
+  <div class="col-sm-12 sub-header">
+    <div class="wrapper" style="width:20px; float:left">
+      <!-- <button class="button">Back</button> -->
+      <div class="" id="button-5" style="margin: 0; width:100%">
+        <div id="translate"></div>
+        <a (click)="previouspage()" _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i
+            _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left" style="color:#5d5d5d;"></i><span
+            _ngcontent-fvy-c11=""></span></a>
+      </div>
+    </div>
+    <h4>Contact Us</h4>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <form (ngSubmit)="onsubmit()">
+
+        <div class="col-sm-12 form-body" style="float: left; margin-top: 15px;">
+          <div class="col-sm-12 lt">
+            <div class="col-sm-12 text-center" style="padding:15px 0">
+              <img src="assets/images/diph_logo.png" style="
+      width: 400px; ">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-sm" placeholder="Name" id="username" name="username"
+                ngModel
+                [ngClass]="{ 'is-invalid': (submitted &&  customer.username=='') 
+                                        ||  (submitted &&  validateSpecialCharsAndNum(customer.username))  
+                                        ||  (submitted &&  validate100charactersallowed(customer.username)) 
+                                        ||  (submitted &&  customer.username != null  && customer.username.trim() == '') }"
+                [value]="customer.username" (input)="customer.username=$event.target.value" required>
+
+              <div *ngIf=" (submitted && customer.username == '') 
+          || (submitted && validateSpecialCharsAndNum(customer.username)) 
+          || (submitted && validate100charactersallowed(customer.username))  
+          ||  (submitted &&  customer.username != null  && customer.username.trim() == '') " class="invalid-feedback">
+                <div
+                  *ngIf="(customer.username == '')  || (customer.username != null  && customer.username.trim() == '')">
+                  Field value is required</div>
+                <div *ngIf="validateSpecialCharsAndNum(customer.username)">
+                  Only Alphabets Allowed.</div>
+                <div *ngIf="validate100charactersallowed(customer.username)">
+                  Total Characters within and equal to 100 length only allowed.</div>
+                <!-- <div *ngIf="customer.username != null  && customer.username.trim() == ''">
+                    Field value is required.</div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 lt">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-sm" placeholder="Organization" id="organization_n"
+                name="organization_n" ngModel [value]="customer.organization_n"
+                (input)="customer.organization_n=$event.target.value" required [ngClass]="{ 'is-invalid': (submitted &&  customer.organization_n=='')           
+          ||  (submitted &&  validate100charactersallowed(customer.organization_n)) 
+          ||  (submitted &&  customer.organization_n != null  && customer.organization_n.trim() == '') }">
+
+              <div *ngIf=" (submitted && customer.organization_n == '')          
+          || (submitted && validate100charactersallowed(customer.organization_n))  
+          ||  (submitted &&  customer.organization_n != null  && customer.organization_n.trim() == '') "
+                class="invalid-feedback">
+                <div
+                  *ngIf="(customer.organization_n == '') || (customer.organization_n != null  && customer.organization_n.trim() == '')">
+                  Field value is required</div>
+
+                <div *ngIf="validate100charactersallowed(customer.organization_n)">
+                  Total Characters within and equal to 100 length only allowed.</div>
+                <!-- <div *ngIf="customer.organization_n != null  && customer.organization_n.trim() == ''">
+                    Field value is required.</div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 lt">
+            <div class="form-group">
+              <select class="form-control  form-control-sm" id="country_n" name="country_n" [value]="customer.country_n"
+                (change)="customer.country_n=$event.target.value" (change)="onSelectCountry($event.target.value)"
+                ngModel>
+                <option value="" selected disabled>Select Country</option>
+                <option *ngFor="let country of countries" value={{country.id}}>{{country.name}}</option>
+              </select>
+              <!-- <input type="text" class="form-control form-control-sm" placeholder="Country" id="country_n"
+          name="country_n" ngModel required> -->
+            </div>
+          </div>
+          <div class="col-sm-12 lt" *ngIf="registeredUser == '0'">
+            <div class="form-group">
+              <select class="form-control  form-control-sm" id="region_n" name="region_n" [value]="customer.region_n"
+                (change)="customer.region_n=$event.target.value" (change)="onSelectRegion($event.target.value)" ngModel>
+                <option value="" selected disabled>Select Region</option>
+                <option *ngFor="let region of regions" value={{region.region_id}}>{{region.region_name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-12 lt" *ngIf="registeredUser == '0'">
+            <div class="form-group">
+              <select class="form-control  form-control-sm" id="state_n" name="state_n" [value]="customer.state_n"
+                (change)="customer.state_n=$event.target.value" (change)="onSelectZone($event.target.value)" ngModel>
+                <option value="" selected disabled>Select Zone</option>
+                <option *ngFor="let state of states" value={{state.cs_id}}>{{state.state_name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-12 lt">
+            <div class="form-group">
+              <select class="form-control  form-control-sm" id="district_n" name="district_n"
+                [value]="customer.district_n" (change)="customer.district_n=$event.target.value" ngModel>
+                <option value="" selected disabled>Select District</option>
+                <option *ngFor="let district of districts" value={{district.district_id}}>
+                  {{district.district_name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-12 lt">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-sm" placeholder="Address" id="address_n"
+                name="address_n" ngModel [value]="customer.address_n" (input)="customer.address_n=$event.target.value"
+                required [ngClass]="{ 'is-invalid': (submitted &&  customer.address_n=='')           
+          ||  (submitted &&  validate100charactersallowed(customer.address_n)) 
+          ||  (submitted &&  customer.address_n != null  && customer.address_n.trim() == '') }">
+
+              <div *ngIf=" (submitted && customer.address_n == '')          
+          || (submitted && validate100charactersallowed(customer.address_n))  
+          ||  (submitted &&  customer.address_n != null  && customer.address_n.trim() == '') "
+                class="invalid-feedback">
+                <div
+                  *ngIf="(customer.address_n == '') || (customer.address_n != null  && customer.address_n.trim() == '')">
+                  Field value is required</div>
+                <div *ngIf="validate100charactersallowed(customer.address_n)">
+                  Total Characters within and equal to 100 length only allowed.</div>
+                <!-- <div *ngIf="customer.address_n != null  && customer.address_n.trim() == ''">
+                    Field value is required.</div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 lt">
+            <div class="form-group">
+              <input type="number" class="form-control form-control-sm" placeholder="Mobile No." id="mobile_n"
+                name="mobile_n" ngModel [ngClass]="{ 'is-invalid': (submitted &&  customer.mobile_n=='')           
+          ||  (submitted &&  validate10numbersallowed(customer.mobile_n)) 
+          ||  (submitted &&  customer.mobile_n != null  && customer.mobile_n.trim() == '') }"
+                [value]="customer.mobile_n" (input)="customer.mobile_n=$event.target.value" required>
+
+              <div *ngIf=" (submitted && customer.mobile_n == '')          
+          || (submitted && validate10numbersallowed(customer.mobile_n))  
+          ||  (submitted &&  customer.mobile_n != null  && customer.mobile_n.trim() == '') " class="invalid-feedback">
+                <div
+                  *ngIf="(customer.mobile_n == '') || (customer.mobile_n != null  && customer.mobile_n.trim() == '')">
+                  Field value is required</div>
+                <div *ngIf="validate10numbersallowed(customer.mobile_n)">
+                  Mobile No. should be of 10 numbers</div>
+                <!-- <div *ngIf="customer.mobile_n != null  && customer.mobile_n.trim() == ''">
+                    Field value is required.</div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 lt">
+            <div class="form-group">
+              <input type="email" class="form-control form-control-sm" placeholder="Enter Valid Email-Id" id="email"
+                name="email" ngModel [value]="customer.email" (input)="customer.email=$event.target.value" required>
+
+            </div>
+          </div>
+          <div class="col-sm-12 lt">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-sm" placeholder="Subject" id="subject_n"
+                name="subject_n" ngModel [value]="customer.subject_n" (input)="customer.subject_n=$event.target.value"
+                required>
+            </div>
+          </div>
+          <div class="col-sm-12 lt">
+            <div class="form-group">
+              <textarea rows="4" class="form-control form-control-sm" placeholder="Message"
+                [value]="customer.message_desc" (input)="customer.message_desc=$event.target.value"></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-12 text-center form-footer" style="display:inline-block; margin-bottom: 15px">
+          <button _ngcontent-dbi-c224="" mat-flat-button="" color="primary"
+            class="mat-flat-button mat-button-base mat-primary" type="submit">Send Message</button> &nbsp;&nbsp;
+
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="col-sm-12 form-body">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.1654994283535!2d80.94977311549047!3d26.86648246854562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd772ad273a7%3A0x5efcc7e7a3d4de53!2sTattva%20Foundation!5e0!3m2!1sen!2sin!4v1576669642609!5m2!1sen!2sin"
+          width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,323 @@
+<!-- Floating button on right Side -->
+
+<!-- End of Floating button on right Side -->
+<div class="">
+    <div class="col-sm-12 sub-header f-left">
+
+        <span class="pull-left" style="display: inline-block; margin-top: 4px;">
+      <div class="wrapper" (click)="previouspage()" style="width:20px; float:left">
+        <!-- <button class="button">Back</button> -->
+        <div class="" id="button-5" style="margin: 0; width:100%">
+          <div id="translate"></div>
+          <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i _ngcontent-fvy-c11=""
+              aria-hidden="true" class="fa fa-long-arrow-left" style="color:#5d5d5d;"></i><span
+              _ngcontent-fvy-c11=""></span></a>
+    </div>
+</div>
+<h4>DHIS2 Indicators</h4>
+</span>
+<span class="pull-right">
+      <p style="margin-bottom:0"><!--<button *ngIf="adminloggedIN == '1'" type="button" _ngcontent-dbi-c224="" mat-flat-button="" color="primary"
+          class="mat-flat-button mat-button-base mat-primary" mat-raised-button (click)="openDialog()">Create
+          Indicator</button>--></p>
+      <!-- <p>Hello <label class="clicktooltip">world<input type="checkbox"><span>and this is the tooltip text displayed on click.</span></label>! I am greeting you.
+<p></p> -->
+</span>
+</div>
+<div style="margin-top:10px" class="f-left">
+    <p>Type to search indicator(s) from the table below:</p>
+</div>
+<div class="col-sm-12 form-body f-left">
+    <div class="col-sm-6 lt">
+
+        <select class="form-control" id="category" name="category" (change)="changetable($event.target.value)">
+        <option value="" disabled>Select Category</option>
+        <option value="ESSENTIAL" selected>Essential</option>
+        <option value="OPTIONAL">Optional</option>
+        <option value="ACTION">Action</option>
+      </select>
+
+    </div>
+    <div class="col-sm-6 lt">
+
+        <input class="form-control" id="searchInput" type="text" placeholder="Search..">
+
+    </div>
+</div>
+
+<!-- Drop-down for  Indicators -->
+<div class="col-sm-12 f-left form-body margin-bottom" style="margin-top: 15px">
+
+    <div *ngIf="categoryTable  == 'ESSENTIAL'" style="font-family: 'Open Sans', sans-serif;font-size: 16px;">Choose Category</div>
+    <br/>
+    <div *ngIf="categoryTable  == 'ESSENTIAL'">
+        <div *ngIf="JsonResponseObj; else loading">
+            <select class="form-control" id="" name="" [value]="default_essential_obj" (change)="get_sel_area_indicators($event.target.value,'ESSENTIAL')">
+          <option value="" disabled>Select Category</option>
+          <option *ngFor="let array_index of unique_area_arr; let i = index"  [value]="array_index">
+          {{array_index}}
+          </option>
+        </select>
+        </div>
+    </div>
+
+    <div *ngIf="categoryTable  == 'ACTION'" style="font-family: 'Open Sans', sans-serif;font-size: 16px;">Choose Category</div>
+    <br/>
+    <div *ngIf="categoryTable  == 'ACTION'">
+        <div *ngIf="actiondataResponse; else loading">
+            <select class="form-control" id="" name="" [value]="default_action_obj" (change)="get_sel_area_indicators($event.target.value,'ACTION')">
+          <option value="" disabled>Select Category</option>
+          <option *ngFor="let array_index of unique_area_arr; let i = index"  [value]="array_index">
+          {{array_index}}
+          </option>
+        </select>
+        </div>
+    </div>
+
+</div>
+
+<div class="col-sm-12 f-left form-body margin-bottom" style="margin-top: 15px;margin-bottom: 100px;;">
+
+    <div *ngIf="categoryTable  == 'ESSENTIAL'">
+        <div *ngIf="sel_area_essential_obj; else loading">
+
+            <table class="table table-sm table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th></th>
+                        <th>Indicator Name</th>
+                        <th></th>
+                        <th>Category Name</th>
+                        <th>Type</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="indicatorTableBody">
+                    <tr *ngFor="let array_index of sel_area_essential_obj; let i = index" class="table-row">
+                        <td>{{i+1}})</td>
+                        <td class="wrapper">
+                            <div class="newtooltip">{{makeFirstLetterCapitol(sel_area_essential_obj[i].indicator_val)}}
+                                <div class="top">
+                                    <b>Category Id : </b> {{sel_area_essential_obj[i].area_id}}<br>
+                                    <b>Category Name : </b> {{sel_area_essential_obj[i].area_name}}<br>
+                                    <b>Definition : </b> {{sel_area_essential_obj[i].definition}}<br>
+                                    <b>Numerator : </b> {{sel_area_essential_obj[i].numerator}}<br>
+                                    <b>Denominator : </b> {{sel_area_essential_obj[i].denominator}}<br>
+                                    <b>Source : </b> {{sel_area_essential_obj[i].source}}<br>
+                                    <b>Frequency : </b> {{sel_area_essential_obj[i].frequency}}
+                                    <i></i>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <!--<p><button *ngIf="adminloggedIN == '1'" class="edit-form-button" (click)="editIndicator(i)"><i
+                    _ngcontent-qjg-c7="" class="fa fa-edit"></i>Edit</button></p>-->
+                            <p><button class="edit-form-button" (click)="editIndicator(i)"><i
+                      _ngcontent-qjg-c7="" class="fa fa-edit"></i>View</button></p>
+                        </td>
+                        <td>{{makeFirstLetterCapitol( sel_area_essential_obj[i].area_name)}}</td>
+                        <td>{{makeFirstLetterCapitol(sel_area_essential_obj[i].category)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+    <div *ngIf="categoryTable  == 'ACTION'">
+        <div *ngIf="sel_area_action_obj">
+
+            <table class="table table-sm table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th></th>
+                        <th>Indicator Name</th>
+                        <th></th>
+                        <th>Category Name</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody class="indicatorTableBody">
+                    <tr *ngFor="let array_index of sel_area_action_obj; let i = index" class="table-row">
+                        <td>{{i+1}})</td>
+                        <td class="wrapper">
+                            <div class="newtooltip">{{makeFirstLetterCapitol(sel_area_action_obj[i].indicator_val)}}
+                                <div class="top">
+                                    <b>Category Id : </b> {{sel_area_action_obj[i].area_id}}<br>
+                                    <b>Category Name : </b> {{sel_area_action_obj[i].area_name}}<br>
+                                    <b>Definition : </b> {{sel_area_action_obj[i].definition}}<br>
+                                    <b>Numerator : </b> {{sel_area_action_obj[i].numerator}}<br>
+                                    <b>Denominator : </b> {{sel_area_action_obj[i].denominator}}<br>
+                                    <b>Source : </b> {{sel_area_action_obj[i].source}}<br>
+                                    <b>Frequency : </b> {{sel_area_action_obj[i].frequency}}
+                                    <i></i>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <!--<p><button *ngIf="adminloggedIN == '1'" class="edit-form-button" (click)="editActionIndicator(i)"><i _ngcontent-qjg-c7=""
+                      class="fa fa-edit"></i>Edit</button></p>-->
+                            <p><button class="edit-form-button" (click)="editActionIndicator(i)"><i _ngcontent-qjg-c7=""
+                        class="fa fa-edit"></i>View</button></p>
+                        </td>
+                        <td>{{makeFirstLetterCapitol(sel_area_action_obj[i].area_name)}}</td>
+                        <td>{{makeFirstLetterCapitol(sel_area_action_obj[i].category)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <!--
+    <div *ngIf="categoryTable  == 'ACTION'">
+      <div *ngIf="actiondataResponse">
+
+        <table class="table table-sm table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th></th>
+              <th>Indicator Name</th>
+              <th></th>
+              <th>Category Name</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody id="indicatorTableBody">
+            <tr *ngFor="let array_index of actiondataResponse; let i = index" class="table-row">
+              <td>{{i+1}})</td>
+              <td class="wrapper">
+                <div class="newtooltip">{{makeFirstLetterCapitol(actiondataResponse[i].indicator_val)}}
+                  <div class="top">
+                    <b>Category Id : </b> {{actiondataResponse[i].area_id}}<br>
+                    <b>Category Name : </b> {{actiondataResponse[i].area_name}}<br>
+                    <b>Definition : </b> {{actiondataResponse[i].definition}}<br>
+                    <b>Numerator : </b> {{actiondataResponse[i].numerator}}<br>
+                    <b>Denominator : </b> {{actiondataResponse[i].denominator}}<br>
+                    <b>Source : </b> {{actiondataResponse[i].source}}<br>
+                    <b>Frequency : </b> {{actiondataResponse[i].frequency}}
+                    <i></i>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p><button class="edit-form-button" (click)="editActionIndicator(i)"><i _ngcontent-qjg-c7=""
+                      class="fa fa-edit"></i>Edit</button></p>
+              </td>
+              <td>{{makeFirstLetterCapitol(actiondataResponse[i].area_name)}}</td>
+              <td>{{makeFirstLetterCapitol(actiondataResponse[i].category)}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  -->
+
+    <div *ngIf="categoryTable  == 'OPTIONAL'">
+        <div *ngIf="serverResponse">
+            <table class="table table-sm table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th></th>
+                        <th>Indicator Name</th>
+                        <th></th>
+                        <th>Category Name</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody class="indicatorTableBody">
+                    <tr *ngFor="let array_index of serverResponse; let i = index" class="table-row">
+                        <td>{{i+1}})</td>
+                        <td class="wrapper">
+                            <div class="newtooltip">{{makeFirstLetterCapitol(serverResponse[i].indicator_val)}}
+                                <div class="top">
+                                    <b>Category Id : </b> {{serverResponse[i].area_id}}<br>
+                                    <b>Category Name : </b> {{serverResponse[i].area_name}}<br>
+                                    <b>Definition : </b> {{serverResponse[i].definition}}<br>
+                                    <b>Numerator : </b> {{serverResponse[i].numerator}}<br>
+                                    <b>Denominator : </b> {{serverResponse[i].denominator}}<br>
+                                    <b>Source : </b> {{serverResponse[i].source}}<br>
+                                    <b>Frequency : </b> {{serverResponse[i].frequency}}<br>
+                                    <b>Currently Available : </b> {{serverResponse[i].current_available}} <br>
+                                    <b>Theme : </b> {{serverResponse[i].theme}}
+                                    <i></i>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <!--<p><button *ngIf="adminloggedIN == '1'" class="edit-form-button" (click)="editOptionalIndicator(i)"><i
+                      _ngcontent-qjg-c7="" class="fa fa-edit"></i>Edit</button></p>-->
+                            <p><button class="edit-form-button" (click)="editOptionalIndicator(i)"><i
+                        _ngcontent-qjg-c7="" class="fa fa-edit"></i>View</button></p>
+                        </td>
+                        <td>{{makeFirstLetterCapitol(serverResponse[i].area_name)}}</td>
+                        <td>{{makeFirstLetterCapitol(serverResponse[i].category)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!--
+    <div *ngIf="categoryTable  == 'ESSENTIAL'">
+      <div *ngIf="JsonResponseObj; else loading">
+
+        <table class="table table-sm table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th></th>
+              <th>Indicator Name</th>
+              <th></th>
+              <th>Category Name</th>
+              <th>Type</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="indicatorTableBody">
+            <tr *ngFor="let array_index of JsonResponseObj; let i = index" class="table-row">
+              <td>{{i+1}})</td>
+              
+              <td class="wrapper">
+                <div class="newtooltip">{{makeFirstLetterCapitol(JsonResponseObj[i].indicator_val)}}
+                  <div class="top">
+                    <b>Category Id : </b> {{JsonResponseObj[i].area_id}}<br>
+                    <b>Category Name : </b> {{JsonResponseObj[i].area_name}}<br>
+                    <b>Definition : </b> {{JsonResponseObj[i].definition}}<br>
+                    <b>Numerator : </b> {{JsonResponseObj[i].numerator}}<br>
+                    <b>Denominator : </b> {{JsonResponseObj[i].denominator}}<br>
+                    <b>Source : </b> {{JsonResponseObj[i].source}}<br>
+                    <b>Frequency : </b> {{JsonResponseObj[i].frequency}}
+                    <i></i>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p *ngIf="adminloggedIN == '1'"><button class="edit-form-button" (click)="editIndicator(i)"><i
+                      _ngcontent-qjg-c7="" class="fa fa-edit"></i>Edit</button></p>
+              </td>
+              <td>{{makeFirstLetterCapitol( JsonResponseObj[i].area_name)}}</td>
+              <td>{{makeFirstLetterCapitol(JsonResponseObj[i].category)}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+
+  -->
+
+</div>
+
+
+
+</div>
+
+
+<ng-template #loading>
+    <img class="loading-img" src="assets/images/wait.gif" alt="">
+</ng-template>

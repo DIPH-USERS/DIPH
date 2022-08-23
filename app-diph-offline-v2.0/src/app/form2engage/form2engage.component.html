@@ -1,0 +1,861 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+<!-- Floating button on right Side -->
+
+    <!-- End of Floating button on right Side -->
+
+<div [hidden]="savedform" class="">
+    <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+            <div class="col-sm-12 sub-header"> 
+                    <div class="wrapper" (click)="previouspage()" style="width:20px; float:left">
+                           <!-- <button class="button">Back</button> -->
+                           <div class="" id="button-5" style="margin: 0;margin-top:6px; width:100%">
+                               <div id="translate"></div>
+                               <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left" style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+                           </div>
+                    </div>   
+                     <h4>Form II:- Engage</h4>   
+            </div>
+            <div class="col-sm-12 form-body lt">
+            
+                <div class="">
+
+                        <div class="col-sm-6 lt">
+                                <label>Date of the meeting </label>
+                                <div  class="col-sm-12 form-control">
+                                    <!-- <div class="form-group">
+                                        <input type="text" class="form-control" 
+                                            formControlName="form_2_date_of_meeting"
+                                            [ngClass]="{ 'is-invalid': nextbtn && f.form_2_date_of_meeting.errors }">
+
+                                        <div *ngIf="nextbtn && f.form_2_date_of_meeting.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.form_2_date_of_meeting.errors.required">Field value is
+                                                required</div>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="example-container" style="background-color:white;color:black;">
+                                        <mat-form-field>
+                                            <input matInput [formControl]="date" [min]="minDate"   [matDatepicker]="picker"   placeholder=""    
+                                            (click)="picker.open()"  (keypress)="picker.open()"  readonly    
+                                            [ngClass]="{ 'is-invalid': nextbtn && f.form_2_date_of_meeting.errors }">
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                        </mat-form-field>
+                                        <!-- <div *ngIf="nextbtn && f.form_2_date_of_meeting.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.form_2_date_of_meeting.errors.required">Field value is
+                                                required</div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 lt">
+                                    <label>Venue of the meeting </label>
+                                <div class="">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="form_2_venue"
+                                            [ngClass]="{ 'is-invalid': nextbtn && f.form_2_venue.errors }">
+
+                                        <div *ngIf="nextbtn && f.form_2_venue.errors" class="invalid-feedback">
+                                            <div *ngIf="f.form_2_venue.errors.required">Field value is
+                                                required</div>
+                                            <!--<div *ngIf="f.form_2_venue.errors.pattern">Alphabets and spaces only allowed
+                                            </div>-->
+                                            <div *ngIf="f.form_2_venue.errors.maxlength">Total Characters within and equal to 5000 length only allowed.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 lt">
+                                    <label>Chairperson of the meeting </label>
+                                <div class="">
+                                    <div class="form-group">
+                                        <select formControlName="form_2_filled" class="form-control"
+                                            [ngClass]="{ 'is-invalid': nextbtn && f.form_2_filled.errors }">
+                                            <option *ngFor="let order of  verified_by_name_from_Db; let i = index"
+                                                [value]="verified_by_name_from_Db[i].id">
+                                                {{verified_by_name_from_Db[i].name}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="nextbtn && f.form_2_filled.errors" class="invalid-feedback">
+                                            <div *ngIf="f.form_2_filled.errors.required">Field value is
+                                                required</div>
+                                        </div>
+                                        <div class="form-group" style="margin-top: 10px;">
+                                            <input *ngIf="f.form_2_filled.value  ==  '15' " type="text"
+                                                [ngClass]="{ 'is-invalid': (nextbtn && f.form_2_filled_others.value == null) ||  (nextbtn && f.form_2_filled_others.value == 'null')  ||  (nextbtn && f.form_2_filled_others.value == '')}"
+                                                formControlName="form_2_filled_others" id="form_2_filled_others"
+                                                class="form-control">
+                                            <div *ngIf="(nextbtn && f.form_2_filled_others.value == null) ||  (nextbtn && f.form_2_filled_others.value == 'null')  ||  (nextbtn && f.form_2_filled_others.value == '') "
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="(nextbtn && f.form_2_filled_others.value == null) ||  (nextbtn && f.form_2_filled_others.value == 'null')  ||  (nextbtn && f.form_2_filled_others.value == '') ">
+                                                    Field value is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="col-sm-12 form-body lt" style="margin-top:20px;">
+                <!-- //Start Actual form here -->
+
+                <div class="table-responsive">
+                    <div style="margin-top:20px;"></div>
+
+                    <table id="state_policy_table" class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr class="d-flex">
+                                <th class="col-2">1</th>
+                                <th class="col-3">Key Stakeholder</th>
+                                <th class="col-7">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="d-flex" id="god">
+                                <td class="col-2 ">
+                                    a
+                                </td>
+                                <td class="col-3">
+                                    <div class="form-group">
+                                        Primary Stakeholder
+                                    </div>
+                                </td>
+
+                                <td class="col-7">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div (click)="onClickAddPrimaryRow(1)">
+                                                <span class="fa-stack fa-lg">
+
+                                                    <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control prim_stakes" id="p_holder" 
+                                                formControlName="primary_stakeholder_text"
+                                                [ngClass]="{ 'is-invalid': nextbtn && f.primary_stakeholder_text.errors }">
+                                            <div *ngIf="nextbtn && f.primary_stakeholder_text.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.primary_stakeholder_text.errors.required">Field value is
+                                                    required</div>
+                                                <!--<div *ngIf="f.primary_stakeholder_text.errors.pattern">Alphabets and
+                                                    spaces only allowed
+                                                </div>-->
+                                                <div *ngIf="f.primary_stakeholder_text.errors.maxlength">Total Characters within and equal to 5000 length only allowed
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Dynamic Array for Primary Stakeholder -->
+                            <tr class="d-flex" *ngFor="let array_index of p_stake_arr.controls; let i = index">
+                                <td class="col-2 ">
+
+                                </td>
+                                <td class="col-3">
+                                    <div class="form-group">
+
+                                    </div>
+                                </td>
+
+                                <td class="col-7">
+                                    <div [formGroup]="array_index" class="form-group">
+                                        <div class="input-group">
+                                            <div (click)="onClickRemovePrimaryRow(i)">
+                                                <span class="fa-stack fa-lg">
+
+                                                    <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control prim_stakes" id="p_holder"   
+                                                formControlName="document_name"
+                                                [ngClass]="{ 'is-invalid': nextbtn && array_index.controls.document_name.errors }">
+                                            <div *ngIf="nextbtn && array_index.controls.document_name.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="array_index.controls.document_name.errors.required">Field
+                                                    value
+                                                    is
+                                                    required</div>
+                                                <!--<div *ngIf="array_index.controls.document_name.errors.pattern">Alphabets
+                                                    and spaces only allowed
+                                                </div>-->
+                                                <div *ngIf="array_index.controls.document_name.errors.maxlength">Total Characters within and equal to 5000 length only allowed
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- End of Dynamic Array for Primary Stakeholder -->
+
+                            <tr class="d-flex" id="god">
+                                <td class="col-2 ">
+                                    b
+                                </td>
+                                <td class="col-3">
+                                    <div class="form-group">
+                                        Secondary Stakeholder
+                                    </div>
+                                </td>
+
+                                <td class="col-7">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div (click)="onClickAddSecondaryRow(1)">
+                                                <span class="fa-stack fa-lg">
+
+                                                    <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control prim_stakes" id="s_holder" 
+                                                formControlName="secondary_stakeholder_text"
+                                                [ngClass]="{ 'is-invalid': nextbtn && f.secondary_stakeholder_text.errors }">
+                                            <div *ngIf="nextbtn && f.secondary_stakeholder_text.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.secondary_stakeholder_text.errors.required">Field value is
+                                                    required</div>
+                                                <!--<div *ngIf="f.secondary_stakeholder_text.errors.pattern">Alphabets and
+                                                    spaces only allowed
+                                                </div>-->
+                                                <div *ngIf="f.secondary_stakeholder_text.errors.maxlength">Total Characters within and equal to 5000 length only allowed
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Dynamic Array for Secondary Stake -->
+
+                            <tr class="d-flex" *ngFor="let array_index of s_stake_arr.controls; let i = index">
+                                <td class="col-2 ">
+
+                                </td>
+                                <td class="col-3">
+                                    <div class="form-group">
+
+                                    </div>
+                                </td>
+
+                                <td class="col-7">
+                                    <div class="form-group" [formGroup]="array_index">
+                                        <div class="input-group">
+                                            <div>
+                                                <div (click)="onClickRemoveSecondaryRow(i)">
+                                                    <span class="fa-stack fa-lg">
+
+                                                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control prim_stakes" id="s_holder"  
+                                                formControlName="document_name"
+                                                [ngClass]="{ 'is-invalid': nextbtn &&  array_index.controls.document_name.errors }">
+                                            <div *ngIf="nextbtn &&  array_index.controls.document_name.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="array_index.controls.document_name.errors.required">Field
+                                                    value 
+                                                    is
+                                                    required</div>
+                                                <!--<div *ngIf="array_index.controls.document_name.errors.pattern">Alphabets
+                                                    and spaces only allowed
+                                                </div>-->
+                                                <div *ngIf="array_index.controls.document_name.errors.maxlength">Total Characters within and equal to 5000 length only allowed
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- End of Dynamic Array for Secondary Stake -->
+                        </tbody>
+                    </table>
+
+
+
+                    <div class="col-sm-12 text-center form-footer">
+                            
+            <!-- Accent-colored raised button with ripple -->
+            <button type="button" (click)="show_part2_also();"
+            _ngcontent-dbi-c224="" mat-flat-button="" color="primary" class="mat-flat-button mat-button-base mat-primary">
+                <!--Next-->Update Stakeholders
+            </button>
+    
+                        </div>
+    
+
+                </div>
+            
+           
+            <div [hidden]="!show_second_half_form">
+                <!-- //Start Actual form here -->
+
+                <div class="table-responsive">
+                    
+
+                    <table id="state_policy_table" class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr class="d-flex">
+                                <th class="col-3">2.&nbsp;Defining Primary Role (Department-Wise)</th>
+                                <th class="col-9">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="d-flex" id="god">
+                                <td class="col-1 " (click)="onClickAddDefiningPrimaryRoleRow(1)">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                    </span>
+                                </td>
+                                <td class="col-2">
+                                   
+                                    <div class="form-group">
+                                    <select class="form-control" formControlName="defining_primary_role_section_select"
+                                        id="defining_primary_role_section_select"
+                                        [ngClass]="{ 'is-invalid': submitted && f.defining_primary_role_section_select.errors }">
+                                        <option *ngFor="let order of  stakeholder_arr; let i = index"
+                                            [value]="stakeholder_arr[i].name">
+                                            {{stakeholder_arr[i].name}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="submitted && f.defining_primary_role_section_select.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="f.defining_primary_role_section_select.errors.required">Field value
+                                            is
+                                            required</div>
+                                    </div>
+                                </div>
+                                </td>
+
+                                <td class="col-9">
+                                    <div class="form-group">
+
+                                        <textarea formControlName="defining_primary_role_section_text"
+                                            class="form-control" id="defining_primary_role_section_text" rows="5"
+                                            [ngClass]="{ 'is-invalid': submitted && f.defining_primary_role_section_text.errors }">Enter any text</textarea>
+                                        <div *ngIf="submitted && f.defining_primary_role_section_text.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.defining_primary_role_section_text.errors.required">Field
+                                                value is
+                                                required</div>
+                                            <!-- <div *ngIf="f.defining_primary_role_section_text.errors.pattern">Alphabets
+                                                and spaces only allowed
+                                            </div>
+                                            <div *ngIf="f.defining_primary_role_section_text.errors.maxlength">Total Characters within and equal to 5000 length only allowed.
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr *ngFor="let array_index of definingprimaryrole_array.controls; let i = index"
+                                class="d-flex" id="god">
+                                <td class="col-1 " (click)="onClickRemoveDefiningPrimaryRow(i)">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                    </span>
+                                </td>
+                                <td class="col-2">
+                                    <div [formGroup]="array_index" class="form-group">
+                                        <select class="form-control" formControlName="document_select_stakeholder"  
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_select_stakeholder.errors }" >
+                                            <option *ngFor="let order of  stakeholder_arr; let i = index"
+                                                [value]="stakeholder_arr[i].name">
+                                                {{stakeholder_arr[i].name}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="submitted && array_index.controls.document_select_stakeholder.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="array_index.controls.document_select_stakeholder.errors.required">Field
+                                            value is
+                                            required</div>                                            
+                                    </div>
+                                    </div>
+                                </td>
+
+                                <td class="col-9">
+                                    <div [formGroup]="array_index" class="form-group">
+
+                                        <textarea formControlName="document_desc" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_desc.errors }"
+                                            rows="5"></textarea>
+                                            <div *ngIf="submitted && array_index.controls.document_desc.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="array_index.controls.document_desc.errors.required">Field
+                                                value is
+                                                required</div>
+                                            <!-- <div *ngIf="array_index.controls.document_desc.errors.pattern">Alphabets
+                                                and spaces only allowed
+                                            </div>
+                                            <div *ngIf="array_index.controls.document_desc.errors.maxlength">Total Characters within and equal to 5000 length only allowed.
+                                            </div> -->
+                                        </div> 
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
+
+
+
+                <!-- //Start Actual form here -->
+
+                <div class="table-responsive">
+                    <div style="margin-top:20px;"></div>
+
+                    <table id="state_policy_table" class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr class="d-flex">
+                                <th class="col-3">3.&nbsp;Current Effort To Address The Issue</th>
+                                <th class="col-9">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="d-flex" id="god">
+                                <td class="col-1 " (click)="onClickAddEfforttoAddressIssueRow(1)">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                    </span>
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-group">
+                                        <div class="">
+                                            <select class="form-control"
+                                                formControlName="current_effort_to_address_the_issue_section_select"
+                                                id="current_effort_to_address_the_issue_section_select"
+                                                [ngClass]="{ 'is-invalid': submitted && f.current_effort_to_address_the_issue_section_select.errors }">
+                                                <option *ngFor="let order of  stakeholder_arr; let i = index"
+                                                    [value]="stakeholder_arr[i].name">
+                                                    {{stakeholder_arr[i].name}}
+                                                </option>
+                                            </select>
+                                            <div *ngIf="submitted && f.current_effort_to_address_the_issue_section_select.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="f.current_effort_to_address_the_issue_section_select.errors.required">
+                                                    Field value is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="col-9">
+                                    <div class="form-group">
+
+                                        <textarea formControlName="current_effort_to_address_the_issue_section_text"
+                                            class="form-control" id="current_effort_to_address_the_issue_section_text"
+                                            rows="5"
+                                            [ngClass]="{ 'is-invalid': submitted && f.current_effort_to_address_the_issue_section_text.errors }"></textarea>
+                                        <div *ngIf="submitted && f.current_effort_to_address_the_issue_section_text.errors"
+                                            class="invalid-feedback">
+                                            <div
+                                                *ngIf="f.current_effort_to_address_the_issue_section_text.errors.required">
+                                                Field value is
+                                                required</div>
+                                            <!-- <div
+                                                *ngIf="f.current_effort_to_address_the_issue_section_text.errors.pattern">
+                                                Alphabets
+                                                and spaces only allowed
+                                            </div>
+                                            <div *ngIf="f.current_effort_to_address_the_issue_section_text.errors.maxlength">Total Characters within and equal to 5000 length only allowed.
+                                            </div> -->
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr *ngFor="let array_index of efforttoaddressissue_array.controls; let i = index"
+                                class="d-flex" id="god">
+                                <td class="col-1 " (click)="onClickRemoveEfforttoAddressIssueRow(i)">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                    </span>
+                                </td>
+                                <td class="col-2">
+
+                                    <div [formGroup]="array_index" class="form-group">
+                                        <select class="form-control" formControlName="document_select_stakeholder"  
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_select_stakeholder.errors }" >
+                                            <option *ngFor="let order of  stakeholder_arr; let i = index"
+                                                [value]="stakeholder_arr[i].name">
+                                                {{stakeholder_arr[i].name}}
+                                            </option>
+                                        </select>
+
+                                        <div *ngIf="submitted && array_index.controls.document_select_stakeholder.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="array_index.controls.document_select_stakeholder.errors.required">Field
+                                            value is
+                                            required</div>                                            
+                                    </div>
+                                    </div>
+
+                                </td>
+
+                                <td class="col-9">
+                                    <div [formGroup]="array_index" class="form-group"  >
+
+                                        <textarea formControlName="document_desc" class="form-control"  
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_desc.errors }" 
+                                            rows="5"></textarea>
+
+                                            <div *ngIf="submitted && array_index.controls.document_desc.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="array_index.controls.document_desc.errors.required">Field
+                                                value is
+                                                required</div>
+                                            <!-- <div *ngIf="array_index.controls.document_desc.errors.pattern">Alphabets
+                                                and spaces only allowed
+                                            </div>
+                                            <div *ngIf="array_index.controls.document_desc.errors.maxlength">Total Characters within and equal to 5000 length only allowed.
+                                            </div> -->
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <!-- //Start Actual form here -->
+
+                <div class="table-responsive">
+                    <div style="margin-top:20px;"></div>
+
+                    <table id="state_policy_table" class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr class="d-flex">
+                                <th class="col-3">4.&nbsp;How To Enhance Engagement And Efficiency</th>
+                                <th class="col-9">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="d-flex" id="god">
+                                <td class="col-1 " (click)="onClickAddEnhanceEfficiencyRow(1)">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                    </span>
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-group">
+                                        <div class="">
+                                            <select class="form-control"
+                                                formControlName="how_to_enhance_engagement_and_efficiency_section_select"
+                                                id="how_to_enhance_engagement_and_efficiency_section_select"
+                                                [ngClass]="{ 'is-invalid': submitted && f.how_to_enhance_engagement_and_efficiency_section_select.errors }">
+                                                <option *ngFor="let order of  stakeholder_arr; let i = index"
+                                                    [value]="stakeholder_arr[i].name">
+                                                    {{stakeholder_arr[i].name}}
+                                                </option>
+                                            </select>
+                                            <div *ngIf="submitted && f.how_to_enhance_engagement_and_efficiency_section_select.errors"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="f.how_to_enhance_engagement_and_efficiency_section_select.errors.required">
+                                                    Field value is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="col-9">
+                                    <div class="form-group">
+
+                                        <textarea
+                                            formControlName="how_to_enhance_engagement_and_efficiency_section_text"
+                                            class="form-control" id="exampleTextarea" rows="5"
+                                            [ngClass]="{ 'is-invalid': submitted && f.how_to_enhance_engagement_and_efficiency_section_text.errors }"></textarea>
+                                        <div *ngIf="submitted && f.how_to_enhance_engagement_and_efficiency_section_text.errors"
+                                            class="invalid-feedback">
+                                            <div
+                                                *ngIf="f.how_to_enhance_engagement_and_efficiency_section_text.errors.required">
+                                                Field value is
+                                                required</div>
+                                            <!-- <div
+                                                *ngIf="f.how_to_enhance_engagement_and_efficiency_section_text.errors.pattern">
+                                                Alphabets
+                                                and spaces only allowed
+                                            </div>
+                                            <div *ngIf="f.how_to_enhance_engagement_and_efficiency_section_text.errors.maxlength">Total Characters within and equal to 5000 length only allowed.
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
+
+                            <tr *ngFor="let array_index of enhanceefficiency_array.controls; let i = index"
+                                class="d-flex" id="god">
+                                <td class="col-1 " (click)="onClickRemoveEnhanceEfficiencyRow(i)">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                    </span>
+                                </td>
+                                <td class="col-2">
+
+                                    <div [formGroup]="array_index" class="form-group"> 
+                                        <select class="form-control" formControlName="document_select_stakeholder"  
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_select_stakeholder.errors }" >
+                                            <option *ngFor="let order of  stakeholder_arr; let i = index"
+                                                [value]="stakeholder_arr[i].name">
+                                                {{stakeholder_arr[i].name}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="submitted && array_index.controls.document_select_stakeholder.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="array_index.controls.document_select_stakeholder.errors.required">Field
+                                            value is
+                                            required</div>                                            
+                                    </div>
+                                    </div>
+
+                                </td>
+
+                                <td class="col-9">
+                                    <div [formGroup]="array_index" class="form-group">
+                                        <textarea formControlName="document_desc" class="form-control" 
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_desc.errors }" 
+                                            rows="5"></textarea>
+                                            <div *ngIf="submitted && array_index.controls.document_desc.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="array_index.controls.document_desc.errors.required">Field
+                                                value is
+                                                required</div>
+                                            <!-- <div *ngIf="array_index.controls.document_desc.errors.pattern">Alphabets
+                                                and spaces only allowed
+                                            </div>
+                                            <div *ngIf="array_index.controls.document_desc.errors.maxlength">Total Characters within and equal to 5000 length only allowed.
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
+
+
+
+                <!-- //Start Actual form here -->
+
+                <div class="table-responsive">
+                    <div style="margin-top:20px;"></div>
+
+                    <table id="state_policy_table" class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr class="d-flex">
+                                <th class="col-3">
+                                    5.&nbsp;Theme Lead By Department</th>
+                                <th class="col-9">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="d-flex" id="god">
+                                <td class="col-1 " (click)="onClickAddThemeLeadbyDptRow(1)">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                    </span>
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-group">
+                                        <div class="">
+
+                                            <select class="form-control"
+                                                formControlName="theme_lead_by_department_section_select"
+                                                id="theme_lead_by_department_section_select"
+                                                [ngClass]="{ 'is-invalid': submitted && f.theme_lead_by_department_section_select.errors }">
+                                                <option *ngFor="let order of  stakeholder_arr; let i = index"
+                                                    [value]="stakeholder_arr[i].name">
+                                                    {{stakeholder_arr[i].name}}
+                                                </option>
+                                            </select>
+                                            <div *ngIf="submitted && f.theme_lead_by_department_section_select.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.theme_lead_by_department_section_select.errors.required">
+                                                    Field value is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="col-9">
+                                    <div class="form-group">
+
+                                        <textarea formControlName="theme_lead_by_department_section_text"
+                                            class="form-control" id="theme_lead_by_department_section_text" rows="5"
+                                            [ngClass]="{ 'is-invalid': submitted && f.theme_lead_by_department_section_text.errors }"></textarea>
+                                        <div *ngIf="submitted && f.theme_lead_by_department_section_text.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.theme_lead_by_department_section_text.errors.required">Field
+                                                value is
+                                                required</div>
+                                            <!-- <div *ngIf="f.theme_lead_by_department_section_text.errors.pattern">
+                                                Alphabets
+                                                and spaces only allowed
+                                            </div>
+                                            <div *ngIf="f.theme_lead_by_department_section_text.errors.maxlength">Total Characters within and equal to 5000 length only allowed.
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr *ngFor="let array_index of themeleadbydpt_array.controls; let i = index" class="d-flex"
+                                id="god">
+                                <td class="col-1 " (click)="onClickRemoveThemeLeadbyDptRow(i)">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                    </span>
+                                </td>
+                                <td class="col-2">
+
+                                    <div [formGroup]="array_index" class="form-group">
+                                        <select class="form-control" formControlName="document_select_stakeholder"  
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_select_stakeholder.errors }" >
+                                            <option *ngFor="let order of  stakeholder_arr; let i = index"
+                                                [value]="stakeholder_arr[i].name">
+                                                {{stakeholder_arr[i].name}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="submitted && array_index.controls.document_select_stakeholder.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="array_index.controls.document_select_stakeholder.errors.required">Field
+                                            value is
+                                            required</div>                                            
+                                    </div> 
+                                    </div>
+
+                                </td>
+
+                                <td class="col-9">
+                                    <div [formGroup]="array_index" class="form-group">
+
+                                        <textarea formControlName="document_desc" class="form-control" 
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_desc.errors }" 
+                                            rows="5"></textarea>
+
+                                            <div *ngIf="submitted && array_index.controls.document_desc.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="array_index.controls.document_desc.errors.required">Field
+                                                value is
+                                                required</div>
+                                            <!-- <div *ngIf="array_index.controls.document_desc.errors.pattern">Alphabets
+                                                and spaces only allowed
+                                            </div>
+                                            <div *ngIf="array_index.controls.document_desc.errors.maxlength">Total Characters within and equal to 5000 length only allowed.
+                                            </div> -->
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+
+
+                    <div>
+                            <div style="clear:both"></div>
+                            <div class="col-sm-12 text-center form-footer"style="margin-bottom:20px;">
+                                <a (click)="partialSave()"><button [disabled]="completeClicked" type="button" _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"><i
+                                    class="fa fa-edit"></i>Save</button></a>
+                                    &nbsp;&nbsp;                          
+                                
+                                        <button type="submit" [disabled]="completeClicked" _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary" id="update-form2engage"><i
+                                                class="fa fa-key fa-fw"></i>Complete</button>
+
+                                   
+                                        <a routerLink="/dashboard" routerLinkActive="active"><button type="submit"
+                                                _ngcontent-dbi-c224="" mat-raised-button="" color="warn" style="margin-left: 5px" class="mat-raised-button mat-button-base mat-warn" id="cancel-form2engage"
+                                               ><i
+                                                    class="fa fa-times fa-fw"></i>Cancel</button></a>
+                         
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </form>
+</div>
+
+<div [hidden]="!savedform">
+    <h4>You submitted successfully!</h4>
+</div>

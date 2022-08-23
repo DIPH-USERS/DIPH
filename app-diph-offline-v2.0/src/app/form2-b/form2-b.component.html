@@ -1,0 +1,36 @@
+<!-- If user is loaded show the form, else show the loading template -->
+<form *ngIf="customer; else loading" (ngSubmit)="submit()">
+  <div>
+    <div>
+      <label>Name: </label> <input type="text" [value]="customer.name" (input)="customer.name=$event.target.value" /> {{customer.name}}
+    </div>
+    <div>
+      <label>Age: </label> <input type="text" [value]="customer.age" (input)="customer.age=$event.target.value" /> {{customer.age}}
+    </div>
+    <div>
+      <label>Active: </label>  <input type="text" [value]="customer.active" (input)="customer.active=$event.target.value" /> {{customer.active}}
+    </div>
+    <div *ngFor="let array_index of customer.array1; let i = index">
+      <label>Looping over: </label> {{i+1}}
+      <label>Looping over2: </label> <input type="text" [value]="array_index.document_val"  (input)="array_index.document_val=$event.target.value" />
+      <label>Looping over3: </label> <input type="text" [value]="array_index.document_availability"
+        (input)="array_index.document_availability=$event.target.value">
+      <label>Looping over4: </label> <input type="text" [value]="array_index.document_source"
+        (input)="array_index.document_source=$event.target.value">
+        <span class="button is-small btn-success" *ngIf='customer.active' (click)='removecurrentrow($event.target)' id={{i}}>Remove current Row</span>
+    </div>
+
+    <span class="button is-small btn-success" *ngIf='customer.active' (click)='addnewrow()'>Add new</span>
+    <span class="button is-small btn-primary" *ngIf='customer.active' (click)='updateActive(false)'>Inactive</span>
+
+    <span class="button is-small btn-primary" *ngIf='!customer.active' (click)='updateActive(true)'>Active</span>
+
+    <span class="button is-small btn-danger" (click)='deleteCustomer()'>Delete</span>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <hr />
+  </div>
+</form>
+
+<ng-template #loading>
+  Loading User...
+</ng-template>

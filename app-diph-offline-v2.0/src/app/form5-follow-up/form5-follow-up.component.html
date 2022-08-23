@@ -1,0 +1,1570 @@
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
+
+<!-- Floating button on right Side -->
+
+<!-- End of Floating button on right Side -->
+
+<div [hidden]="savedform" class="">
+    <form (ngSubmit)="onSubmit()">
+        <div class="col-sm-12 sub-header">
+            <div class="wrapper" (click)="previouspage()" style="width:20px; float:left">
+                <!-- <button class="button">Back</button> -->
+                <div class="" id="button-5" style="margin: 0; width:100%">
+                    <div id="translate"></div>
+                    <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i
+                            _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left"
+                            style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+                </div>
+            </div>
+            <h4>Form-V: Follow - Up</h4>
+        </div>
+        <div class="" style="padding: 0%;margin:0%;">
+            <div class="col-sm-12 form-body lt">
+                <div class="">
+
+
+                    <div class="col-sm-6 lt">
+                        <label>Date of the meeting </label>
+                        <div class="col-sm-12 form-control">
+                            <div class="">
+                                <div class="example-container" style="background-color:white;color:black;">
+                                    <mat-form-field>
+                                        <input matInput [formControl]="date" [matDatepicker]="picker" (click)="picker.open()" (keypress)="picker.open()" readonly [min]="minDate" placeholder="" name='date_of_verification'>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 lt">
+                        <label>Venue of the meeting </label>
+                        <div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Venue of meeting" [ngClass]="{ 'is-invalid': (submitted && customer.venue_of_meeting=='')
+                                         || (submitted  && customer.venue_of_meeting!='' &&  validate100charactersallowed(customer.venue_of_meeting) ) }" [value]="customer.venue_of_meeting" (input)="customer.venue_of_meeting=$event.target.value">
+                                <div *ngIf="submitted &&  customer.venue_of_meeting=='' " class="invalid-feedback">
+                                    <div *ngIf=" customer.venue_of_meeting=='' ">Field value is required
+                                    </div>
+                                </div>
+                                <!--<div *ngIf="submitted  && customer.venue_of_meeting!='' &&   validateSpecialCharsAndNum(customer.venue_of_meeting) "
+                                    class="invalid-feedback">
+                                    <div>Only Alphabets Allowed</div>
+                                </div>-->
+                                <div *ngIf="submitted  && customer.venue_of_meeting!='' &&   validate100charactersallowed(customer.venue_of_meeting) " class="invalid-feedback">
+                                    <div>Total Characters within and equal to 5000 length only allowed.</div>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="venue_of_meeting"
+                                        [ngClass]="{ 'is-invalid': submitted && f.venue_of_meeting.errors }">
+
+                                    
+                                </div> -->
+                        </div>
+                    </div>
+                    <div class="col-sm-6 lt">
+                        <label>Chairperson of the meeting </label>
+                        <div>
+                            <div class="form-group">
+                                <select class="form-control" [value]="customer.chairperson_of_meeting" [ngClass]="{ 'is-invalid': submitted && customer.chairperson_of_meeting=='' }" (input)="customer.chairperson_of_meeting=$event.target.value">
+                                    <option value="" disabled selected hidden style="font-style:italic;">Please
+                                        choose..</option>
+                                    <option *ngFor="let order of  verified_by_name_from_Db; let i = index"
+                                        [value]="verified_by_name_from_Db[i].id">
+                                        {{verified_by_name_from_Db[i].name}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted &&  customer.chairperson_of_meeting=='' " class="invalid-feedback">
+                                    <div *ngIf=" customer.chairperson_of_meeting=='' ">Field value is required
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <input *ngIf="customer.chairperson_of_meeting  ==  '15' " type="text" [ngClass]="{ 'is-invalid': (submitted && customer.chairperson_of_meeting_others == '') }" [value]="customer.chairperson_of_meeting_others" (input)="customer.chairperson_of_meeting_others=$event.target.value"
+                                        id="form3_chair_person_others" class="form-control">
+                                    <div *ngIf=" (submitted && customer.chairperson_of_meeting_others == '') " class="invalid-feedback">
+                                        <div *ngIf="customer.chairperson_of_meeting_others == ''">
+                                            Field value is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+            <!-- width:auto; overflow-x:scroll; overflow-y:scroll;height:auto; -->
+
+            <!-- //Start Actual form here -->
+            <!-- Key Stakeholder -->
+            <div class="col-sm-12 form-body lt" style="margin-top:20px;">
+                <div class="table-responsive">
+                    <div style="background-color: #00AEC7;color: #FFFFFF">
+                        <div class="col-sm-12 text-center" style="padding:10px" style="font-family: 'Merriweather', serif;font-size: 20px;">PART - A</div>
+                    </div>
+                    <div class="col-sm-6 lt">
+                        <label>Theme: </label>
+                        <div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" [value]="customer.theme_id" (input)="customer.theme_id=$event.target.value" [disabled]="true">
+
+                                <!-- Promotion of exclusive breast feeding and early initiation of breastfeeding (within 1 hour of birth) -->
+                                <!-- <input type="text" class="form-control" formControlName="theme_id"
+                                        [ngClass]="{ 'is-invalid': submitted && f.theme_id.errors }">
+
+                                    <div *ngIf="submitted && f.theme_id.errors" class="invalid-feedback">
+                                        <div *ngIf="f.theme_id.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 lt">
+                        <label>Theme Leader of the Cycle: </label>
+                        <div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" [value]="customer.theme_leader" [disabled]="true" (input)="customer.theme_leader=$event.target.value">
+                                <!-- <input type="text" class="form-control" formControlName="theme_leader"
+                                        [ngClass]="{ 'is-invalid': submitted && f.theme_leader.errors }">
+
+                                    <div *ngIf="submitted && f.theme_leader.errors" class="invalid-feedback">
+                                        <div *ngIf="f.theme_leader.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 lt">
+                        <label>Number of meeting for the respective theme: </label>
+                        <div>
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" [value]="customer.no_of_meetings_resp_team" (keypress)="findvalue($event)" [ngClass]="{ 'is-invalid': (submitted && customer.no_of_meetings_resp_team=='') 
+                                    || (submitted && validateNumbers(customer.no_of_meetings_resp_team)) }" (input)="customer.no_of_meetings_resp_team=$event.target.value" placeholder="Enter numeric value">
+                                <div *ngIf="(submitted && customer.no_of_meetings_resp_team=='') 
+                                    || (submitted && validateNumbers(customer.no_of_meetings_resp_team)) " class="invalid-feedback">
+                                    <div *ngIf=" customer.no_of_meetings_resp_team=='' ">Field value is required
+                                    </div>
+                                    <div *ngIf=" validateNumbers(customer.no_of_meetings_resp_team) ">Only Numbers Allowed
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--End of Key Stakeholder -->
+
+
+
+
+
+
+                <!-- //Start Actual form here -->
+
+                <div class="table-responsive">
+                    <div style="margin-top:20px;"></div>
+
+                    <table id="state_policy_table" class="table table-sm table-striped table-bordered">
+                        <thead style="background-color: #00AEC7;color: #FFFFFF">
+                            <tr class="">
+                                <th class=""></th>
+                                <th colspan="4">1. Major Stakeholders Involved in Each Meeting</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="thead-dark " style="font-family: 'Open Sans', sans-serif; font-size: 16px;">
+                                <th class=""></th>
+                                <th class="">Meeting</th>
+                                <th class="">Date</th>
+                                <th class="">Participant</th>
+                                <th class="">Number of Participants</th>
+                            </tr>
+                            <tr class="" *ngFor="let array_index of customer.meeting_arr; let i = index">
+                                <td class=" " (click)="onclickAddmeetingRow(i)" *ngIf="i==0">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                    </span>
+                                </td>
+                                <td class=" " (click)="onclickRemovemeetingRow(i)" *ngIf="i!=0">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                    </span>
+                                </td>
+                                <td class=" form-group">
+                                    Meeting {{i+1}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group">
+                                        <div class="form-control">
+
+                                            <mat-form-field>
+                                                <input matInput [formControl]="meetingdate_arr[i]" [matDatepicker]="picker_stakeholder_meeting_i" [min]="minDate" placeholder="" readonly>
+                                                <mat-datepicker-toggle matSuffix [for]="picker_stakeholder_meeting_i"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker_stakeholder_meeting_i></mat-datepicker>
+                                            </mat-form-field>
+
+                                            <!-- <mat-form-field>
+                                            <input matInput [formControl]="meetingdate_arr[i]" [matDatepicker]="picker_stakeholder_meeting" [min]="minDate"
+                                                placeholder=""  (click)="picker_stakeholder_meeting.open()"
+                                                (keypress)="picker_stakeholder_meeting.open()" readonly>
+                                            <mat-datepicker-toggle matSuffix [for]="picker_stakeholder_meeting"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker_stakeholder_meeting></mat-datepicker>
+                                        </mat-form-field> -->
+
+                                            <!-- <input type="text" class="form-control" [value]="array_index.meeting_date"
+                                            [ngClass]="{ 'is-invalid': submitted && array_index.meeting_date=='' }"
+                                            (input)="array_index.meeting_date=$event.target.value">
+
+                                        <div *ngIf="submitted &&  array_index.meeting_date=='' "
+                                            class="invalid-feedback">
+                                            <div *ngIf=" array_index.meeting_date=='' ">Field value is
+                                                required</div>
+                                        </div> -->
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="">
+                                    <div class="form-group">
+
+                                        <textarea [value]="array_index.stakeholder_meeting" [ngClass]="{ 'is-invalid': (submitted && array_index.stakeholder_meeting=='') 
+                                             || (submitted  && array_index.stakeholder_meeting!='' &&  validate200charactersallowed(array_index.stakeholder_meeting) )}" (input)="array_index.stakeholder_meeting=$event.target.value" class="form-control"
+                                            rows="4"></textarea>
+                                        <div *ngIf="submitted &&  array_index.stakeholder_meeting=='' " class="invalid-feedback">
+                                            <div *ngIf=" array_index.stakeholder_meeting=='' ">Field value is required
+                                            </div>
+                                        </div>
+                                        <!--<div *ngIf="submitted  && array_index.stakeholder_meeting!='' &&   validateSpecialCharsAndNum(array_index.stakeholder_meeting) "
+                                            class="invalid-feedback">
+                                            <div>Only Alphabets Allowed</div>
+                                        </div>-->
+                                        <div *ngIf="submitted  && array_index.stakeholder_meeting!='' &&   validate200charactersallowed(array_index.stakeholder_meeting) " class="invalid-feedback">
+                                            <div>Total Characters within and equal to 5000 length only allowed.</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [value]="array_index.no_of_participants" (keypress)="findvalue($event)" [ngClass]="{ 'is-invalid': (submitted && array_index.no_of_participants=='') 
+                                    || (submitted &&  validateNumbers(array_index.no_of_participants) ) }" (input)="array_index.no_of_participants=$event.target.value">
+
+                                        <div *ngIf="(submitted && array_index.no_of_participants=='') 
+                                    || (submitted &&  validateNumbers(array_index.no_of_participants) )  " class="invalid-feedback">
+                                            <div *ngIf=" array_index.no_of_participants=='' ">Field value is required
+                                            </div>
+                                            <div *ngIf=" validateNumbers(array_index.no_of_participants) ">Only Numbers Allowed
+                                            </div>
+                                        </div>
+                                        <!-- <input type="text" class="form-control" formControlName="no_of_participants"
+                                        [ngClass]="{ 'is-invalid': submitted && f.no_of_participants.errors }">
+
+                                    <div *ngIf="submitted && f.no_of_participants.errors" class="invalid-feedback">
+                                        <div *ngIf="f.no_of_participants.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- End of//Start Actual form here -->
+
+
+
+
+
+
+                <!-- New Table -->
+                <div class="table-responsive">
+                    <!-- <div style="margin-top:20px;"></div> -->
+
+                    <table id="state_policy_table" class="table table-sm table-bordered">
+                        <thead>
+                            <tr class="d-flex" style="background-color: #00AEC7;color: #FFFFFF">
+                                <th class="col-3">2. Comparison of Key Coverage Indicator(s) in the DIPH Cycle</th>
+                                <th class="col-4">Source</th>
+                                <th class="col-2">Time 0</th>
+                                <th class="col-2" style="background-color: #00AEC7;color: #FFFFFF">Time 1</th>
+                                <th class="col-2" style="background-color: #00AEC7;color: #FFFFFF">Time 2</th>
+                                <th class="col-2" style="background-color: #00AEC7;color: #FFFFFF">Time 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="d-flex" *ngIf="customer.total_coverage_indi.length == 0">
+                                <td class="col-12">No Indicators Found</td>
+                                <td class="col-3"></td>
+                            </tr>
+
+                            <tr class="d-flex" *ngIf="customer.total_coverage_indi.length != 0">
+                                <td class="col-3">Date</td>
+                                <td class="col-4"></td>
+                                <td class="col-2">
+                                    <div class="form-control">
+
+                                        <mat-form-field>
+                                            <input matInput [formControl]="timezerodate" [matDatepicker]="timezerodate_name" [min]="minDate" placeholder="">
+                                            <mat-datepicker-toggle matSuffix [for]="timezerodate_name"></mat-datepicker-toggle>
+                                            <mat-datepicker #timezerodate_name></mat-datepicker>
+                                        </mat-form-field>
+
+
+                                        <!-- <input type="text" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && customer.total_coverage_indi_timezero_date=='' }"
+                                            [value]="customer.total_coverage_indi_timezero_date"
+                                            (input)="customer.total_coverage_indi_timezero_date=$event.target.value">
+
+                                        <div *ngIf="submitted &&  customer.total_coverage_indi_timezero_date=='' "
+                                            class="invalid-feedback">
+                                            <div *ngIf=" customer.total_coverage_indi_timezero_date=='' ">Field value is
+                                                required</div>
+                                        </div> -->
+
+                                    </div>
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-control">
+
+                                        <mat-form-field>
+                                            <input matInput (dateInput)="previousDateCheckTime1($event)" [formControl]="timeonedate" [matDatepicker]="timeonedate_name" [min]="minDate" placeholder="">
+                                            <mat-datepicker-toggle matSuffix [for]="timeonedate_name"></mat-datepicker-toggle>
+                                            <mat-datepicker #timeonedate_name></mat-datepicker>
+                                        </mat-form-field>
+
+                                        <!-- <input type="text" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted &&  customer.total_coverage_indi_timeone_date==''  }"
+                                            [value]="customer.total_coverage_indi_timeone_date"
+                                            (input)="customer.total_coverage_indi_timeone_date=$event.target.value">
+                                        <div *ngIf="submitted &&   customer.total_coverage_indi_timeone_date==''  "
+                                            class="invalid-feedback">
+                                            <div *ngIf="  customer.total_coverage_indi_timeone_date==''  ">Field value
+                                                is
+                                                required</div>
+                                        </div> -->
+
+                                    </div>
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-control">
+
+                                        <mat-form-field>
+                                            <input matInput (dateInput)="previousDateCheckTime2($event)" [formControl]="timetwodate" [matDatepicker]="timetwodate_name" [min]="minDate" placeholder="">
+                                            <mat-datepicker-toggle matSuffix [for]="timetwodate_name"></mat-datepicker-toggle>
+                                            <mat-datepicker #timetwodate_name></mat-datepicker>
+                                        </mat-form-field>
+
+
+                                        <!-- <input type="text" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted &&  customer.total_coverage_indi_timetwo_date==''   }"
+                                            [value]="customer.total_coverage_indi_timetwo_date"
+                                            (input)="customer.total_coverage_indi_timetwo_date=$event.target.value">
+                                        <div *ngIf="submitted &&  customer.total_coverage_indi_timetwo_date=='' "
+                                            class="invalid-feedback">
+                                            <div *ngIf=" customer.total_coverage_indi_timetwo_date=='' ">Field value is
+                                                required</div>
+                                        </div> -->
+
+                                    </div>
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-control">
+
+                                        <mat-form-field>
+                                            <input matInput (dateInput)="previousDateCheckTime3($event)" [formControl]="timethreedate" [matDatepicker]="timethreedate_name" [min]="minDate" placeholder="">
+                                            <mat-datepicker-toggle matSuffix [for]="timethreedate_name"></mat-datepicker-toggle>
+                                            <mat-datepicker #timethreedate_name></mat-datepicker>
+                                        </mat-form-field>
+
+
+                                        <!-- <input type="text" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted &&   customer.total_coverage_indi_timethree_date==''   }"
+                                            [value]="customer.total_coverage_indi_timethree_date"
+                                            (input)="customer.total_coverage_indi_timethree_date=$event.target.value">
+
+                                        <div *ngIf="submitted &&   customer.total_coverage_indi_timethree_date=='' "
+                                            class="invalid-feedback">
+                                            <div *ngIf="  customer.total_coverage_indi_timethree_date=='' ">Field value
+                                                is
+                                                required</div>
+                                        </div> -->
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- <tr class="d-flex">
+                                <td class="col-3"></td>
+                                <td class="col-4"></td>
+                                <td class="col-2"></td>
+                                <td class="col-2"></td>
+                                <td class="col-2"></td>
+                                <td class="col-2"></td>
+                            </tr> -->
+                            <tr class="d-flex" *ngFor="let array_index of customer.total_coverage_indi; let i = index">
+                                <td class="col-3 ">
+                                    {{array_index.indicator_val}}
+                                </td>
+                                <td class="col-4 ">
+                                    {{array_index.new_source}}
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-group">
+                                        <input type="text" [disabled]="true" class="form-control" [ngClass]="{ 'is-invalid': submitted && array_index.time_0=='' }" [value]="array_index.time_0" (input)="array_index.time_0=$event.target.value">
+
+                                        <div *ngIf="submitted &&  array_index.time_0=='' " class="invalid-feedback">
+                                            <div *ngIf=" array_index.time_0=='' ">Field value is required
+                                            </div>
+                                        </div>
+                                        <!-- <input type="text" class="form-control" formControlName="time_zero"
+                                        [ngClass]="{ 'is-invalid': submitted && f.time_zero.errors }">
+
+                                    <div *ngIf="submitted && f.time_zero.errors" class="invalid-feedback">
+                                        <div *ngIf="f.time_zero.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                                    </div>
+                                </td>
+
+                                <td class="col-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [value]="array_index.time_1" [ngClass]="{ 'is-invalid': (submitted &&  array_index.time_1=='') 
+                                            || (submitted  && array_index.time_1!='')  
+                                            || (submitted  && array_index.time_1!='')  }" (input)="array_index.time_1=$event.target.value">
+
+                                        <div *ngIf="(submitted &&  array_index.time_1=='') 
+                                          || (submitted  && array_index.time_1!='')  
+                                          || (submitted  && array_index.time_1!='')" class="invalid-feedback">
+                                            <div *ngIf=" array_index.time_1=='' ">Field value is required
+                                            </div>
+                                            <div *ngIf="submitted  && array_index.time_1 != ''">Number is required</div>
+                                        </div>
+
+                                    </div>
+                                    <!--
+                                        <div class="form-group">
+                                        <input type="text" class="form-control" [value]="array_index.time_1"
+                                            [ngClass]="{ 'is-invalid': (submitted &&  array_index.time_1=='') 
+                                            || (submitted  && array_index.time_1!='' &&  allowDecimalsIntegersOnly(array_index.time_1))  
+                                            || (submitted  && array_index.time_1!='' &&  allowIntegersUpto100(array_index.time_1))  }"
+                                            (input)="array_index.time_1=$event.target.value">
+                                        
+                                        <div *ngIf="(submitted &&  array_index.time_1=='') 
+                                          || (submitted  && array_index.time_1!='' &&  allowDecimalsIntegersOnly(array_index.time_1))  
+                                          || (submitted  && array_index.time_1!='' &&  allowIntegersUpto100(array_index.time_1))"
+                                         class="invalid-feedback">
+                                        <div *ngIf=" array_index.time_1=='' ">Field value is
+                                            required</div>
+                                        <div *ngIf="submitted  && array_index.time_1 != '' &&   allowDecimalsIntegersOnly(array_index.time_1) ">Only positive decimals and Integers are allowed</div>
+                                        <div *ngIf="submitted  && array_index.time_1 != '' &&   allowIntegersUpto100(array_index.time_1) ">Value range is 0 to 100.</div>
+                                        </div>
+                                       
+                                    </div>
+                                    -->
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [value]="array_index.time_2" [ngClass]="{ 'is-invalid': (submitted &&  array_index.time_2=='') 
+                                            || (submitted && array_index.time_2!='') 
+                                            || (submitted && array_index.time_2!='') }" (input)="array_index.time_2=$event.target.value">
+
+                                        <div *ngIf="(submitted &&  array_index.time_2=='') 
+                                            || (submitted && array_index.time_2!='') 
+                                            || (submitted && array_index.time_2!='') " class="invalid-feedback">
+                                            <div *ngIf=" array_index.time_2=='' ">Field value is required
+                                            </div>
+                                            <div *ngIf="submitted && array_index.time_2!=''">Number is required</div>
+                                        </div>
+
+                                    </div>
+                                    <!--
+                                        <div class="form-group">
+                                        <input type="text" class="form-control" [value]="array_index.time_2"
+                                            [ngClass]="{ 'is-invalid': (submitted &&  array_index.time_2=='') 
+                                            || (submitted && array_index.time_2!='' && allowDecimalsIntegersOnly(array_index.time_2)) 
+                                            || (submitted && array_index.time_2!=''  && allowIntegersUpto100(array_index.time_2)) }"
+                                            (input)="array_index.time_2=$event.target.value">
+
+                                            <div *ngIf="(submitted &&  array_index.time_2=='') 
+                                            || (submitted && array_index.time_2!='' && allowDecimalsIntegersOnly(array_index.time_2)) 
+                                            || (submitted && array_index.time_2!=''  && allowIntegersUpto100(array_index.time_2)) "
+                                                class="invalid-feedback">
+                                            <div *ngIf=" array_index.time_2=='' ">Field value is
+                                                required</div>
+                                                <div *ngIf="submitted && array_index.time_2!='' &&  allowDecimalsIntegersOnly(array_index.time_2) ">Only positive decimals and Integers are allowed</div>
+                                                <div *ngIf="submitted && array_index.time_2!='' &&  allowIntegersUpto100(array_index.time_2) ">Value range is 0 to 100.</div>
+                                            </div>
+                                        
+                                    </div>
+                                    -->
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [value]="array_index.time_3" [ngClass]="{ 'is-invalid': (submitted &&  array_index.time_3=='')  
+                                            || (submitted && array_index.time_3!='')   
+                                            || (submitted && array_index.time_3!='')  }" (input)="array_index.time_3=$event.target.value">
+
+                                        <div *ngIf="(submitted &&  array_index.time_3=='')  
+                                            || (submitted && array_index.time_3!='')   
+                                            || (submitted && array_index.time_3!='') " class="invalid-feedback">
+                                            <div *ngIf=" array_index.time_3=='' ">Field value is required
+                                            </div>
+                                            <div *ngIf="submitted && array_index.time_3!=''">Number is required</div>
+                                        </div>
+                                    </div>
+                                    <!--
+                                        <div class="form-group">
+                                        <input type="text" class="form-control" [value]="array_index.time_3"
+                                            [ngClass]="{ 'is-invalid': (submitted &&  array_index.time_3=='')  
+                                            || (submitted && array_index.time_3!='' &&   allowDecimalsIntegersOnly(array_index.time_3) )   
+                                            || (submitted && array_index.time_3!='' &&   allowIntegersUpto100(array_index.time_3))  }"
+                                            (input)="array_index.time_3=$event.target.value">
+
+                                            <div *ngIf="(submitted &&  array_index.time_3=='')  
+                                            || (submitted && array_index.time_3!='' &&   allowDecimalsIntegersOnly(array_index.time_3) )   
+                                            || (submitted && array_index.time_3!='' &&   allowIntegersUpto100(array_index.time_3)) "
+                                          class="invalid-feedback">
+                                          <div *ngIf=" array_index.time_3=='' ">Field value is
+                                              required</div>
+                                              <div *ngIf="submitted && array_index.time_3!='' &&   allowDecimalsIntegersOnly(array_index.time_3) ">Only positive decimals and Integers are allowed</div>
+                                              <div *ngIf="submitted && array_index.time_3!='' &&   allowIntegersUpto100(array_index.time_3) ">Value range is 0 to 100.</div>
+                                          </div>
+                                       
+                                    </div>
+                                    -->
+                                </td>
+                            </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- End of  New Table -->
+
+
+
+
+
+                <!--Action Points -->
+                <div class="table-responsive">
+                    <div style="margin-top:20px;"></div>
+
+                    <table id="state_policy_table" class="table table-sm table-bordered" style="margin: 0px;padding: 0px;width:3000px;">
+                        <thead>
+                            <tr class=" text-center" style="background-color: #00AEC7;color: #FFFFFF">
+                                <th colspan="12" style="font-family: 'Merriweather', serif;font-size: 20px;">PART - B</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style='background:#343a40; color:#fff;font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-weight: bold;font-size: 1rem;display: table-row;'>
+                                <td class=" text-center">S.I.</td>
+                                <td class=" text-center">Action Points</td>
+                                <!-- <td class=" text-center">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td  class="2">Indicators</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td> -->
+                                <td class=" text-center"> Indicators</td>
+                                <td class=" text-center">Target (in Number)</td>
+                                <td class=" text-center">Progress of Indicators (in %)</td>
+                                <td class=" text-center">Person Responsible</td>
+                                <td class=" text-center">Timeline Date</td>
+                                <td class=" text-center">Status of Action Points</td>
+                                <td class=" text-center">Revised Timeline</td>
+                                <td class=" text-center">Change in Responsibility</td>
+                                <td class=" text-center">Progress</td>
+                            </tr>
+                            <!--Service Delivery -->
+                            <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+                                <td class="">1.</td>
+                                <td colspan="10">Service Delivery</td>
+                            </tr>
+                            <tr class="" *ngFor="let array_index of customer.service_action_arr; let i = index">
+                                <td class="">
+
+                                </td>
+                                <td class="">
+                                    {{array_index.document_action_required}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        <!-- <textarea class="form-control" [value]="form4response.service_indicator_name" id="Service_act_indicators"
+                                                        rows="4"></textarea> -->
+                                        {{array_index2.indicator_val}}
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        {{array_index2.target}}
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        <input type="text" (keypress)="findvalue($event)" class="form-control" [ngClass]="{ 'is-invalid': (submitted && array_index2.progress_indicators == '') 
+                                            || (submitted && allowDecimalsIntegersOnly(array_index2.progress_indicators))  
+                                            || (submitted && allowIntegersUpto100(array_index2.progress_indicators))  }" [value]="array_index2.progress_indicators" (input)="array_index2.progress_indicators=$event.target.value" [disabled]="array_index.status == 'Completed'">
+                                        <div *ngIf="(submitted && array_index2.progress_indicators == '') 
+                                        || (submitted && allowDecimalsIntegersOnly(array_index2.progress_indicators))  
+                                        || (submitted && allowIntegersUpto100(array_index2.progress_indicators))  " class="invalid-feedback">
+                                            <div *ngIf=" array_index2.progress_indicators=='' ">Field value is required
+                                            </div>
+                                            <div *ngIf="allowDecimalsIntegersOnly(array_index2.progress_indicators)">
+                                                Only decimal and Integer values allowed.</div>
+                                            <div *ngIf="allowIntegersUpto100(array_index2.progress_indicators)">
+                                                Value 0-100 is allowed.</div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                                    <input type="text" class="form-control" id="p_holder"
+                                                        formControlName="service_progress_indicators"
+                                                        [ngClass]="{ 'is-invalid': nextbtn && f.service_progress_indicators.errors }">
+
+                                                    
+                                                </div> -->
+                                </td>
+
+                                <td class="">
+                                    {{array_index.person_responsible}}
+                                </td>
+                                <td class="">
+                                    {{array_index.timeline}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group">
+                                        <select class="form-control" [value]="array_index.status" [ngClass]="{ 'is-invalid': submitted && array_index.status=='' }" (change)="onOptionsSelected_service($event, array_index); array_index.status = $event.target.value" required="">
+                                            <option value="">Please Select</option>
+                                            <option value="Completed">Completed</option>
+                                            <option value="On target">Ongoing- On Target</option>
+                                            <option value="Not on target">Ongoing- Not on Target</option>
+                                            <option value="Not Started">Not Started</option>
+                                        </select>
+                                        <div *ngIf="submitted &&  array_index.status=='' " class="invalid-feedback">
+                                            <div *ngIf=" array_index.status=='' ">Field value is required
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-control">
+                                        <mat-form-field>
+                                            <input matInput [formControl]="service_timeline[i]" [matDatepicker]="picker_service" [min]="minDate" placeholder="" (click)="picker_service.open()" (keypress)="picker_service.open()" readonly [disabled]="array_index.status == 'Completed'">
+                                            <mat-datepicker-toggle matSuffix [for]="picker_service"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker_service></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" [value]="array_index.revised_timeline"
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.revised_timeline=='' }"
+                                        (input)="array_index.revised_timeline=$event.target.value">
+                                    <div *ngIf="submitted &&  array_index.revised_timeline=='' "
+                                        class="invalid-feedback">
+                                        <div *ngIf=" array_index.revised_timeline=='' ">Field value is
+                                            required</div>
+                                    </div> -->
+
+
+                                </td>
+                                <td class="">
+                                    <input type="text" class="form-control" [value]="array_index.change_in_responsibility" [ngClass]="{ 'is-invalid': (submitted  && array_index.change_in_responsibility!='' &&  validate100charactersallowed(array_index.change_in_responsibility) ) }" (input)="array_index.change_in_responsibility=$event.target.value"
+                                        [disabled]="array_index.status == 'Completed'">
+                                    <!--<div *ngIf="submitted &&  array_index.change_in_responsibility=='' "
+                                        class="invalid-feedback">
+                                        <div *ngIf=" array_index.change_in_responsibility=='' ">Field value is
+                                            required</div>
+                                    </div>
+                                    <div *ngIf="submitted  && array_index.change_in_responsibility!='' &&   validateSpecialCharsAndNum(array_index.change_in_responsibility) "
+                                        class="invalid-feedback">
+                                        <div>Only Alphabets Allowed</div>
+                                    </div>-->
+                                    <div *ngIf="submitted  && array_index.change_in_responsibility!='' &&   validate100charactersallowed(array_index.change_in_responsibility) " class="invalid-feedback">
+                                        <div>Total Characters within and equal to 5000 length only allowed.</div>
+                                    </div>
+
+                                    <!-- <div class="form-group">
+                                    <input type="text" class="form-control" id="p_holder"
+                                        formControlName="service_change_in_responsibility"
+                                        [ngClass]="{ 'is-invalid': nextbtn && f.service_change_in_responsibility.errors }">
+
+                                    -->
+                                </td>
+                                <td class="">
+                                    <div *ngIf="array_index.status == 'Completed'" class="dot-green" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'Not on target'" class="dot-blue" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'On target'" class="dot-yellow" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'Not Started' || array_index.status == ''" class="dot-red" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--End of Service Delivery -->
+
+
+
+
+                            <!--Work Force -->
+                            <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+                                <td class="">2.</td>
+                                <td colspan="10">Work Force</td>
+                            </tr>
+                            <tr class="" *ngFor="let array_index of customer.workforce_action_arr; let i = index">
+                                <td class="">
+
+                                </td>
+                                <td class="">
+                                    {{array_index.document_action_required}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        <!-- <textarea class="form-control" [value]="form4response.service_indicator_name" id="Service_act_indicators"
+                                                            rows="4"></textarea> -->
+                                        {{array_index2.indicator_val}}
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        {{array_index2.target}}
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        <input type="text" (keypress)="findvalue($event)" class="form-control" [ngClass]="{ 'is-invalid': (submitted && array_index2.progress_indicators == '') 
+                                            || (submitted && allowDecimalsIntegersOnly(array_index2.progress_indicators))  
+                                            || (submitted && allowIntegersUpto100(array_index2.progress_indicators))  }" [value]="array_index2.progress_indicators" (input)="array_index2.progress_indicators=$event.target.value" [disabled]="array_index.status == 'Completed'">
+
+                                        <div *ngIf=" (submitted && array_index2.progress_indicators == '') 
+                                        || (submitted && allowDecimalsIntegersOnly(array_index2.progress_indicators))  
+                                        || (submitted && allowIntegersUpto100(array_index2.progress_indicators))  " class="invalid-feedback">
+                                            <div *ngIf=" array_index2.progress_indicators=='' ">Field value is required
+                                            </div>
+                                            <div *ngIf="allowDecimalsIntegersOnly(array_index2.progress_indicators)">
+                                                Only decimal and Integer values allowed.</div>
+                                            <div *ngIf="allowIntegersUpto100(array_index2.progress_indicators)">
+                                                Value 0-100 is allowed.</div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                                        <input type="text" class="form-control" id="p_holder"
+                                                            formControlName="service_progress_indicators"
+                                                            [ngClass]="{ 'is-invalid': nextbtn && f.service_progress_indicators.errors }">
+    
+                                                        <div *ngIf="nextbtn && f.service_progress_indicators.errors"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="f.service_progress_indicators.errors.required">Field
+                                                                value is
+                                                                required</div>
+                                                        </div>
+                                                    </div> -->
+                                </td>
+                                <!--2-->
+                                <td class="">
+                                    {{array_index.person_responsible}}
+                                </td>
+                                <td class="">
+                                    {{array_index.timeline}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group">
+                                        <select class="form-control" [value]="array_index.status" [ngClass]="{ 'is-invalid': submitted && array_index.status=='' }" (change)="onOptionsSelected_workforce($event, array_index); array_index.status = $event.target.value" required="">
+                                            <option value="">Please Select</option>
+                                            <option value="Completed">Completed</option>
+                                            <option value="On target">Ongoing- On Target</option>
+                                            <option value="Not on target">Ongoing- Not on Target</option>
+                                            <option value="Not Started">Not Started</option>
+                                        </select>
+                                        <div *ngIf="submitted &&  array_index.status=='' " class="invalid-feedback">
+                                            <div *ngIf=" array_index.status=='' ">Field value is required
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-control">
+                                        <mat-form-field>
+                                            <input matInput [formControl]="workforce_timeline[i]" [matDatepicker]="picker_workforce" [min]="minDate" placeholder="" (click)="picker_workforce.open()" (keypress)="picker_workforce.open()" readonly [disabled]="array_index.status == 'Completed'">
+                                            <mat-datepicker-toggle matSuffix [for]="picker_workforce">
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #picker_workforce></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" [value]="array_index.revised_timeline"
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.revised_timeline=='' }"
+                                        (input)="array_index.revised_timeline=$event.target.value">
+                                    <div *ngIf="submitted  &&  array_index.revised_timeline=='' "
+                                        class="invalid-feedback">
+                                        <div *ngIf=" array_index.revised_timeline=='' ">Field value is
+                                            required</div>
+                                    </div> -->
+
+                                </td>
+                                <td class="">
+                                    <input type="text" class="form-control" [value]="array_index.change_in_responsibility" [ngClass]="{ 'is-invalid': (submitted  && array_index.change_in_responsibility!='' &&  validate100charactersallowed(array_index.change_in_responsibility) )  }" (input)="array_index.change_in_responsibility=$event.target.value"
+                                        [disabled]="array_index.status == 'Completed'">
+                                    <!--<div *ngIf="submitted &&  array_index.change_in_responsibility=='' "
+                                        class="invalid-feedback">
+                                        <div *ngIf=" array_index.change_in_responsibility=='' ">Field value is
+                                            required</div>
+                                    </div>
+                                    <div *ngIf="submitted  && array_index.change_in_responsibility!='' &&   validateSpecialCharsAndNum(array_index.change_in_responsibility) "
+                                        class="invalid-feedback">
+                                        <div>Only Alphabets Allowed</div>
+                                    </div>-->
+                                    <div *ngIf="submitted  && array_index.change_in_responsibility!='' &&   validate100charactersallowed(array_index.change_in_responsibility) " class="invalid-feedback">
+                                        <div>Total Characters within and equal to 5000 length only allowed.</div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="service_change_in_responsibility"
+                                            [ngClass]="{ 'is-invalid': nextbtn && f.service_change_in_responsibility.errors }">
+    
+                                        <div *ngIf="nextbtn && f.service_change_in_responsibility.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.service_change_in_responsibility.errors.required">Field value is
+                                                required</div>
+                                        </div>
+                                    </div> -->
+                                </td>
+                                <td class="">
+                                    <div *ngIf="array_index.status == 'Completed'" class="dot-green" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'Not on target'" class="dot-blue" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'On target'" class="dot-yellow" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'Not Started' || array_index.status == ''" class="dot-red" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--End of Work Force -->
+
+
+
+
+
+
+
+                            <!--Supplies & Technology -->
+                            <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+                                <td class="">3.</td>
+                                <td colspan="10">Supplies & Technology</td>
+                            </tr>
+                            <tr class="" *ngFor="let array_index of customer.supplies_action_arr; let i = index">
+                                <td class="">
+
+                                </td>
+                                <td class="">
+                                    {{array_index.document_action_required}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        <!-- <textarea class="form-control" [value]="form4response.service_indicator_name" id="Service_act_indicators"
+                                                            rows="4"></textarea> -->
+                                        {{array_index2.indicator_val}}
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        {{array_index2.target}}
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        <input type="text" (keypress)="findvalue($event)" class="form-control" [ngClass]="{ 'is-invalid': (submitted && array_index2.progress_indicators == '') 
+                                            || (submitted && allowDecimalsIntegersOnly(array_index2.progress_indicators))  
+                                            || (submitted && allowIntegersUpto100(array_index2.progress_indicators))  }" [value]="array_index2.progress_indicators" (input)="array_index2.progress_indicators=$event.target.value" [disabled]="array_index.status == 'Completed'">
+                                        <div *ngIf="(submitted && array_index2.progress_indicators == '') 
+                                        || (submitted && allowDecimalsIntegersOnly(array_index2.progress_indicators))  
+                                        || (submitted && allowIntegersUpto100(array_index2.progress_indicators))" class="invalid-feedback">
+                                            <div *ngIf=" array_index2.progress_indicators=='' ">Field value is required
+                                            </div>
+                                            <div *ngIf="allowDecimalsIntegersOnly(array_index2.progress_indicators)">
+                                                Only decimal and Integer values allowed.</div>
+                                            <div *ngIf="allowIntegersUpto100(array_index2.progress_indicators)">
+                                                Value 0-100 is allowed.</div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                                        <input type="text" class="form-control" id="p_holder"
+                                                            formControlName="service_progress_indicators"
+                                                            [ngClass]="{ 'is-invalid': nextbtn && f.service_progress_indicators.errors }">
+    
+                                                        <div *ngIf="nextbtn && f.service_progress_indicators.errors"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="f.service_progress_indicators.errors.required">Field
+                                                                value is
+                                                                required</div>
+                                                        </div>
+                                                    </div> -->
+                                </td>
+
+                                <!--3-->
+                                <td class="">
+                                    {{array_index.person_responsible}}
+                                </td>
+                                <td class="">
+                                    {{array_index.timeline}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group">
+                                        <select class="form-control" [value]="array_index.status" [ngClass]="{ 'is-invalid': submitted && array_index.status=='' }" (change)="onOptionsSelected_supply($event, array_index); array_index.status = $event.target.value" required="">
+                                            <option value="">Please Select</option>
+                                            <option value="Completed">Completed</option>
+                                            <option value="On target">Ongoing- On Target</option>
+                                            <option value="Not on target">Ongoing- Not on Target</option>
+                                            <option value="Not Started">Not Started</option>
+                                        </select>
+                                        <div *ngIf="submitted &&  array_index.status=='' " class="invalid-feedback">
+                                            <div *ngIf=" array_index.status=='' ">Field value is required
+                                            </div>
+                                        </div>
+                                        <!-- <select class="form-control" formControlName="service_status">
+                                            <option value="">Please Select</option>
+                                            <option value="182">Department of Health &amp; Family Welfare (DH &amp; FWS)
+                                            </option>
+                                            <option value="183">Department of Child Development (CD)</option>
+                                            <option value="184">Panchayat &amp; Rural Development (PRD)</option>
+                                            <option value="185">District Administration</option>
+                                            <option value="186">Block Administration</option>
+                                            <option value="187">Community Delivery Centres (CDCs) run by NGOs</option>
+                                            <option value="188">Nursing Homes empaneled under Ayushmati scheme</option>
+                                            <option value="189">Mother NGO- Gan Unnayan Parishad (GUP)</option>
+                                        </select> -->
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-control">
+                                        <mat-form-field>
+                                            <input matInput [formControl]="supplies_timeline[i]" [matDatepicker]="picker_supplies" [min]="minDate" placeholder="" (click)="picker_supplies.open()" (keypress)="picker_supplies.open()" readonly [disabled]="array_index.status == 'Completed'">
+                                            <mat-datepicker-toggle matSuffix [for]="picker_supplies">
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #picker_supplies></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" [value]="array_index.revised_timeline"
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.revised_timeline=='' }"
+                                        (input)="array_index.revised_timeline=$event.target.value">
+                                    <div *ngIf="submitted  &&  array_index.revised_timeline=='' "
+                                        class="invalid-feedback">
+                                        <div *ngIf=" array_index.revised_timeline=='' ">Field value is
+                                            required</div>
+                                    </div> -->
+
+                                </td>
+                                <td class="">
+                                    <input type="text" class="form-control" [value]="array_index.change_in_responsibility" [ngClass]="{ 'is-invalid': (submitted  && array_index.change_in_responsibility!='' &&  validate100charactersallowed(array_index.change_in_responsibility) )  }" (input)="array_index.change_in_responsibility=$event.target.value"
+                                        [disabled]="array_index.status == 'Completed'">
+                                    <!--<div *ngIf="submitted &&  array_index.change_in_responsibility=='' "
+                                        class="invalid-feedback">
+                                        <div *ngIf=" array_index.change_in_responsibility=='' ">Field value is
+                                            required</div>
+                                    </div>
+                                    <div *ngIf="submitted  && array_index.change_in_responsibility!='' &&   validateSpecialCharsAndNum(array_index.change_in_responsibility) "
+                                        class="invalid-feedback">
+                                        <div>Only Alphabets Allowed</div>
+                                    </div>-->
+                                    <div *ngIf="submitted  && array_index.change_in_responsibility!='' &&   validate100charactersallowed(array_index.change_in_responsibility) " class="invalid-feedback">
+                                        <div>Total Characters within and equal to 5000 length only allowed.</div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="service_change_in_responsibility"
+                                            [ngClass]="{ 'is-invalid': nextbtn && f.service_change_in_responsibility.errors }">
+    
+                                        <div *ngIf="nextbtn && f.service_change_in_responsibility.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.service_change_in_responsibility.errors.required">Field value is
+                                                required</div>
+                                        </div>
+                                    </div> -->
+                                </td>
+                                <td class="">
+                                    <div *ngIf="array_index.status == 'Completed'" class="dot-green" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'Not on target'" class="dot-blue" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'On target'" class="dot-yellow" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'Not Started' || array_index.status == ''" class="dot-red" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--End of Supplies & Technology -->
+
+
+
+
+
+
+                            <!--Health Information -->
+                            <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+                                <td class="">4.</td>
+                                <td colspan="10">Health Information</td>
+                            </tr>
+                            <tr class="" *ngFor="let array_index of customer.health_action_arr; let i = index">
+                                <td class="">
+
+                                </td>
+                                <td class="">
+                                    {{array_index.document_action_required}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        <!-- <textarea class="form-control" [value]="form4response.service_indicator_name" id="Service_act_indicators"
+                                                            rows="4"></textarea> -->
+                                        {{array_index2.indicator_val}}
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        {{array_index2.target}}
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        <input type="text" (keypress)="findvalue($event)" class="form-control" [ngClass]="{ 'is-invalid':  (submitted && array_index2.progress_indicators == '') 
+                                            || (submitted && allowDecimalsIntegersOnly(array_index2.progress_indicators))  
+                                            || (submitted && allowIntegersUpto100(array_index2.progress_indicators))  }" [value]="array_index2.progress_indicators" (input)="array_index2.progress_indicators=$event.target.value" [disabled]="array_index.status == 'Completed'">
+                                        <div *ngIf="  (submitted && array_index2.progress_indicators == '') 
+                                        || (submitted && allowDecimalsIntegersOnly(array_index2.progress_indicators))  
+                                        || (submitted && allowIntegersUpto100(array_index2.progress_indicators))   " class="invalid-feedback">
+                                            <div *ngIf=" array_index2.progress_indicators=='' ">Field value is required
+                                            </div>
+                                            <div *ngIf="allowDecimalsIntegersOnly(array_index2.progress_indicators)">
+                                                Only decimal and Integer values allowed.</div>
+                                            <div *ngIf="allowIntegersUpto100(array_index2.progress_indicators)">
+                                                Value 0-100 is allowed.</div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                                        <input type="text" class="form-control" id="p_holder"
+                                                            formControlName="service_progress_indicators"
+                                                            [ngClass]="{ 'is-invalid': nextbtn && f.service_progress_indicators.errors }">
+    
+                                                        <div *ngIf="nextbtn && f.service_progress_indicators.errors"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="f.service_progress_indicators.errors.required">Field
+                                                                value is
+                                                                required</div>
+                                                        </div>
+                                                    </div> -->
+                                </td>
+                                <!--5-->
+                                <td class="">
+                                    {{array_index.person_responsible}}
+                                </td>
+                                <td class="">
+                                    {{array_index.timeline}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group">
+                                        <select class="form-control" [value]="array_index.status" [ngClass]="{ 'is-invalid': submitted && array_index.status=='' }" (change)="onOptionsSelected_health($event, array_index); array_index.status = $event.target.value" required="">
+                                            <option value="">Please Select</option>
+                                            <option value="Completed">Completed</option>
+                                            <option value="On target">Ongoing- On Target</option>
+                                            <option value="Not on target">Ongoing- Not on Target</option>
+                                            <option value="Not Started">Not Started</option>
+                                        </select>
+                                        <div *ngIf="submitted &&  array_index.status=='' " class="invalid-feedback">
+                                            <div *ngIf=" array_index.status=='' ">Field value is required
+                                            </div>
+                                        </div>
+                                        <!-- <select class="form-control" formControlName="service_status">
+                                            <option value="">Please Select</option>
+                                            <option value="182">Department of Health &amp; Family Welfare (DH &amp; FWS)
+                                            </option>
+                                            <option value="183">Department of Child Development (CD)</option>
+                                            <option value="184">Panchayat &amp; Rural Development (PRD)</option>
+                                            <option value="185">District Administration</option>
+                                            <option value="186">Block Administration</option>
+                                            <option value="187">Community Delivery Centres (CDCs) run by NGOs</option>
+                                            <option value="188">Nursing Homes empaneled under Ayushmati scheme</option>
+                                            <option value="189">Mother NGO- Gan Unnayan Parishad (GUP)</option>
+                                        </select> -->
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-control">
+                                        <mat-form-field>
+                                            <input matInput [formControl]="health_timeline[i]" [matDatepicker]="picker_health" [min]="minDate" placeholder="" (click)="picker_health.open()" (keypress)="picker_health.open()" readonly [disabled]="array_index.status == 'Completed'">
+                                            <mat-datepicker-toggle matSuffix [for]="picker_health"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker_health></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" [value]="array_index.revised_timeline"
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.revised_timeline=='' }"
+                                        (input)="array_index.revised_timeline=$event.target.value">
+                                    <div *ngIf="submitted  &&  array_index.revised_timeline=='' "
+                                        class="invalid-feedback">
+                                        <div *ngIf=" array_index.revised_timeline=='' ">Field value is
+                                            required</div>
+                                    </div> -->
+
+                                </td>
+                                <td class="">
+                                    <input type="text" class="form-control" [value]="array_index.change_in_responsibility" [ngClass]="{ 'is-invalid':(submitted  && array_index.change_in_responsibility!='' &&  validate100charactersallowed(array_index.change_in_responsibility) )  }" (input)="array_index.change_in_responsibility=$event.target.value"
+                                        [disabled]="array_index.status == 'Completed'">
+                                    <!--<div *ngIf="submitted &&  array_index.change_in_responsibility=='' "
+                                        class="invalid-feedback">
+                                        <div *ngIf=" array_index.change_in_responsibility=='' ">Field value is
+                                            required</div>
+                                    </div>
+                                    <div *ngIf="submitted  && array_index.change_in_responsibility!='' &&   validateSpecialCharsAndNum(array_index.change_in_responsibility) "
+                                        class="invalid-feedback">
+                                        <div>Only Alphabets Allowed</div>
+                                    </div>-->
+                                    <div *ngIf="submitted  && array_index.change_in_responsibility!='' &&   validate100charactersallowed(array_index.change_in_responsibility) " class="invalid-feedback">
+                                        <div>Total Characters within and equal to 5000 length only allowed.</div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="service_change_in_responsibility"
+                                            [ngClass]="{ 'is-invalid': nextbtn && f.service_change_in_responsibility.errors }">
+    
+                                        <div *ngIf="nextbtn && f.service_change_in_responsibility.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.service_change_in_responsibility.errors.required">Field value is
+                                                required</div>
+                                        </div>
+                                    </div> -->
+                                </td>
+                                <td class="">
+                                    <div *ngIf="array_index.status == 'Completed'" class="dot-green" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'Not on target'" class="dot-blue" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'On target'" class="dot-yellow" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'Not Started' || array_index.status == ''" class="dot-red" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--End of Health Information -->
+
+
+
+
+
+
+                            <!--Finance -->
+                            <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+                                <td class="">5.</td>
+                                <td colspan="10">Finance</td>
+                            </tr>
+                            <tr class="" *ngFor="let array_index of customer.finance_action_arr; let i = index">
+                                <td class="">
+
+                                </td>
+                                <td class="">
+                                    {{array_index.document_action_required}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        <!-- <textarea class="form-control" [value]="form4response.service_indicator_name" id="Service_act_indicators"
+                                                            rows="4"></textarea> -->
+                                        {{array_index2.indicator_val}}
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        {{array_index2.target}}
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        <input type="text" (keypress)="findvalue($event)" class="form-control" [ngClass]="{ 'is-invalid':  (submitted && array_index2.progress_indicators == '') 
+                                            || (submitted && allowDecimalsIntegersOnly(array_index2.progress_indicators))  
+                                            || (submitted && allowIntegersUpto100(array_index2.progress_indicators))  }" [value]="array_index2.progress_indicators" (input)="array_index2.progress_indicators=$event.target.value" [disabled]="array_index.status == 'Completed'">
+                                        <div *ngIf="  (submitted && array_index2.progress_indicators == '') 
+                                        || (submitted && allowDecimalsIntegersOnly(array_index2.progress_indicators))  
+                                        || (submitted && allowIntegersUpto100(array_index2.progress_indicators))   " class="invalid-feedback">
+                                            <div *ngIf=" array_index2.progress_indicators=='' ">Field value is required
+                                            </div>
+                                            <div *ngIf="allowDecimalsIntegersOnly(array_index2.progress_indicators)">
+                                                Only decimal and Integer values allowed.</div>
+                                            <div *ngIf="allowIntegersUpto100(array_index2.progress_indicators)">
+                                                Value 0-100 is allowed.</div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                                        <input type="text" class="form-control" id="p_holder"
+                                                            formControlName="service_progress_indicators"
+                                                            [ngClass]="{ 'is-invalid': nextbtn && f.service_progress_indicators.errors }">
+    
+                                                        <div *ngIf="nextbtn && f.service_progress_indicators.errors"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="f.service_progress_indicators.errors.required">Field
+                                                                value is
+                                                                required</div>
+                                                        </div>
+                                                    </div> -->
+                                </td>
+                                <td class="">
+                                    {{array_index.person_responsible}}
+                                </td>
+                                <td class="">
+                                    {{array_index.timeline}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group">
+                                        <select class="form-control" [value]="array_index.status" [ngClass]="{ 'is-invalid': submitted && array_index.status=='' }" (change)="onOptionsSelected_finance($event, array_index); array_index.status = $event.target.value" required="">
+                                            <option value="">Please Select</option>
+                                            <option value="Completed">Completed</option>
+                                            <option value="On target">Ongoing- On Target</option>
+                                            <option value="Not on target">Ongoing- Not on Target</option>
+                                            <option value="Not Started">Not Started</option>
+                                        </select>
+
+                                        <div *ngIf="submitted &&  array_index.status=='' " class="invalid-feedback">
+                                            <div *ngIf=" array_index.status=='' ">Field value is required
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-control">
+                                        <mat-form-field>
+                                            <input matInput [formControl]="finance_timeline[i]" [matDatepicker]="picker_finance" [min]="minDate" placeholder="" (click)="picker_finance.open()" (keypress)="picker_finance.open()" readonly [disabled]="array_index.status == 'Completed'">
+                                            <mat-datepicker-toggle matSuffix [for]="picker_finance"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker_finance></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" [value]="array_index.revised_timeline"
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.revised_timeline=='' }"
+                                        (input)="array_index.revised_timeline=$event.target.value">
+                                    <div *ngIf="submitted  &&  array_index.revised_timeline=='' "
+                                        class="invalid-feedback">
+                                        <div *ngIf=" array_index.revised_timeline=='' ">Field value is
+                                            required</div>
+                                    </div> -->
+
+                                </td>
+                                <td class="">
+                                    <input type="text" class="form-control" [value]="array_index.change_in_responsibility" [ngClass]="{ 'is-invalid': (submitted  && array_index.change_in_responsibility!='' &&  validate100charactersallowed(array_index.change_in_responsibility) )  }" (input)="array_index.change_in_responsibility=$event.target.value"
+                                        [disabled]="array_index.status == 'Completed'">
+                                    <!--<div *ngIf="submitted &&  array_index.change_in_responsibility=='' "
+                                        class="invalid-feedback">
+                                        <div *ngIf=" array_index.change_in_responsibility=='' ">Field value is
+                                            required</div>
+                                    </div>
+                                    <div *ngIf="submitted  && array_index.change_in_responsibility!='' &&   validateSpecialCharsAndNum(array_index.change_in_responsibility) "
+                                        class="invalid-feedback">
+                                        <div>Only Alphabets Allowed</div>
+                                    </div>-->
+                                    <div *ngIf="submitted  && array_index.change_in_responsibility!='' &&   validate100charactersallowed(array_index.change_in_responsibility) " class="invalid-feedback">
+                                        <div>Total Characters within and equal to 5000 length only allowed.</div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="service_change_in_responsibility"
+                                            [ngClass]="{ 'is-invalid': nextbtn && f.service_change_in_responsibility.errors }">
+    
+                                        <div *ngIf="nextbtn && f.service_change_in_responsibility.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.service_change_in_responsibility.errors.required">Field value is
+                                                required</div>
+                                        </div>
+                                    </div> -->
+                                </td>
+                                <td class="">
+                                    <div *ngIf="array_index.status == 'Completed'" class="dot-green" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'Not on target'" class="dot-blue" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'On target'" class="dot-yellow" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'Not Started' || array_index.status == ''" class="dot-red" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--End of Finance -->
+
+
+
+
+
+                            <!--Policy/Governance -->
+                            <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+                                <td class="">6.</td>
+                                <td colspan="10">Policy/Governance</td>
+                            </tr>
+                            <tr class="" *ngFor="let array_index of customer.policy_action_arr; let i = index">
+                                <td class="">
+
+                                </td>
+                                <td class="">
+                                    {{array_index.document_action_required}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        <!-- <textarea class="form-control" [value]="form4response.service_indicator_name" id="Service_act_indicators"
+                                                            rows="4"></textarea> -->
+                                        {{array_index2.indicator_val}}
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        {{array_index2.target}}
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-group" *ngFor="let array_index2 of array_index.sel_indicators; let j = index">
+                                        <input type="text" (keypress)="findvalue($event)" class="form-control" [ngClass]="{ 'is-invalid': (submitted && array_index2.progress_indicators == '') 
+                                            || (submitted && allowDecimalsIntegersOnly(array_index2.progress_indicators))  
+                                            || (submitted && allowIntegersUpto100(array_index2.progress_indicators)) }" [value]="array_index2.progress_indicators" (input)="array_index2.progress_indicators=$event.target.value" [disabled]="array_index.status == 'Completed'">
+                                        <div *ngIf=" (submitted && array_index2.progress_indicators == '') 
+                                        || (submitted && allowDecimalsIntegersOnly(array_index2.progress_indicators))  
+                                        || (submitted && allowIntegersUpto100(array_index2.progress_indicators))  " class="invalid-feedback">
+                                            <div *ngIf=" array_index2.progress_indicators=='' ">Field value is required
+                                            </div>
+                                            <div *ngIf="allowDecimalsIntegersOnly(array_index2.progress_indicators)">
+                                                Only decimal and Integer values allowed.</div>
+                                            <div *ngIf="allowIntegersUpto100(array_index2.progress_indicators)">
+                                                Value 0-100 is allowed.</div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                                        <input type="text" class="form-control" id="p_holder"
+                                                            formControlName="service_progress_indicators"
+                                                            [ngClass]="{ 'is-invalid': nextbtn && f.service_progress_indicators.errors }">
+    
+                                                        <div *ngIf="nextbtn && f.service_progress_indicators.errors"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="f.service_progress_indicators.errors.required">Field
+                                                                value is
+                                                                required</div>
+                                                        </div>
+                                                    </div> -->
+                                </td>
+                                <td class="">
+                                    {{array_index.person_responsible}}
+                                </td>
+                                <td class="">
+                                    {{array_index.timeline}}
+                                </td>
+                                <td class="">
+                                    <div class="form-group">
+                                        <select class="form-control" [value]="array_index.status" [ngClass]="{ 'is-invalid': submitted && array_index.status=='' }" (change)="onOptionsSelected_policy($event, array_index); array_index.status = $event.target.value" required="">
+                                            <option value="">Please Select</option>
+                                            <option value="Completed">Completed</option>
+                                            <option value="On target">Ongoing- On Target</option>
+                                            <option value="Not on target">Ongoing- Not on Target</option>
+                                            <option value="Not Started">Not Started</option>
+                                        </select>
+                                        <div *ngIf="submitted &&  array_index.status=='' " class="invalid-feedback">
+                                            <div *ngIf=" array_index.status=='' ">Field value is required
+                                            </div>
+                                        </div>
+                                        <!-- <select class="form-control" formControlName="service_status">
+                                            <option value="">Please Select</option>
+                                            <option value="182">Department of Health &amp; Family Welfare (DH &amp; FWS)
+                                            </option>
+                                            <option value="183">Department of Child Development (CD)</option>
+                                            <option value="184">Panchayat &amp; Rural Development (PRD)</option>
+                                            <option value="185">District Administration</option>
+                                            <option value="186">Block Administration</option>
+                                            <option value="187">Community Delivery Centres (CDCs) run by NGOs</option>
+                                            <option value="188">Nursing Homes empaneled under Ayushmati scheme</option>
+                                            <option value="189">Mother NGO- Gan Unnayan Parishad (GUP)</option>
+                                        </select> -->
+
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="form-control">
+                                        <mat-form-field>
+                                            <input matInput [formControl]="policy_timeline[i]" [matDatepicker]="picker_policy" [min]="minDate" placeholder="" (click)="picker_policy.open()" (keypress)="picker_policy.open()" readonly [disabled]="array_index.status == 'Completed'">
+                                            <mat-datepicker-toggle matSuffix [for]="picker_policy"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker_policy></mat-datepicker>
+                                        </mat-form-field>
+
+                                    </div>
+                                    <!-- <input type="text" class="form-control" [value]="array_index.revised_timeline"
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.revised_timeline=='' }"
+                                        (input)="array_index.revised_timeline=$event.target.value">
+                                    <div *ngIf="submitted  &&  array_index.revised_timeline=='' "
+                                        class="invalid-feedback">
+                                        <div *ngIf=" array_index.revised_timeline=='' ">Field value is
+                                            required</div>
+                                    </div> -->
+
+                                </td>
+                                <td class="">
+                                    <input type="text" class="form-control" [value]="array_index.change_in_responsibility" [ngClass]="{ 'is-invalid': (submitted  && array_index.change_in_responsibility!='' &&  validate100charactersallowed(array_index.change_in_responsibility) )  }" (input)="array_index.change_in_responsibility=$event.target.value"
+                                        [disabled]="array_index.status == 'Completed'">
+                                    <!--<div *ngIf="submitted &&  array_index.change_in_responsibility=='' "
+                                        class="invalid-feedback">
+                                        <div *ngIf=" array_index.change_in_responsibility=='' ">Field value is
+                                            required</div>
+                                    </div>
+                                    <div *ngIf="submitted  && array_index.change_in_responsibility!='' &&   validateSpecialCharsAndNum(array_index.change_in_responsibility) "
+                                        class="invalid-feedback">
+                                        <div>Only Alphabets Allowed</div>
+                                    </div>-->
+                                    <div *ngIf="submitted  && array_index.change_in_responsibility!='' &&   validate100charactersallowed(array_index.change_in_responsibility) " class="invalid-feedback">
+                                        <div>Total Characters within and equal to 5000 length only allowed.</div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <input type="text" class="form-control" id="p_holder"
+                                            formControlName="service_change_in_responsibility"
+                                            [ngClass]="{ 'is-invalid': nextbtn && f.service_change_in_responsibility.errors }">
+    
+                                        <div *ngIf="nextbtn && f.service_change_in_responsibility.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.service_change_in_responsibility.errors.required">Field value is
+                                                required</div>
+                                        </div>
+                                    </div> -->
+                                </td>
+                                <td class="">
+                                    <div *ngIf="array_index.status == 'Completed'" class="dot-green" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'Not on target'" class="dot-blue" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'On target'" class="dot-yellow" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <div *ngIf="array_index.status == 'Not Started' || array_index.status == ''" class="dot-red" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--End of Policy/Governance -->
+
+
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+                <div style="clear:both"></div>
+                <div class="col-sm-12 text-center form-footer" style="margin-bottom:20px;">
+
+                    <a (click)="partialSave()"><button type="button" [disabled]="completeClicked" _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"><i
+                            class="fa fa-edit"></i>Save</button></a> &nbsp;&nbsp;
+
+                    <button [disabled]="completeClicked" type="submit" _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary" id="update-form2engage"><i class="fa fa-key fa-fw"></i>Complete</button>
+
+
+                    <a routerLink="/dashboard" routerLinkActive="active"><button type="submit"
+                                _ngcontent-dbi-c224="" mat-raised-button="" color="warn" style="margin-left: 5px"
+                                class="mat-raised-button mat-button-base mat-warn" id="cancel-form2engage"><i
+                                    class="fa fa-times fa-fw"></i>Cancel</button></a>
+
+                </div>
+
+                <table id="dashboard_table" class="table table-sm table-borderless">
+                    <tbody>
+                        <tr class="d-flex">
+                            <td> <span class="dot-red"></span> </td>
+                            <td> Not Started </td>
+                        </tr>
+                        <tr class="d-flex">
+                            <td> <span class="dot-blue"></span> </td>
+                            <td> Ongoing- Not on Target </td>
+                        </tr>
+                        <tr class="d-flex">
+                            <td> <span class="dot-yellow"></span> </td>
+                            <td> Ongoing- On Target </td>
+                        </tr>
+                        <tr class="d-flex">
+                            <td> <span class="dot-green"></span> </td>
+                            <td> Completed </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <br><br>
+
+
+                <!--End of Action Points -->
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </form>
+</div>
+
+<div [hidden]="!savedform">
+    <h4>You submitted successfully!</h4>
+</div>

@@ -1,0 +1,92 @@
+import { Routes } from '@angular/router'; 
+
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { PrimaryFormsComponent } from '../primary-forms/primary-forms.component';
+import { SecondaryFormsComponent } from '../secondary-forms/secondary-forms.component';
+import { Form1aComponent } from '../form1-a/form1-a.component';
+import { Form2bComponent } from '../form2-b/form2-b.component';
+import { Form1AViewComponent } from '../form1-a-view/form1-a-view.component';
+import { Form1AEditComponent } from '../form1-a-edit/form1-a-edit.component';
+import { Form2engageComponent } from '../form2engage/form2engage.component';
+import { Form1bComponent } from '../form1b/form1b.component';
+import { Form1bViewComponent } from '../form1b-view/form1b-view.component';
+import { Form1bEditComponent } from '../form1b-edit/form1b-edit.component';
+import { Form3DefineComponent } from '../form3-define/form3-define.component';
+import { Form2engageViewComponent } from '../form2engage-view/form2engage-view.component';
+import { Form2engageEditComponent } from '../form2engage-edit/form2engage-edit.component';
+import { Form4PlanComponent } from '../form4-plan/form4-plan.component'; 
+import { Form5FollowUpComponent } from '../form5-follow-up/form5-follow-up.component';
+import { Form3DefineEditComponent } from '../form3-define-edit/form3-define-edit.component';
+import { Form3DefineViewComponent } from '../form3-define-view/form3-define-view.component';
+import { Form4PlanViewComponent } from '../form4-plan-view/form4-plan-view.component';
+import { Form1bModalDialogComponent } from '../form1b-modal-dialog/form1b-modal-dialog.component';
+import { IndicatorsListDashboardComponent } from '../indicators-list-dashboard/indicators-list-dashboard.component';
+import { Form4PlanEditComponent } from '../form4-plan-edit/form4-plan-edit.component';
+import { Form5FollowUpViewComponent } from '../form5-follow-up-view/form5-follow-up-view.component';
+import { Form5FollowUpEditComponent } from '../form5-follow-up-edit/form5-follow-up-edit.component';
+import { SupplementaryForm1aComponent } from '../supplementary-form1a/supplementary-form1a.component';
+import { SupplementaryForm1aViewComponent } from '../supplementary-form1a-view/supplementary-form1a-view.component';
+import { SupplementaryForm1aEditComponent } from '../supplementary-form1a-edit/supplementary-form1a-edit.component';
+import { GeneralGuideComponent } from '../general-guide/general-guide.component';
+import { RolesResponsibilityComponent } from '../roles-responsibility/roles-responsibility.component';
+import { LeaderGuideComponent } from '../leader-guide/leader-guide.component';
+import { PrimaryGuideComponent } from '../primary-guide/primary-guide.component';
+import { SupplementaryGuideComponent } from '../supplementary-guide/supplementary-guide.component';
+import { ManageUserComponent } from '../manage-user/manage-user.component';
+import { ManageDistrictComponent } from '../manage-district/manage-district.component';
+import { EdituserviaadminComponent } from '../edituserviaadmin/edituserviaadmin.component';
+import { CreateindicatorModalDialogComponent } from '../createindicator-modal-dialog/createindicator-modal-dialog.component';
+import { EditSelectedIndicatorComponent } from '../edit-selected-indicator/edit-selected-indicator.component';
+import { EditSelectedOptionalIndicatorComponent } from '../edit-selected-optional-indicator/edit-selected-optional-indicator.component';
+import { EditSelectedActionIndicatorComponent } from '../edit-selected-action-indicator/edit-selected-action-indicator.component';
+import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { Form4ModalDialogComponent } from '../form4-modal-dialog/form4-modal-dialog.component';
+
+export const AdminLayoutRoutes: Routes = [
+    { path: '',      component: DashboardComponent },
+    { path: 'dashboard',      component: DashboardComponent },
+    { path: 'primaryforms',   component: PrimaryFormsComponent },
+    { path: 'secondaryforms',     component: SecondaryFormsComponent },
+    { path: 'form1a',     component: Form1aComponent },
+    { path: 'form2b',     component: Form2bComponent },
+    { path: 'form1aview',     component: Form1AViewComponent },
+    { path: 'form1aedit',     component: Form1AEditComponent },
+    { path: 'form2engage',     component: Form2engageComponent },
+    { path: 'form1b',     component: Form1bComponent },
+    { path: 'form1bview',     component: Form1bViewComponent },
+    { path: 'form1bedit',     component: Form1bEditComponent },
+    { path: 'form3define',     component: Form3DefineComponent },
+    { path: 'form2engageview',     component: Form2engageViewComponent },
+    { path: 'form2engageedit',     component: Form2engageEditComponent },
+    { path: 'form4plan',     component: Form4PlanComponent },
+    { path: 'form5followup',     component: Form5FollowUpComponent },
+    { path: 'form3defineedit',     component: Form3DefineEditComponent },
+    { path: 'form3defineview',     component: Form3DefineViewComponent },
+    { path: 'form4planview',     component: Form4PlanViewComponent },
+    { path: 'form1bmodaldialog',     component: Form1bModalDialogComponent },
+    { path: 'indicatorslist',     component: IndicatorsListDashboardComponent },
+    { path: 'form4planedit',     component: Form4PlanEditComponent },
+    { path: 'form5followupview',     component: Form5FollowUpViewComponent },
+    { path: 'form5followupedit',     component: Form5FollowUpEditComponent },
+    { path: 'supplementaryform1a',     component: SupplementaryForm1aComponent },
+    { path: 'supplementaryform1aview',     component: SupplementaryForm1aViewComponent },
+    { path: 'supplementaryform1aedit',     component: SupplementaryForm1aEditComponent },
+    { path: 'general-guide',     component: GeneralGuideComponent },
+    { path: 'roles-responsibility',     component: RolesResponsibilityComponent },
+    { path: 'leader-guide',     component: LeaderGuideComponent },
+    { path: 'primary-guide',     component: PrimaryGuideComponent },
+    { path: 'supplementary-guide',     component: SupplementaryGuideComponent },
+    { path: 'manage-user',     component: ManageUserComponent },
+    { path: 'manage-district',     component: ManageDistrictComponent },    
+    { path: 'edituserviaadmin',     component: EdituserviaadminComponent }, 
+    { path: 'createindicator',     component: CreateindicatorModalDialogComponent },
+    { path: 'editselectedindicator',     component: EditSelectedIndicatorComponent },
+    { path: 'editselectedoptionalindicator',     component: EditSelectedOptionalIndicatorComponent },
+    { path: 'editselectedactionindicator',     component: EditSelectedActionIndicatorComponent },
+    { path: 'deleteconfirmdialog',     component: DeleteConfirmationDialogComponent },
+    { path: 'form4planmodaldialog',     component: Form4ModalDialogComponent },
+       
+];
+
+export const AdminLayoutRoutingComponents = [DashboardComponent, PrimaryFormsComponent, SecondaryFormsComponent, Form1aComponent, Form2bComponent, Form1AViewComponent, Form1AEditComponent, Form2engageComponent, Form1bComponent, Form1bViewComponent,Form1bEditComponent, Form3DefineComponent, Form2engageViewComponent, Form2engageEditComponent, Form4PlanComponent, Form5FollowUpComponent, Form3DefineEditComponent, Form3DefineViewComponent, Form4PlanViewComponent, Form1bModalDialogComponent, IndicatorsListDashboardComponent,Form4PlanEditComponent, Form5FollowUpViewComponent, Form5FollowUpEditComponent, SupplementaryForm1aComponent, SupplementaryForm1aViewComponent, SupplementaryForm1aEditComponent, GeneralGuideComponent, 
+      RolesResponsibilityComponent, LeaderGuideComponent, SupplementaryGuideComponent, PrimaryGuideComponent, ManageUserComponent, ManageDistrictComponent, EdituserviaadminComponent, CreateindicatorModalDialogComponent,EditSelectedIndicatorComponent,EditSelectedOptionalIndicatorComponent,EditSelectedActionIndicatorComponent, DeleteConfirmationDialogComponent,Form4ModalDialogComponent]; 

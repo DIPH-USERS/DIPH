@@ -1,0 +1,1755 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- Floating button on right Side -->
+
+<!-- End of Floating button on right Side -->
+
+<div [hidden]="savedform" class="">
+  <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+
+    <div class="col-sm-12 sub-header">
+      <div class="wrapper" (click)="previouspage()" style="width:20px; float:left">
+        <!-- <button class="button">Back</button> -->
+        <div class="" id="button-5" style="margin: 0; width:100%">
+          <div id="translate"></div>
+          <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i _ngcontent-fvy-c11=""
+              aria-hidden="true" class="fa fa-long-arrow-left" style="color:#5d5d5d;"></i><span
+              _ngcontent-fvy-c11=""></span></a>
+        </div>
+      </div>
+      <h4>Form - 1 Part B: Health System Capacity Assessments</h4>
+    </div>
+    <div class="col-sm-12 form-body">
+
+      <div class="">
+
+        <div class="col-sm-6 lt">
+          <label>Date of the meeting </label>
+          <div class="col-sm-12 form-control">
+            <div class="example-container" style="background-color:white;color:black;">
+              <mat-form-field>
+                <input matInput [formControl]="date" [matDatepicker]="picker" [min]="minDate" placeholder=""
+                  name='date_of_verification' (click)="picker.open()" (keypress)="picker.open()" readonly>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <!-- <input type="text" formControlName="date_of_verification" id="date_of_verification"
+                    class="form-control" placeholder="Click to select your date"> -->
+          </div>
+
+        </div>
+
+
+        <div class="col-sm-6 lt">
+          <label>Venue of the meeting </label>
+          <div class="form-group">
+            <input type="text" formControlName="filled_by" id="filled_by"
+              [ngClass]="{ 'is-invalid': submitted && f.filled_by.errors }" class="form-control"
+              placeholder="Venue of meeting">
+            <div *ngIf="submitted && f.filled_by.errors" class="invalid-feedback">
+              <div *ngIf="f.filled_by.errors.required">Field value is required</div>
+              <!--<div *ngIf="f.filled_by.errors.pattern">Alphabets and spaces only allowed</div>-->
+              <div *ngIf="f.filled_by.errors.maxlength">Total Characters within and equal to 5000 length only allowed.
+              </div>
+            </div>
+            <!-- <input #filled_by  [ngClass]="{ 'is-invalid': true }" type="text" formControlName="filled_by" id="filled_by" class="form-control"   placeholder="Venue of meeting">
+                  {{filled_by.className}} -->
+          </div>
+        </div>
+
+
+        <div class="col-sm-6 lt">
+          <label>Chairperson of the meeting </label>
+          <div class="form-group">
+            <select formControlName="verified_by_name" class="form-control" [(ngModel)]="selectDefault"
+              [ngClass]="{ 'is-invalid': submitted && f.verified_by_name.errors }">
+              <option value="" disabled selected hidden style="font-style:italic;">Please choose..</option>
+              <option *ngFor="let order of  verified_by_name_from_Db; let i = index"
+                [value]="verified_by_name_from_Db[i].id">
+                {{verified_by_name_from_Db[i].name}}
+              </option>
+            </select>
+            <div *ngIf="submitted && f.verified_by_name.errors" class="invalid-feedback">
+              <div *ngIf="f.verified_by_name.errors.required">Field value is required</div>
+            </div>
+            <div class="form-group" style="margin-top: 10px;">
+              <input *ngIf="f.verified_by_name.value  ==  '15' " type="text"
+                [ngClass]="{ 'is-invalid': (submitted && f.verified_by_other_actual_name.value == null) ||  (submitted && f.verified_by_other_actual_name.value == 'null')  ||  (submitted && f.verified_by_other_actual_name.value == '')}"
+                formControlName="verified_by_other_actual_name" id="verified_by_other_actual_name" class="form-control">
+              <div
+                *ngIf="(submitted && f.verified_by_other_actual_name.value == null) ||  (submitted && f.verified_by_other_actual_name.value == 'null')  ||  (submitted && f.verified_by_other_actual_name.value == '') "
+                class="invalid-feedback">
+                <div
+                  *ngIf="(submitted && f.verified_by_other_actual_name.value == null) ||  (submitted && f.verified_by_other_actual_name.value == 'null')  ||  (submitted && f.verified_by_other_actual_name.value == '') ">
+                  Field value is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="table-responsive">
+        <div style="margin-top:20px;"></div>
+
+        <table id="state_policy_table" class="table table-sm table-striped">
+          <thead class="thead-dark">
+            <tr class="d-flex">
+              <th class="col-1">SI.No</th>
+              <th class="col-11">Particulars</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="d-flex" style="background-color: #00AEC7;color: #fff">
+              <td class="col-1">1</td>
+              <td class="col-2">District Demographic Details</td>
+              <td class="col-3">Information</td>
+              <td class="col-3">Source</td>
+              <td class="col-3">Source Detail</td>
+            </tr>
+
+            <!-- 1.1 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+                <div class="form-group">
+                  1.1
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  Total area(Sq.km)
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" (blur)="calculatePopulationDensity(f.total_pop.value, f.total_area.value)" min="0" class="form-control" formControlName="total_area"
+                    [ngClass]="{ 'is-invalid': (submitted && f.total_area.errors) 
+                    || (submitted  && allowdespositiveInt(f.total_area.value)) }" placeholder="Enter numeric value">
+                  <div *ngIf="submitted && f.total_area.errors" class="invalid-feedback">
+                    <div *ngIf="f.total_area.errors.required">Field value is required</div>
+                  </div>
+                  <div *ngIf="submitted  && allowdespositiveInt(f.total_area.value)" class="invalid-feedback">
+                    <div>Only positive required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <select formControlName="total_area_demogra_id" class="form-control" placeholder="Please select"
+                    [ngClass]="{ 'is-invalid': submitted && f.total_area_demogra_id.errors }">
+                    <option *ngFor="let order of  form1a_all_doc_arr; let i = index"
+                      [value]="form1a_all_doc_arr[i].doc_db_doc_id">
+                      {{form1a_all_doc_arr[i].document_val}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.total_area_demogra_id.errors" class="invalid-feedback">
+                    <div *ngIf="f.total_area_demogra_id.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="total_area_others"
+                    [ngClass]="{ 'is-invalid': submitted && f.total_area_others.errors }">
+                  <div *ngIf="submitted && f.total_area_others.errors" class="invalid-feedback">
+                    <div *ngIf="f.total_area_others.errors.required">Field value is required</div>
+                    <div *ngIf="f.total_area_others.errors.pattern">Alphabets and spaces only allowed</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <!--End of  1.1 -->
+
+
+            <!-- 1.2 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+                <div class="form-group">
+                  1.2
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  Total population
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" (blur)="calculatePopulationDensity(f.total_pop.value, f.total_area.value);calculateNumberOfWomen(f.total_pop.value);calculateNumberOfChildren(f.total_pop.value)" min="0" class="form-control" formControlName="total_pop"
+                    [ngClass]="{ 'is-invalid': (submitted && f.total_pop.errors) 
+                  || (submitted  && allowpositiveInt(f.total_pop.value)) }" placeholder="Enter numeric value">
+                  <div *ngIf="submitted && f.total_pop.errors" class="invalid-feedback">
+                    <div *ngIf="f.total_pop.errors.required">Field value is required</div>
+                  </div>
+                  <div *ngIf="submitted  && allowpositiveInt(f.total_pop.value)" class="invalid-feedback">
+                    <div>Only positive required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <select formControlName="total_pop_demogra_id" class="form-control" placeholder="Please select"
+                    [ngClass]="{ 'is-invalid': submitted && f.total_pop_demogra_id.errors }">
+                    <option *ngFor="let order of  form1a_all_doc_arr; let i = index"
+                      [value]="form1a_all_doc_arr[i].doc_db_doc_id">
+                      {{form1a_all_doc_arr[i].document_val}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.total_pop_demogra_id.errors" class="invalid-feedback">
+                    <div *ngIf="f.total_pop_demogra_id.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="total_pop_others"
+                    [ngClass]="{ 'is-invalid': submitted && f.total_pop_others.errors }">
+                  <div *ngIf="submitted && f.total_pop_others.errors" class="invalid-feedback">
+                    <div *ngIf="f.total_pop_others.errors.required">Field value is required</div>
+                    <div *ngIf="f.total_pop_others.errors.pattern">Alphabets and spaces only allowed</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <!--End of  2.1 -->
+
+
+            <!-- 1.3 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+                <div class="form-group">
+                  1.3
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  Number of women in the reproductive age group
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" [(ngModel)]="numberOfWomen" min="0" class="form-control"
+                    formControlName="num_women_in_reproductive_age_15_49_y"
+                    [ngClass]="{ 'is-invalid': (submitted && f.num_women_in_reproductive_age_15_49_y.errors)  
+                  ||  (submitted  && allowpositiveInt(f.num_women_in_reproductive_age_15_49_y.value))}"
+                    placeholder="Enter numeric value">
+                  <div *ngIf="submitted && f.num_women_in_reproductive_age_15_49_y.errors" class="invalid-feedback">
+                    <div *ngIf="f.num_women_in_reproductive_age_15_49_y.errors.required">Field value is required</div>
+                  </div>
+                  <div *ngIf="submitted  && allowpositiveInt(f.num_women_in_reproductive_age_15_49_y.value)" class="invalid-feedback">
+                    <div>Only positive required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <select formControlName="num_women_in_reproductive_age_15_49_y_source" class="form-control"
+                    placeholder="Please select"
+                    [ngClass]="{ 'is-invalid': submitted && f.num_women_in_reproductive_age_15_49_y_source.errors }">
+                    <option *ngFor="let order of  form1a_all_doc_arr; let i = index"
+                      [value]="form1a_all_doc_arr[i].doc_db_doc_id">
+                      {{form1a_all_doc_arr[i].document_val}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.num_women_in_reproductive_age_15_49_y_source.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="f.num_women_in_reproductive_age_15_49_y_source.errors.required">Dropdown is required
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="num_women_in_reproductive_others"
+                    [ngClass]="{ 'is-invalid': submitted && f.num_women_in_reproductive_others.errors }">
+                  <div *ngIf="submitted && f.num_women_in_reproductive_others.errors" class="invalid-feedback">
+                    <div *ngIf="f.num_women_in_reproductive_others.errors.required">Field value is required</div>
+                    <div *ngIf="f.num_women_in_reproductive_others.errors.pattern">Alphabets and spaces only allowed
+                    </div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <!--End of 1.3 -->
+
+
+
+            <!-- 1.4 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+                <div class="form-group">
+                  1.4
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  Number of children under 5 years
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" [(ngModel)]="numberOfChildren" min="0" class="form-control" formControlName="num_child_under_5_y"
+                    [ngClass]="{ 'is-invalid': (submitted && f.num_child_under_5_y.errors) 
+                  || (submitted  && allowpositiveInt(f.num_child_under_5_y.value)) }"
+                    placeholder="Enter numeric value">
+                  <div *ngIf="submitted && f.num_child_under_5_y.errors" class="invalid-feedback">
+                    <div *ngIf="f.num_child_under_5_y.errors.required">Field value is required</div>
+                  </div>
+                  <div *ngIf="submitted  && allowpositiveInt(f.num_child_under_5_y.value)" class="invalid-feedback">
+                    <div>Only positive required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <select formControlName="num_child_under_5_y_demogra_id" class="form-control"
+                    placeholder="Please select"
+                    [ngClass]="{ 'is-invalid': submitted && f.num_child_under_5_y_demogra_id.errors }">
+                    <option *ngFor="let order of  form1a_all_doc_arr; let i = index"
+                      [value]="form1a_all_doc_arr[i].doc_db_doc_id">
+                      {{form1a_all_doc_arr[i].document_val}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.num_child_under_5_y_demogra_id.errors" class="invalid-feedback">
+                    <div *ngIf="f.num_child_under_5_y_demogra_id.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="no_of_child_under5_others"
+                    [ngClass]="{ 'is-invalid': submitted && f.no_of_child_under5_others.errors }">
+                  <div *ngIf="submitted && f.no_of_child_under5_others.errors" class="invalid-feedback">
+                    <div *ngIf="f.no_of_child_under5_others.errors.required">Field value is required</div>
+                    <div *ngIf="f.no_of_child_under5_others.errors.pattern">Alphabets and spaces only allowed</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <!--End of  1.4 -->
+
+
+
+
+
+            <!-- 1.5 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+                <div class="form-group">
+                  1.5
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  Rural Population (%)
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="rural_pop"
+                    [ngClass]="{ 'is-invalid': (submitted && f.rural_pop.errors) || (submitted && allowIntegersUpto100(f.rural_pop.value)) }" placeholder="Percentage(%) Required">
+                  <div *ngIf=" (submitted && f.rural_pop.errors)" class="invalid-feedback">
+                    <div *ngIf="f.rural_pop.errors.required">Percentage value is required</div>
+                    <div *ngIf="f.rural_pop.errors.pattern">Only decimal and Integer values allowed</div>                    
+                  </div>
+                  <div *ngIf="(submitted && allowIntegersUpto100(f.rural_pop.value))" class="invalid-feedback">                    
+                    <div *ngIf="allowIntegersUpto100(f.rural_pop.value)">Value 0-100 is allowed.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <select formControlName="rural_pop_demogra_id" class="form-control" placeholder="Please select"
+                    [ngClass]="{ 'is-invalid': submitted && f.rural_pop_demogra_id.errors }">
+                    <option *ngFor="let order of  form1a_all_doc_arr; let i = index"
+                      [value]="form1a_all_doc_arr[i].doc_db_doc_id">
+                      {{form1a_all_doc_arr[i].document_val}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.rural_pop_demogra_id.errors" class="invalid-feedback">
+                    <div *ngIf="f.rural_pop_demogra_id.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="rural_pop_others"
+                    [ngClass]="{ 'is-invalid': submitted && f.rural_pop_others.errors }">
+                  <div *ngIf="submitted && f.rural_pop_others.errors" class="invalid-feedback">
+                    <div *ngIf="f.rural_pop_others.errors.required">Field value is required</div>
+                    <div *ngIf="f.rural_pop_others.errors.pattern">Alphabets and spaces only allowed</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <!--End of  1.5 -->
+
+
+
+
+            <!-- 1.6 -->
+            <!--<tr class="d-flex" id="god">
+              <td class="col-1 ">
+                <div class="form-group">
+                  1.6
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  Scheduled caste population (%)
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="sc_pop"
+                    [ngClass]="{ 'is-invalid': (submitted && f.sc_pop.errors)  || (submitted && allowIntegersUpto100(f.sc_pop.value))  }" placeholder="Percentage(%) Required">
+                  <div *ngIf="submitted && f.sc_pop.errors" class="invalid-feedback">
+                    <div *ngIf="f.sc_pop.errors.required">Percentage value is required</div>
+                    <div *ngIf="f.sc_pop.errors.pattern">Only decimal and Integer values allowed</div>
+                  </div>
+                  <div *ngIf="(submitted && allowIntegersUpto100(f.sc_pop.value))" class="invalid-feedback">                    
+                    <div *ngIf="allowIntegersUpto100(f.sc_pop.value)">Value 0-100 is allowed.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <select formControlName="sc_pop_demogra_id" class="form-control" placeholder="Please select"
+                    [ngClass]="{ 'is-invalid': submitted && f.sc_pop_demogra_id.errors }">
+                    <option *ngFor="let order of  form1a_all_doc_arr; let i = index"
+                      [value]="form1a_all_doc_arr[i].doc_db_doc_id">
+                      {{form1a_all_doc_arr[i].document_val}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.sc_pop_demogra_id.errors" class="invalid-feedback">
+                    <div *ngIf="f.sc_pop_demogra_id.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="sc_pop_others"
+                    [ngClass]="{ 'is-invalid': submitted && f.sc_pop_others.errors }">
+                  <div *ngIf="submitted && f.sc_pop_others.errors" class="invalid-feedback">
+                    <div *ngIf="f.sc_pop_others.errors.required">Field value is required</div>
+                    <div *ngIf="f.sc_pop_others.errors.pattern">Alphabets and spaces only allowed</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>-->
+            <!--End of  1.6 -->
+
+
+
+
+            <!-- 1.7 -->
+            <!--<tr class="d-flex" id="god">
+              <td class="col-1 ">
+                <div class="form-group">
+                  1.7
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  Scheduled tribe population (%)
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="st_pop"
+                    [ngClass]="{ 'is-invalid': (submitted && f.st_pop.errors)  || (submitted && allowIntegersUpto100(f.st_pop.value))  }" placeholder="Percenetage(%) Required">
+                  <div *ngIf="submitted && f.st_pop.errors" class="invalid-feedback">
+                    <div *ngIf="f.st_pop.errors.required">Percentage value is required</div>
+                    <div *ngIf="f.st_pop.errors.pattern">Only decimal and Integer values allowed</div>
+                  </div>
+                  <div *ngIf="(submitted && allowIntegersUpto100(f.st_pop.value))" class="invalid-feedback">                    
+                    <div *ngIf="allowIntegersUpto100(f.st_pop.value)">Value 0-100 is allowed.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <select formControlName="st_pop_demogra_id" class="form-control" placeholder="Please select"
+                    [ngClass]="{ 'is-invalid': submitted && f.st_pop_demogra_id.errors }">
+                    <option *ngFor="let order of  form1a_all_doc_arr; let i = index"
+                      [value]="form1a_all_doc_arr[i].doc_db_doc_id">
+                      {{form1a_all_doc_arr[i].document_val}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.st_pop_demogra_id.errors" class="invalid-feedback">
+                    <div *ngIf="f.st_pop_demogra_id.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="st_pop_others"
+                    [ngClass]="{ 'is-invalid': submitted && f.st_pop_others.errors }">
+                  <div *ngIf="submitted && f.st_pop_others.errors" class="invalid-feedback">
+                    <div *ngIf="f.st_pop_others.errors.required">Field value is required</div>
+                    <div *ngIf="f.st_pop_others.errors.pattern">Alphabets and spaces only allowed</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>-->
+            <!--End of 1.7 -->
+
+
+
+            <!-- 1.8 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+                <div class="form-group">
+                  1.6
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  Population density (persons/sq.km)
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" [(ngModel)]="populationDesity" min="0" class="form-control" formControlName="pop_density"
+                    [ngClass]="{ 'is-invalid': (submitted && f.pop_density.errors) 
+                  || (submitted  && allowdespositiveInt(f.pop_density.value)) }" placeholder="Enter numeric value">
+                  <div *ngIf="submitted && f.pop_density.errors" class="invalid-feedback">
+                    <div *ngIf="f.pop_density.errors.required">Field value is required</div>
+                    
+                  </div>
+                  <div *ngIf="submitted  && allowdespositiveInt(f.pop_density.value)" class="invalid-feedback">
+                    <div>Only positive required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <select formControlName="pop_density_demogra_id" class="form-control" placeholder="Please select"
+                    [ngClass]="{ 'is-invalid': submitted && f.pop_density_demogra_id.errors }">
+                    <option *ngFor="let order of  form1a_all_doc_arr; let i = index"
+                      [value]="form1a_all_doc_arr[i].doc_db_doc_id">
+                      {{form1a_all_doc_arr[i].document_val}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.pop_density_demogra_id.errors" class="invalid-feedback">
+                    <div *ngIf="f.pop_density_demogra_id.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="pop_dens_others"
+                    [ngClass]="{ 'is-invalid': submitted && f.pop_dens_others.errors }">
+                  <div *ngIf="submitted && f.pop_dens_others.errors" class="invalid-feedback">
+                    <div *ngIf="f.pop_dens_others.errors.required">Field value is required</div>
+                    <div *ngIf="f.pop_dens_others.errors.pattern">Alphabets and spaces only allowed</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <!--End of  1.8 -->
+
+
+
+            <!-- 1.9 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+                <div class="form-group">
+                  1.7
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  Total literacy (%)
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="total_literacy"
+                    [ngClass]="{ 'is-invalid': (submitted && f.total_literacy.errors)  || (submitted && allowIntegersUpto100(f.total_literacy.value))  }"
+                    placeholder="Percentage(%) Required">
+                  <div *ngIf="submitted && f.total_literacy.errors" class="invalid-feedback">
+                    <div *ngIf="f.total_literacy.errors.required">Percentage value is required</div>
+                    <div *ngIf="f.total_literacy.errors.pattern">Only decimal and Integer values allowed</div>
+                  </div>
+                  <div *ngIf="(submitted && allowIntegersUpto100(f.total_literacy.value))" class="invalid-feedback">                    
+                    <div *ngIf="allowIntegersUpto100(f.total_literacy.value)">Value 0-100 is allowed.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <select formControlName="total_literacy_demogra_id" class="form-control" placeholder="Please select"
+                    [ngClass]="{ 'is-invalid': submitted && f.total_literacy_demogra_id.errors }">
+                    <option *ngFor="let order of  form1a_all_doc_arr; let i = index"
+                      [value]="form1a_all_doc_arr[i].doc_db_doc_id">
+                      {{form1a_all_doc_arr[i].document_val}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.total_literacy_demogra_id.errors" class="invalid-feedback">
+                    <div *ngIf="f.total_literacy_demogra_id.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="tot_lit_others"
+                    [ngClass]="{ 'is-invalid': submitted && f.tot_lit_others.errors }">
+                  <div *ngIf="submitted && f.tot_lit_others.errors" class="invalid-feedback">
+                    <div *ngIf="f.tot_lit_others.errors.required">Field value is required</div>
+                    <div *ngIf="f.tot_lit_others.errors.pattern">Alphabets and spaces only allowed</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <!--End of  1.9 -->
+
+
+
+            <!-- 1.10 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+                <div class="form-group">
+                  1.8
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  Female literacy(%)
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="fem_literacy"
+                    [ngClass]="{ 'is-invalid': (submitted && f.fem_literacy.errors)  || (submitted && allowIntegersUpto100(f.fem_literacy.value))  }"
+                    placeholder="Percentage(%) Required">
+                  <div *ngIf="submitted && f.fem_literacy.errors" class="invalid-feedback">
+                    <div *ngIf="f.fem_literacy.errors.required">Percentage value is required</div>
+                    <div *ngIf="f.fem_literacy.errors.pattern">Only decimal and Integer values allowed</div>
+                  </div>
+                  <div *ngIf="(submitted && allowIntegersUpto100(f.fem_literacy.value))" class="invalid-feedback">                    
+                    <div *ngIf="allowIntegersUpto100(f.fem_literacy.value)">Value 0-100 is allowed.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3"> 
+                <div class="form-group">
+                  <select formControlName="fem_literacy_demogra_id" class="form-control" placeholder="Please select"
+                    [ngClass]="{ 'is-invalid': submitted && f.fem_literacy_demogra_id.errors }">
+                    <option *ngFor="let order of  form1a_all_doc_arr; let i = index"
+                      [value]="form1a_all_doc_arr[i].doc_db_doc_id">
+                      {{form1a_all_doc_arr[i].document_val}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.fem_literacy_demogra_id.errors" class="invalid-feedback">
+                    <div *ngIf="f.fem_literacy_demogra_id.errors.required">Dropdown is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="female_lit_others"
+                    [ngClass]="{ 'is-invalid': submitted && f.female_lit_others.errors }">
+                  <div *ngIf="submitted && f.female_lit_others.errors" class="invalid-feedback">
+                    <div *ngIf="f.female_lit_others.errors.required">Field value is required</div>
+                    <div *ngIf="f.female_lit_others.errors.pattern">Alphabets and spaces only allowed</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <!--End of  1.10 -->
+
+          </tbody>
+        </table>
+
+      </div>
+
+
+
+
+      <div class="table-responsive">
+        <div style="margin-top:0px;"></div>
+
+        <table id="IPHS" class="table table-sm table-striped">
+          <thead class="thead-dark">
+            <!-- <thead style="background-color: #007b5e;color: #FFFFFF"> -->
+            <tr>
+              <!-- <th scope="col">1.11</th>
+              <th scope="col" colspan="5">Key NGOs</th> -->
+              <th scope="col" class="" colspan="6"><span style="width: 8.333333%;float: left;">1.11</span><span>Key
+                  NGOs/CSOs &nbsp; *</span></th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr style="background-color: #00AEC7;color: #fff">
+              <td scope="col" class="text-center w-5">
+              </td>
+              <td scope="col" class="text-center w-45"> Ngo Name</td>
+              <td scope="col" class="text-center w-50">Contact Details (Phone, Email)</td>
+            </tr>
+
+            <!-- 1.1 -->
+            <tr id="god" *ngFor="let array_index of key_ngo_info_array.controls; let i = index">
+              <td scope="col">
+                <div class="form-group" *ngIf="i==0" (click)="onClickAddRowngoInfo(1)">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                  </span>
+                </div>
+                <div class="form-group" *ngIf="i!=0 && i>0" (click)="onClickRemoveRowngoInfo(i)">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                  </span>
+                </div>
+              </td>
+              <td scope="col">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="text" class="form-control" formControlName="ngo_name"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.ngo_name.errors }">
+                  <div *ngIf="submitted && array_index.controls.ngo_name.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.ngo_name.errors.required">Field value is required</div>
+                    <!--<div *ngIf="array_index.controls.ngo_name.errors.pattern">Alphabets and spaces only allowed
+                    </div>-->
+                    <div *ngIf="array_index.controls.ngo_name.errors.maxlength">Total Characters within and equal to 100
+                      length only allowed
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td scope="col">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="text" class="form-control" formControlName="ngo_details"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.ngo_details.errors }">
+                  <div *ngIf="submitted && array_index.controls.ngo_details.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.ngo_details.errors.required">Field value is required</div>
+                    <!-- <div *ngIf="array_index.controls.ngo_details.errors.pattern">Alphabets and spaces only allowed
+                    </div> -->
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+
+      </div>
+
+
+
+      <div class="table-responsive">
+        <div style="margin-top:0px;"></div>
+
+        <table id="IPHS" class="table table-sm table-striped">
+          <thead class="thead-dark">
+            <!-- <thead style="background-color: #007b5e;color: #FFFFFF"> -->
+            <tr>
+              <!-- <th scope="col">1.12</th>
+              <th scope="col" colspan="5"> Key private stakeholders</th> -->
+              <th scope="col" colspan="6"><span style="width: 8.333333%;float: left;">1.12</span> <span>Key Private
+                  Stakeholders</span></th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr style="background-color: #00AEC7;color: #fff">
+              <td scope="col" class="text-center w-5">
+              </td>
+              <td scope="col" class="text-center w-45"> Private Stakeholder Name</td>
+              <td scope="col" class="text-center w-50">Contact Details (Phone, Email)</td>
+            </tr>
+
+            <!-- 1.1 -->
+            <tr id="god" *ngFor="let array_index of key_ngo_source_array.controls; let i = index">
+              <td scope="col">
+                <div class="form-group" *ngIf="i==0" (click)="onClickAddRowngoSrc(1)">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                  </span>
+                </div>
+                <div class="form-group" *ngIf="i!=0 && i>0" (click)="onClickRemoveRowngoSrc(i)">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                  </span>
+                </div>
+              </td>
+              <td scope="col">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="text" class="form-control" formControlName="stakeholder_name"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.stakeholder_name.errors }">
+                  <div *ngIf="submitted && array_index.controls.stakeholder_name.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.stakeholder_name.errors.required">Field value is required</div>
+                    <!--<div *ngIf="array_index.controls.stakeholder_name.errors.pattern">Alphabets and spaces only allowed
+                    </div>-->
+                    <div *ngIf="array_index.controls.stakeholder_name.errors.maxlength">Total Characters within and
+                      equal to 5000 length only allowed
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td scope="col">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="text" class="form-control" formControlName="contact_details"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.contact_details.errors }">
+                  <div *ngIf="submitted && array_index.controls.contact_details.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.contact_details.errors.required">Field value is required</div>
+                    <!-- <div *ngIf="array_index.controls.contact_details.errors.pattern">Alphabets and spaces only allowed
+                    </div> -->
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+
+      </div>
+
+
+
+
+      <div class="table-responsive">
+        <div style="margin-top:0px;"></div>
+
+        <table id="IPHS" class="table table-sm table-striped">
+          <thead >
+            <!-- <thead style="background-color: #007b5e;color: #FFFFFF"> -->
+            <tr class="d-flex"  style="background-color: #343a40;color: #FFFFFF; width: 100%;">
+              <th  class="col-12" > 
+                <span >2 WHO Health System Blocks</span>
+              </th>
+              <th  class="col-9" style="background-color: #343a40;color: #FFFFFF; width: 100%;"> 
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr  class="d-flex"  style="background-color: #00AEC7;color: #fff">
+              <td class="col-3 text-center">Theme</td>
+              <td class="col-3 text-center">Coverage Indicators<button type="button"
+                  style="margin-right: -32px; padding-right: 20px;margin-left: 20px; line-height: 1.5em;"
+                  mat-raised-button (click)="openDialog()">Select<br /> Indicators</button></td>
+              <td class="col-3 text-center" >Description</td>
+              <td class="col-3 text-center">Source</td>
+              <td class="col-3 text-center"  style="background-color: #00AEC7;color: #fff">Data</td>
+              <td class="col-3 text-center"  style="background-color: #00AEC7;color: #fff">Expected</td>
+              <td class="col-3 text-center"  style="background-color: #00AEC7;color: #fff">Gap</td>
+            </tr>
+
+            <!-- 1.1 -->
+            <tr id="god">
+              <td scope="col">
+                <div class="input-group">
+
+                  <div class="form-group">
+                    <input type="text" class="form-control" formControlName="iphs_theme_name"
+                      (input)="theme_header=$event.target.value"
+                      [ngClass]="{ 'is-invalid': submitted && f.iphs_theme_name.errors }">
+                    <div *ngIf="submitted && f.iphs_theme_name.errors" class="invalid-feedback">
+                      <div *ngIf="f.iphs_theme_name.errors.required">Field value is required</div>
+                      <!--<div *ngIf="f.iphs_theme_name.errors.pattern">Alphabets and spaces only allowed</div>-->
+                      <div *ngIf="f.iphs_theme_name.errors.maxlength">Total Characters within and equal to 5000 length
+                        only allowed</div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td scope="col">
+                <div class="input-group">
+
+
+                </div>
+              </td>
+              <td scope="col">
+
+
+              </td>
+              <td scope="col">
+
+              </td>
+              <td scope="col">
+
+              </td>
+              <td scope="col">
+
+              </td>
+
+            </tr>
+
+
+            <tr  class="d-flex"   *ngFor="let order of  total_coverage_indi; let i = index">
+              <td    class="col-3 text-center"  [attr.rowspan]="total_coverage_indi.length">
+                <div *ngIf="i == 0" class="input-group">
+
+                  <div class="form-group">
+                  </div>
+                </div>
+              </td>
+              <td   class="col-3 text-center" >
+                <div class="form-group text-center tooltipdiv">
+                  <span class="text-center"><strong>{{total_coverage_indi[i]["area_name"]}}</strong></span>
+
+                  <br />
+                  <span>{{total_coverage_indi[i]["indicator_val"]}}</span>
+                  <span class="tooltiptextspan">{{total_coverage_indi[i]["definition"]}}</span>
+                </div>
+
+              </td>
+              <td class="col-3 text-center" > 
+                <div class="form-group">
+                  
+                  <!-- <pre>{{order|json}}</pre>   -->
+                  <textarea  *ngIf="order.category != 'ESSENTIAL'"  [value]="order.definition" class="form-control" rows="4"></textarea>
+                </div>
+              </td>
+              <td   class="col-3 text-center" >
+
+                <div class="form-group">
+                  <div class="form-group">
+                    <select [value]="total_coverage_indi[i]['source']"
+                      (change)="total_coverage_indi[i]['source']=$event.target.value" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted  && total_coverage_indi[i]['source']==''}">
+                      <option *ngFor="let order of  form1a_all_doc_arr; let i = index"
+                        [value]="form1a_all_doc_arr[i].doc_db_doc_id">
+                        {{form1a_all_doc_arr[i].document_val}}
+                      </option>
+                    </select>
+                    <div *ngIf="submitted  && total_coverage_indi[i]['source']==''" class="invalid-feedback">
+                      <div>Field value is required</div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td   class="col-3 text-center" >
+                <div class="form-group">
+                  <input type="text" [value]="total_coverage_indi[i]['data']"  (keypress)="allowNumbersOnly($event)" 
+                    (input)="total_coverage_indi[i]['data']=$event.target.value"
+                    (blur)="total_coverage_indi[i]['gap']=total_coverage_indi[i]['expected']-total_coverage_indi[i]['data']"
+                    id="iphs_data" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted  && total_coverage_indi[i]['data']==''}">
+                  <div *ngIf="submitted  && total_coverage_indi[i]['data']==''" class="invalid-feedback">
+                    <div>Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td   class="col-3 text-center" >
+                <div class="form-group">
+                  <input type="text" [value]="total_coverage_indi[i]['expected']"  (keypress)="allowNumbersOnly($event)" 
+                    (input)="total_coverage_indi[i]['expected']=$event.target.value"
+                    (blur)="total_coverage_indi[i]['gap']=total_coverage_indi[i]['expected']-total_coverage_indi[i]['data']"
+                    id="iphs_expected_status" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted   && total_coverage_indi[i]['expected']==''}">
+                  <div *ngIf="submitted   && total_coverage_indi[i]['expected']==''" class="invalid-feedback">
+                    <div>Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td   class="col-3 text-center" >
+                <div class="form-group">
+                  <input type="text" [value]="total_coverage_indi[i]['gap']" id="iphs_gap_hmis" class="form-control"
+                    [disabled]="true">
+                </div>
+              </td>
+
+            </tr>
+            <!--End of  1.1 -->
+            <!--End of  1.1 -->
+
+          </tbody>
+
+        </table>
+
+
+      </div>
+
+
+
+
+
+      <div class="table-responsive">
+        <div style="margin-top:0px;"></div>
+
+        <table id="IPHS" class="table table-sm table-striped">
+          <thead class="thead-dark">
+            <tr class="d-flex">
+              <th class="col-1">3</th>
+              <th class="col-11">Theme &nbsp; : &nbsp; <span>{{theme_header}}</span></th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="d-flex" style="background-color: #00AEC7;color: #fff">
+              <td class="col-3"></td>
+              <td class="col-3">Details</td>
+              <td class="col-3">Sanctioned ({{sanctioned_year}}) </td>
+              <td class="col-2">Available / Functional</td>
+              <td class="col-1">Gap</td>
+            </tr>
+            <tr class="d-flex" style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td class="col-1 ">3.1</td>
+              <td class="col-2 ">Infrastruture &nbsp; **</td>
+              <td class="col-9 "></td>
+            </tr>
+            <!-- 3.1 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+
+              </td>
+              <td class="col-2 " (click)="onClickAddRowInfra(1)">
+                <div class="form-group">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                  </span>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="details_infra"
+                    [ngClass]="{ 'is-invalid': submitted && f.details_infra.errors }">
+                  <div *ngIf="submitted && f.details_infra.errors" class="invalid-feedback">
+                    <div *ngIf="f.details_infra.errors.required">Field value is required</div>
+                    <!--<div *ngIf="f.details_infra.errors.pattern">Alphabets and spaces only allowed</div>-->
+                    <div *ngIf="f.details_infra.errors.maxlength">Total Characters within and equal to 5000 length only
+                      allowed</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="sanctioned_infra"
+                    (input)="sanctioned_infra_callback($event.target.value)"  (keypress)="findvalue($event)" 
+                    [ngClass]="{ 'is-invalid': submitted && f.sanctioned_infra.errors }">
+                  <div *ngIf="submitted && f.sanctioned_infra.errors" class="invalid-feedback">
+                    <div *ngIf="f.sanctioned_infra.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"   (keypress)="findvalue($event)" 
+                    formControlName="available_functional_infra" (input)="available_functional_infra_callback()"
+                    [ngClass]="{ 'is-invalid': submitted && f.available_functional_infra.errors }">
+                  <div *ngIf="submitted && f.available_functional_infra.errors" class="invalid-feedback">
+                    <div *ngIf="f.available_functional_infra.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="gap_infra"  (keypress)="findvalue($event)" 
+                    [ngClass]="{ 'is-invalid': submitted && f.gap_infra.errors }" [attr.disabled]="true">
+                  <!-- <div *ngIf="submitted && f.gap_infra.errors" class="invalid-feedback">
+                    <div *ngIf="f.gap_infra.errors.required">Field value is required</div>
+                  </div> -->
+                </div>
+              </td>
+
+            </tr>
+
+            <!-- Dynamic Row Started -->
+            <tr *ngFor="let array_index of infra_arr.controls; let i = index" class="d-flex" id="god">
+              <td class="col-1 ">
+
+              </td>
+              <td class="col-2 " (click)="onClickRemove(i)">
+                <div class="form-group">
+                  <span class="fa-stack fa-lg">
+
+                    <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                  </span>
+                </div>
+              </td>
+              <td class="col-3">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="text" class="form-control" formControlName="document_details"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_details.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_details.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_details.errors.required">Field value is required</div>
+                    <!--<div *ngIf="array_index.controls.document_details.errors.pattern">Alphabets and spaces only allowed
+                    </div>-->
+                    <div *ngIf="array_index.controls.document_details.errors.maxlength">Total Characters within and
+                      equal to 5000 length only allowed.
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="document_sanctioned"  (keypress)="findvalue($event)" 
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_sanctioned.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_sanctioned.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_sanctioned.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-2">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"
+                    formControlName="document_available_functional"  (keypress)="findvalue($event)" 
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_available_functional.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_available_functional.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_available_functional.errors.required">Field value is
+                      required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="document_gap"
+                    [ngClass]="{ 'is-invalid': submitted && f.gap_infra.errors }" [attr.disabled]="true">
+                  <div *ngIf="submitted && f.gap_infra.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_available_functional.errors.required">Field value is
+                      required</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <!-- Dynamic Row Ended -->
+            <!-- <tr>
+
+            </tr> -->
+            <!--End of  3.1 -->
+
+          </tbody>
+
+        </table>
+      </div>
+
+
+
+
+
+
+      <div class="table-responsive">
+        <div style="margin-top:0px;"></div>
+
+        <table id="IPHS" class="table table-sm table-striped">
+          <tbody>
+            <tr class="d-flex" style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td class="col-1 ">3.2</td>
+              <td class="col-2 ">General Resources</td>
+              <td class="col-9 "></td>
+            </tr>
+            <tr class="d-flex" id="god">
+              <td class="col-1 "></td>
+              <td class="col-2 ">Finances &nbsp; **</td>
+              <td class="col-9 "></td>
+            </tr>
+            <!-- 3.2 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+
+              </td>
+              <td class="col-2 " (click)="onClickAddRowfina(1)">
+                <div class="form-group">
+                  <span class="fa-stack fa-lg">
+
+                    <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                  </span>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="details_fina"
+                    [ngClass]="{ 'is-invalid': submitted && f.details_fina.errors }">
+                  <div *ngIf="submitted && f.details_fina.errors" class="invalid-feedback">
+                    <div *ngIf="f.details_fina.errors.required">Field value is required</div>
+                    <!--<div *ngIf="f.details_fina.errors.pattern">Alphabets and spaces only allowed</div>-->
+                    <div *ngIf="f.details_fina.errors.maxlength">Total Characters within and equal to 5000 length only
+                      allowed</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="sanctioned_fina"
+                    (input)="sanctioned_fina_callback()"  (keypress)="findvalue($event)" 
+                    [ngClass]="{ 'is-invalid': submitted && f.sanctioned_fina.errors }">
+                  <div *ngIf="submitted && f.sanctioned_fina.errors" class="invalid-feedback">
+                    <div *ngIf="f.sanctioned_fina.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"  (keypress)="findvalue($event)" 
+                    formControlName="available_functional_fina" (input)="available_functional_fina_callback()"
+                    [ngClass]="{ 'is-invalid': submitted && f.available_functional_fina.errors }">
+                  <div *ngIf="submitted && f.available_functional_fina.errors" class="invalid-feedback">
+                    <div *ngIf="f.available_functional_fina.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="gap_fina"
+                    [ngClass]="{ 'is-invalid': submitted && f.gap_fina.errors }" [attr.disabled]="true">
+                  <div *ngIf="submitted && f.gap_fina.errors" class="invalid-feedback">
+                    <div *ngIf="f.gap_fina.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+
+
+            <!-- Dynamic Value -->
+
+            <tr *ngFor="let array_index of fina_array.controls; let i = index" class="d-flex" id="god">
+              <td class="col-1 ">
+
+              </td>
+              <td class="col-2 " (click)="onClickRemovefina(i)">
+                <div class="form-group">
+                  <span class="fa-stack fa-lg">
+
+                    <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                  </span>
+                </div>
+              </td>
+              <td class="col-3">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="text" class="form-control" formControlName="document_details"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_details.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_details.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_details.errors.required">Field value is required</div>
+                    <div *ngIf="array_index.controls.document_details.errors.pattern">Alphabets and spaces only allowed
+                    </div>
+                    <div *ngIf="array_index.controls.document_details.errors.maxlength">Total Characters within and
+                      equal to 5000 length only allowed.
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"  (keypress)="findvalue($event)"   formControlName="document_sanctioned"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_sanctioned.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_sanctioned.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_sanctioned.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-2">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"   (keypress)="findvalue($event)" 
+                    formControlName="document_available_functional"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_available_functional.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_available_functional.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_available_functional.errors.required">Field value is
+                      required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="document_gap"
+                    [ngClass]="{ 'is-invalid': submitted && f.gap_infra.errors }" [attr.disabled]="true">
+                  <div *ngIf="submitted && f.gap_infra.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_available_functional.errors.required">Field value is
+                      required</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+
+            <!-- End of Dynamic Value -->
+
+            <!--End of  3.2 -->
+
+          </tbody>
+
+        </table>
+      </div>
+
+
+
+
+
+
+
+      <div class="table-responsive">
+        <div style="margin-top:0px;"></div>
+
+        <table id="IPHS" class="table table-sm table-striped">
+          <tbody>
+            <tr class="d-flex" style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td class="col-1 "></td>
+              <td class="col-2 ">Supplies &nbsp; **</td>
+              <td class="col-9 "></td>
+            </tr>
+            <!-- 3.2 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+
+              </td>
+              <td class="col-2 " (click)="onClickAddRowsupp(1)">
+                <div class="form-group">
+                  <span class="fa-stack fa-lg">
+
+                    <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                  </span>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="details_supp"
+                    [ngClass]="{ 'is-invalid': submitted && f.details_supp.errors }">
+                  <div *ngIf="submitted && f.details_supp.errors" class="invalid-feedback">
+                    <div *ngIf="f.details_supp.errors.required">Field value is required</div>
+                    <!--<div *ngIf="f.details_supp.errors.pattern">Alphabets and spaces only allowed</div>-->
+                    <div *ngIf="f.details_supp.errors.maxlength">Total Characters within and equal to 5000 length only
+                      allowed</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="sanctioned_supp"
+                    (input)="sanctioned_supp_callback()"   (keypress)="findvalue($event)" 
+                    [ngClass]="{ 'is-invalid': submitted && f.sanctioned_supp.errors }">
+                  <div *ngIf="submitted && f.sanctioned_supp.errors" class="invalid-feedback">
+                    <div *ngIf="f.sanctioned_supp.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"  (keypress)="findvalue($event)" 
+                    formControlName="available_functional_supp" (input)="available_functional_supp_callback()"
+                    [ngClass]="{ 'is-invalid': submitted && f.available_functional_supp.errors }">
+                  <div *ngIf="submitted && f.available_functional_supp.errors" class="invalid-feedback">
+                    <div *ngIf="f.available_functional_supp.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="gap_supp"
+                    [ngClass]="{ 'is-invalid': submitted && f.gap_supp.errors }" [attr.disabled]="true">
+                  <div *ngIf="submitted && f.gap_supp.errors" class="invalid-feedback">
+                    <div *ngIf="f.gap_supp.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+
+
+            <!-- Dynamic Array -->
+
+            <tr *ngFor="let array_index of supp_array.controls; let i = index" class="d-flex" id="god">
+              <td class="col-1 ">
+
+              </td>
+              <td class="col-2 " (click)="onClickRemovesupp(i)">
+                <div class="form-group">
+                  <span class="fa-stack fa-lg">
+
+                    <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                  </span>
+                </div>
+              </td>
+              <td class="col-3">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="text" class="form-control" formControlName="document_details"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_details.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_details.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_details.errors.required">Field value is required</div>
+                    <div *ngIf="array_index.controls.document_details.errors.pattern">Alphabets and spaces only allowed
+                    </div>
+                    <div *ngIf="array_index.controls.document_details.errors.maxlength">Total Characters within and
+                      equal to 5000 length only allowed.
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"   (keypress)="findvalue($event)"  formControlName="document_sanctioned"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_sanctioned.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_sanctioned.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_sanctioned.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-2">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"
+                    formControlName="document_available_functional"   (keypress)="findvalue($event)" 
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_available_functional.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_available_functional.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_available_functional.errors.required">Field value is
+                      required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="document_gap"
+                    [ngClass]="{ 'is-invalid': submitted && f.gap_infra.errors }" [attr.disabled]="true">
+                  <div *ngIf="submitted && f.gap_infra.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_available_functional.errors.required">Field value is
+                      required</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+
+            <!-- End of Dynamic Array -->
+
+            <!--End of  3.2 -->
+
+          </tbody>
+
+        </table>
+      </div>
+
+
+
+
+
+
+
+      <div class="table-responsive">
+        <div style="margin-top:0px;"></div>
+
+        <table id="IPHS" class="table table-sm table-striped">
+          <tbody>
+            <tr class="d-flex" style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td class="col-1 "></td>
+              <td class="col-2 ">Technology &nbsp; **</td>
+              <td class="col-9 "></td>
+            </tr>
+            <!-- 3.2 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+
+              </td>
+              <td class="col-2 " (click)="onClickAddRowtech(1)">
+                <div class="form-group">
+                  <span class="fa-stack fa-lg">
+
+                    <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                  </span>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="details_tech"
+                    [ngClass]="{ 'is-invalid': submitted && f.details_tech.errors }">
+                  <div *ngIf="submitted && f.details_tech.errors" class="invalid-feedback">
+                    <div *ngIf="f.details_tech.errors.required">Field value is required</div>
+                    <!--<div *ngIf="f.details_tech.errors.pattern">Alphabets and spaces only allowed</div>-->
+                    <div *ngIf="f.details_tech.errors.maxlength">Total Characters within and equal to 5000 length only
+                      allowed</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="sanctioned_tech"
+                    (input)="sanctioned_tech_callback()"  (keypress)="findvalue($event)" 
+                    [ngClass]="{ 'is-invalid': submitted && f.sanctioned_tech.errors }">
+                  <div *ngIf="submitted && f.sanctioned_tech.errors" class="invalid-feedback">
+                    <div *ngIf="f.sanctioned_tech.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"  (keypress)="findvalue($event)" 
+                    formControlName="available_functional_tech" (input)="available_functional_tech_callback()"
+                    [ngClass]="{ 'is-invalid': submitted && f.available_functional_tech.errors }">
+                  <div *ngIf="submitted && f.available_functional_tech.errors" class="invalid-feedback">
+                    <div *ngIf="f.available_functional_tech.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="gap_tech"
+                    [ngClass]="{ 'is-invalid': submitted && f.gap_tech.errors }" [attr.disabled]="true">
+                  <div *ngIf="submitted && f.gap_tech.errors" class="invalid-feedback">
+                    <div *ngIf="f.gap_tech.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+
+
+            <!-- Dynamic Array -->
+
+            <tr *ngFor="let array_index of tech_array.controls; let i = index" class="d-flex" id="god">
+              <td class="col-1 ">
+
+              </td>
+              <td class="col-2 " (click)="onClickRemovetech(i)">
+                <div class="form-group">
+                  <span class="fa-stack fa-lg">
+
+                    <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                  </span>
+                </div>
+              </td>
+              <td class="col-3">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="text" class="form-control" formControlName="document_details"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_details.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_details.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_details.errors.required">Field value is required</div>
+                    <div *ngIf="array_index.controls.document_details.errors.pattern">Alphabets and spaces only allowed
+                    </div>
+                    <div *ngIf="array_index.controls.document_details.errors.maxlength">Total Characters within and
+                      equal to 5000 length only allowed.
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"  (keypress)="findvalue($event)"  formControlName="document_sanctioned"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_sanctioned.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_sanctioned.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_sanctioned.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-2">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"  (keypress)="findvalue($event)" 
+                    formControlName="document_available_functional"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_available_functional.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_available_functional.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_available_functional.errors.required">Field value is
+                      required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="document_gap"
+                    [ngClass]="{ 'is-invalid': submitted && f.gap_infra.errors }" [attr.disabled]="true">
+                  <div *ngIf="submitted && f.gap_infra.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_available_functional.errors.required">Field value is
+                      required</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+
+            <!-- End of Dynamic Array -->
+
+
+            <!--End of  3.2 -->
+
+          </tbody>
+
+        </table>
+      </div>
+
+
+
+
+
+
+
+      <div class="table-responsive">
+        <div style="margin-top:0px;"></div>
+
+        <table id="IPHS" class="table table-sm table-striped">
+          <tbody>
+            <tr class="d-flex" style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td class="col-1 ">3.3</td>
+              <td class="col-2 ">Human resources &nbsp; **</td>
+              <td class="col-9 "></td>
+            </tr>
+            <!-- 3.3 -->
+            <tr class="d-flex" id="god">
+              <td class="col-1 ">
+
+              </td>
+              <td class="col-2 " (click)="onClickAddRowhr(1)">
+                <div class="form-group">
+                  <span class="fa-stack fa-lg">
+
+                    <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                  </span>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="details_hr"
+                    [ngClass]="{ 'is-invalid': submitted && f.details_hr.errors }">
+                  <div *ngIf="submitted && f.details_hr.errors" class="invalid-feedback">
+                    <div *ngIf="f.details_hr.errors.required">Field value is required</div>
+                    <!--<div *ngIf="f.details_hr.errors.pattern">Alphabets and spaces only allowed</div>-->
+                    <div *ngIf="f.details_hr.errors.maxlength">Total Characters within and equal to 5000 length only
+                      allowed</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="sanctioned_hr"
+                    (input)="sanctioned_hr_callback()"  (keypress)="findvalue($event)" 
+                    [ngClass]="{ 'is-invalid': submitted && f.sanctioned_hr.errors }">
+                  <div *ngIf="submitted && f.sanctioned_hr.errors" class="invalid-feedback">
+                    <div *ngIf="f.sanctioned_hr.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-2">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="available_functional_hr"
+                    (input)="available_functional_hr_callback()"   (keypress)="findvalue($event)" 
+                    [ngClass]="{ 'is-invalid': submitted && f.available_functional_hr.errors }">
+                  <div *ngIf="submitted && f.available_functional_hr.errors" class="invalid-feedback">
+                    <div *ngIf="f.available_functional_hr.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="gap_hr"
+                    [ngClass]="{ 'is-invalid': submitted && f.gap_hr.errors }" [attr.disabled]="true">
+                  <div *ngIf="submitted && f.gap_hr.errors" class="invalid-feedback">
+                    <div *ngIf="f.gap_hr.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+
+            <!-- Dynamic Array -->
+
+            <tr *ngFor="let array_index of hr_array.controls; let i = index" class="d-flex" id="god">
+              <td class="col-1 ">
+
+              </td>
+              <td class="col-2 " (click)="onClickRemovehr(i)">
+                <div class="form-group">
+                  <span class="fa-stack fa-lg">
+
+                    <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                  </span>
+                </div>
+              </td>
+              <td class="col-3">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="text" class="form-control" formControlName="document_details"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_details.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_details.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_details.errors.required">Field value is required</div>
+                    <div *ngIf="array_index.controls.document_details.errors.pattern">Alphabets and spaces only allowed
+                    </div>
+                    <div *ngIf="array_index.controls.document_details.errors.maxlength">Total Characters within and
+                      equal to 5000 length only allowed.
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-3">
+
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"   (keypress)="findvalue($event)"  formControlName="document_sanctioned"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_sanctioned.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_sanctioned.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_sanctioned.errors.required">Field value is required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-2">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control"  (keypress)="findvalue($event)" 
+                    formControlName="document_available_functional"
+                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_available_functional.errors }">
+                  <div *ngIf="submitted && array_index.controls.document_available_functional.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_available_functional.errors.required">Field value is
+                      required</div>
+                  </div>
+                </div>
+              </td>
+              <td class="col-1">
+                <div [formGroup]="array_index" class="form-group">
+                  <input type="number" min="0" max="100" class="form-control" formControlName="document_gap"
+                    [ngClass]="{ 'is-invalid': submitted && f.gap_infra.errors }" [attr.disabled]="true">
+                  <div *ngIf="submitted && f.gap_infra.errors" class="invalid-feedback">
+                    <div *ngIf="array_index.controls.document_available_functional.errors.required">Field value is
+                      required</div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+
+            <!-- End of Dynamic Array -->
+            <!--End of  3.3 -->
+
+          </tbody>
+
+        </table>
+      </div>      
+
+      <div class="col-sm-12 form-footer">
+
+              <div class="text-center">
+                <a (click)="partialSave()"><button type="button" [disabled]="completeClicked" _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"><i
+                  class="fa fa-edit"></i>Save</button></a>
+                  &nbsp;&nbsp;
+                <button type="submit" [disabled]="completeClicked" _ngcontent-dbi-c224="" mat-flat-button="" color="primary"
+                    class="mat-flat-button mat-button-base mat-primary" id="update-form1a"><i
+                      class="fa fa-key fa-fw"></i>Complete</button> &nbsp;&nbsp;
+                  <a routerLink="/dashboard" routerLinkActive="active"><button type="submit" _ngcontent-dbi-c224=""
+                      mat-raised-button="" color="warn" class="mat-raised-button mat-button-base mat-warn" id="cancel-form1a"><i
+                        class="fa fa-times fa-fw"></i>Cancel</button></a>
+              </div>
+              <div class="col-sm-12 footnote">    
+                <br/>            
+                * &nbsp; NGO - Non Governmental Organization, CSO - Civil Society Organization<br/>
+                ** &nbsp; Mention unit of mesurement in <i>Details</i>.
+              </div>
+      </div>
+
+      
+
+    </div>
+  </form>
+</div>
+
+<div [hidden]="!savedform">
+  <h4>You submitted successfully!</h4>
+</div>

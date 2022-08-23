@@ -1,0 +1,61 @@
+<!-- Floating button on right Side -->
+
+<!-- End of Floating button on right Side -->
+
+<div class="">
+                   
+  <form #newDistrict_form = "ngForm" (ngSubmit) = "onNewDistrictSubmit(newDistrict_form.value); newDistrict_form.reset()">
+          <div class="col-sm-12 sub-header">
+              <div class="wrapper" (click)="previouspage()" style="width:20px; float:left">
+                  <!-- <button class="button">Back</button> -->
+                  <div class="" id="button-5" style="margin: 0; width:100%">
+                      <div id="translate"></div>
+                      <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left" style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+                  </div>
+           </div>
+            <h4>Create New District</h4>
+          </div>
+           <div class="col-sm-12 form-body" style="padding-top:30px;">
+            <div class="col-sm-4 offset-sm-4">
+            <div class="form-group">         
+              <input type="text" class="form-control" placeholder="Enter District Name"  id="district_name" name="district_name" ngModel required>
+            </div>
+             </div>
+            </div>
+            <div class="col-sm-12 text-center form-footer" style="margin-bottom:0px !important;">
+            <button _ngcontent-dbi-c224="" mat-flat-button="" color="primary" class="mat-flat-button mat-button-base mat-primary" type="submit">Create</button> &nbsp;&nbsp;
+            <button _ngcontent-dbi-c224="" mat-raised-button="" color="warn" class="mat-raised-button mat-button-base mat-warn" type="reset">Reset</button>
+            </div>
+          
+    </form>      
+  
+    <br>
+    <div class="col-sm-12 form-body margin-bottom" style="margin-bottom:90px !important;">
+      <div *ngIf="districts; else loading">
+        <div class="table-wrapper">
+          <table class="table table-sm table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th style="width: 200px">District Id</th>                
+                    <th style="text-align: left;">District</th> 
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="indicatorTableBody">
+                  <tr class="table-row" *ngFor="let district of districts; let i = index">  
+                    <td style="width: 200px">{{i+1}}</td>              
+                    <!-- <td style="width: 200px">{{district.district_id}}</td>  -->
+                    <td style="text-align: left;">{{district.district_name}}</td>  
+                    <td style="width: 100px"><button type="button" (click) = "deleteDistrict(district.district_id)" color="accent" class="mat-flat-button mat-button-base mat-accent padding-less">Delete</button></td>
+                  </tr>                     
+                </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<ng-template #loading>
+      <img class="loading-img" src="assets/images/wait.gif" alt="">
+</ng-template>

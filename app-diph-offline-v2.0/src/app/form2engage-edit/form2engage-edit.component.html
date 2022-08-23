@@ -1,0 +1,781 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+<!-- Floating button on right Side -->
+
+    <!-- End of Floating button on right Side -->
+
+<div class="">
+    <form *ngIf="customer; else loading" (ngSubmit)="onSubmit()">
+            <div class="col-sm-12 sub-header"> 
+                    <div class="wrapper" (click)="previouspage()" style="width:20px; float:left">
+                           <!-- <button class="button">Back</button> -->
+                           <div class="" id="button-5" style="margin: 0;margin-top:6px; width:100%">
+                               <div id="translate"></div>
+                               <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left" style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+                           </div>
+                    </div>   
+                     <h4>Form II:- Engage</h4>   
+            </div>
+        <div class="">
+            
+                    <div class="col-sm-12 form-body lt">
+
+                    
+                            <div class="col-sm-6 lt">
+                                    <label>Date of the meeting </label>
+                                    <div  class="col-sm-12 form-control">
+                                    <div class="">
+
+                                        <div class="example-container" style="background-color:white;color:black;">
+                                            <mat-form-field>
+                                                <input matInput [formControl]="date" [matDatepicker]="picker"  
+                                                    [min]="minDate" placeholder="" 
+                                                    (click)="picker.open()"  (keypress)="picker.open()"  readonly 
+                                                    name='form_2_date_of_meeting'>
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                        <!-- <input type="text" class="form-control" 
+                                            formControlName="form_2_date_of_meeting"
+                                            [ngClass]="{ 'is-invalid': nextbtn && f.form_2_date_of_meeting.errors }">
+
+                                        <div *ngIf="nextbtn && f.form_2_date_of_meeting.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.form_2_date_of_meeting.errors.required">Field value is
+                                                required</div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 lt">
+                                    <label>Venue of the meeting </label>
+                                <div>
+
+                                    <div class="form-group">
+                                        <input type="text" [value]="customer.form_2_venue"  
+                                        [ngClass]="{ 'is-invalid': ((submitted && customer.form_2_venue == '') || (submitted &&  validate100charactersallowed(customer.form_2_venue))) }"
+                                            (input)="customer.form_2_venue=$event.target.value" class="form-control">
+                                            <div *ngIf="((submitted && customer.form_2_venue == '') || (submitted &&  validate100charactersallowed(customer.form_2_venue)))"  class="invalid-feedback">
+                                            <div *ngIf="(customer.form_2_venue == '')  "> Field value is required</div>
+                                            <!--<div *ngIf="(validateSpecialCharsAndNum(customer.form_2_venue))  "> Only Alphabets allowed</div>-->
+                                            <div *ngIf=" (submitted &&  validate100charactersallowed(customer.form_2_venue)) "> 
+                                                Total Characters within and equal to 5000 length only allowed.
+                                             </div>
+                                        </div>
+                                        <!-- <input type="text" class="form-control" formControlName="form_2_venue"
+                                            [ngClass]="{ 'is-invalid': nextbtn && f.form_2_venue.errors }">
+
+                                        <div *ngIf="nextbtn && f.form_2_venue.errors" class="invalid-feedback">
+                                            <div *ngIf="f.form_2_venue.errors.required">Field value is
+                                                required</div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 lt">
+                                    <label>Chairperson of the meeting </label>
+                                <div>
+                                    <div class="form-group">
+
+                                        <select class="form-control" [value]="customer.form_2_filled"
+                                            [ngClass]="{ 'is-invalid': (submitted && customer.form_2_filled == '') }"
+                                            (change)="customer.form_2_filled=$event.target.value">
+                                            <option *ngFor="let order of  verified_by_name_from_Db; let i = index"
+                                                [value]="verified_by_name_from_Db[i].id">
+                                                {{verified_by_name_from_Db[i].name}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="(submitted && customer.form_2_filled == '') "
+                                            class="invalid-feedback">
+                                            <div *ngIf="(customer.form_2_filled == '')  "> Field value is required</div>
+                                        </div>
+                                        <div class="form-group" style="margin-top: 10px;">
+                                            <input *ngIf="customer.form_2_filled  ==  '15' " type="text"
+                                                [ngClass]="{ 'is-invalid': (submitted && customer.form_2_filled_others == '') ||  (submitted && customer.form_2_filled_others == 'null')  ||  (submitted && customer.form_2_filled_others == null)}"
+                                                [value]="customer.form_2_filled_others"
+                                                (input)="customer.form_2_filled_others=$event.target.value"
+                                                id="form_2_filled_others" class="form-control">
+                                            <div *ngIf="(submitted && customer.form_2_filled_others == '') ||  (submitted && customer.form_2_filled_others == 'null')  ||  (submitted && customer.form_2_filled_others == null)"
+                                                class="invalid-feedback">
+                                                <div
+                                                    *ngIf="(submitted && customer.form_2_filled_others == '') ||  (submitted && customer.form_2_filled_others == 'null')  ||  (submitted && customer.form_2_filled_others == null) ">
+                                                    Field value is required</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                       
+
+
+                </div>
+
+                <div class="col-sm-12 form-body lt" style="margin-top:20px;">
+                <!-- //Start Actual form here -->
+
+                <div class="table-responsive">
+                    
+                    <table id="state_policy_table" class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr class="d-flex">
+                                <th class="col-2">1</th>
+                                <th class="col-3">Key Stakeholder</th>
+                                <th class="col-7">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="d-flex" *ngFor="let array_index of customer.primary_stake_array; let i = index">
+                                <td class="col-2" *ngIf="i==0">
+                                    a
+                                </td>
+                                <td class="col-2" *ngIf="i!=0">
+
+                                </td>
+                                <td class="col-3" *ngIf="i==0">
+                                    <div class="form-group">Primary Stakeholder</div>
+                                </td>
+                                <td class="col-3" *ngIf="i!=0">
+                                    <div class="form-group">
+                                        
+                                    </div>
+                                </td>
+                                <td  *ngIf="i==0">
+                                    <div (click)="onClickAddPrimaryStakeholderRow(1)" *ngIf="form_define_not_filled">
+                                        <span class="fa-stack fa-lg">
+
+                                            <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td  *ngIf="i!=0">
+                                    <div (click)="onClickRemovePrimaryStakeholderRow(i)" *ngIf="form_define_not_filled">
+                                        <span class="fa-stack fa-lg">
+
+                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="col-6">
+                                    <div class="form-group">
+                                        <input type="text" [value]="array_index.document_name" [disabled]="!form_define_not_filled" 
+                                            (input)="array_index.document_name=$event.target.value"
+                                            class="form-control">
+                                        <div class="input-group">
+                                           
+                                        </div>
+                                       
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="d-flex"
+                                *ngFor="let array_index of customer.secondary_stake_array; let i = index">
+                                <td class="col-2 " *ngIf="i==0">
+                                    b
+                                </td>
+                                <td class="col-2 " *ngIf="i!=0">
+
+                                </td>
+                                <td class="col-3" *ngIf="i==0">
+                                    <div class="form-group">Secondary Stakeholder</div>
+                                </td>
+                                <td class="col-3" *ngIf="i!=0">
+                                    <div class="form-group">
+
+                                    </div>
+                                </td>
+                                <td  *ngIf="i==0">
+                                    <div (click)="onClickAddSecondaryStakeholderRow(1)" *ngIf="form_define_not_filled">
+                                        <span class="fa-stack fa-lg">
+
+                                            <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td  *ngIf="i!=0">
+                                    <div (click)="onClickRemoveSecondaryStakeholderRow(i)" *ngIf="form_define_not_filled">
+                                        <span class="fa-stack fa-lg">
+
+                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="col-6">
+                                    <div class="form-group">
+                                        <input type="text" [value]="array_index.document_name" [disabled]="!form_define_not_filled"                                        
+                                            (input)="array_index.document_name=$event.target.value"
+                                            class="form-control">                                       
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-sm-12 text-center form-footer">
+                            
+                    <!-- Accent-colored raised button with ripple -->
+                    <button type="button" (click)="show_part2_also();" *ngIf="form_define_not_filled"   
+                    _ngcontent-dbi-c224="" mat-flat-button="" color="primary" class="mat-flat-button mat-button-base mat-primary">
+                        <!--Next-->Update Stakeholders
+                    </button>
+            
+                                </div>
+
+            <div>
+                <!-- //Start Actual form here -->
+
+                <div class="table-responsive">
+                    <div style="margin-top:20px;"></div>
+
+                    <table id="state_policy_table" class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr class="d-flex">
+                                <th class="col-3">2.&nbsp;Defining Primary Role (Department-Wise)</th>
+                                <th class="col-9">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="d-flex"
+                                *ngFor="let array_index of customer.definingprimaryrole_array; let i = index">
+                                <td class="col-1 " *ngIf="i==0" (click)="onClickAddDefiningPrimaryRoleRow(1)">
+                                    <div class="form-group">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                    </span>
+                                    </div>
+                                </td>
+                                <td class="col-1 " *ngIf="i!=0">
+
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-group">
+                                    <select class="form-control" [value]="array_index.document_select_stakeholder" 
+                                    [ngClass]="{ 'is-invalid': ((submitted && array_index.document_select_stakeholder.trim() == '')) }" 
+                                        (change)="array_index.document_select_stakeholder=$event.target.value">
+                                        <option *ngFor="let order of  all_stake_holders; let j = index"
+                                            [value]="all_stake_holders[j].document_id">
+                                            {{all_stake_holders[j].document_name}}
+                                        </option>
+                                    </select>
+
+                                    <div *ngIf="(submitted && array_index.document_select_stakeholder.trim() == '') " class="invalid-feedback">
+                                        <div *ngIf="array_index.document_select_stakeholder.trim()=='' ">Field value is
+                                            required</div>                                            
+                                    </div>
+                                    </div>
+                                </td>
+
+                                <td class="col-9">
+                                    <div class="form-group">
+
+                                        <textarea [value]="array_index.document_desc == 'No description' ? '' : array_index.document_desc"  
+                                        [ngClass]="{ 'is-invalid': ((submitted && array_index.document_desc.trim() == '')
+                                          ) }" 
+                                            (input)="array_index.document_desc=$event.target.value"
+                                            class="form-control" rows="5"></textarea>
+                                            <div *ngIf="(submitted && array_index.document_desc.trim() == '')" class="invalid-feedback">
+                                                <div *ngIf="array_index.document_desc.trim()=='' ">Field value is
+                                                    required</div>
+                                                    <!-- <div *ngIf="(submitted &&  validateSpecialCharsAndNum(array_index.document_desc)) ">Only 
+                                                        Alphabets and Space allowed
+                                                    </div> 
+
+                                                    <div *ngIf=" (submitted &&  validate100charactersallowed(array_index.document_desc)) "> 
+                                                       Total Characters within and equal to 5000 length only allowed.
+                                                    </div> -->
+                                            </div> 
+                                    </div>
+                                </td>
+                            </tr>
+
+                            
+                            <!-- Dynamic added rows -->
+                            <tr class="d-flex" *ngFor="let array_index of definingprimaryrole_array; let i = index">
+
+                                <td class="col-1 " (click)="onClickRemoveDefiningPrimaryRow(i)">
+                                    <div class="form-group">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                    </span>
+                                    </div>
+                                </td> 
+                                <td class="col-2">
+                                    <div class="form-group">
+                                    <select class="form-control" [value]="array_index.document_select_stakeholder" 
+                                    [ngClass]="{ 'is-invalid': ((submitted && array_index.document_select_stakeholder.trim() == '')) }" 
+                                        (change)="array_index.document_select_stakeholder=$event.target.value">
+                                        <option *ngFor="let order of  all_stake_holders; let j = index"
+                                            [value]="all_stake_holders[j].document_id">
+                                            {{all_stake_holders[j].document_name}}
+                                        </option>
+                                    </select>
+
+                                    <div *ngIf="(submitted && array_index.document_select_stakeholder.trim() == '') " class="invalid-feedback">
+                                        <div *ngIf="array_index.document_select_stakeholder.trim()=='' ">Field value is
+                                            required</div>                                            
+                                    </div>
+                                    </div>
+                                </td>
+
+                                <td class="col-9">
+                                    <div class="form-group">
+
+                                        <textarea [value]="array_index.document_desc" 
+                                        [ngClass]="{ 'is-invalid': ((submitted && array_index.document_desc.trim() == '')  
+                                         ) }" 
+                                            (input)="array_index.document_desc=$event.target.value"
+                                            class="form-control" rows="5"></textarea>
+                                            <div *ngIf="(submitted && array_index.document_desc.trim() == '')" class="invalid-feedback">
+                                                <div *ngIf="array_index.document_desc.trim()=='' ">Field value is
+                                                    required</div>
+                                                    <!-- <div *ngIf="(submitted &&  validateSpecialCharsAndNum(array_index.document_desc)) ">Only 
+                                                        Alphabets and Space allowed
+                                                    </div>
+                                                    <div *ngIf=" (submitted &&  validate100charactersallowed(array_index.document_desc)) "> 
+                                                        Total Characters within and equal to 5000 length only allowed.
+                                                     </div> -->
+                                            </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--End of  Dynamic added rows -->
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
+
+
+
+                <!-- //Start Actual form here -->
+
+                <div class="table-responsive">
+                    <div style="margin-top:20px;"></div>
+
+                    <table id="state_policy_table" class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr class="d-flex">
+                                <th class="col-3">3.&nbsp;Current Effort To Address The Issue</th>
+                                <th class="col-9">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="d-flex"
+                                *ngFor="let array_index of customer.efforttoaddressissue_array; let i = index">
+                                <td class="col-1" *ngIf="i==0" (click)="onClickAddEfforttoAddressIssueRow(1)">
+                                    <div class="form-group">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                    </span>
+                                    </div>
+                                </td>
+                                <td class="col-1 " *ngIf="i!=0">
+
+                                </td>
+                                <td class="col-2">
+
+
+                                     <div class="form-group">
+                                    <select class="form-control" [value]="array_index.document_select_stakeholder" 
+                                    [ngClass]="{ 'is-invalid': ((submitted && array_index.document_select_stakeholder.trim() == '')) }" 
+                                        (change)="array_index.document_select_stakeholder=$event.target.value">
+                                        <option *ngFor="let order of  all_stake_holders; let j = index"
+                                            [value]="all_stake_holders[j].document_id">
+                                            {{all_stake_holders[j].document_name}}
+                                        </option>
+                                    </select>
+
+                                    <div *ngIf="(submitted && array_index.document_select_stakeholder.trim() == '') " class="invalid-feedback">
+                                        <div *ngIf="array_index.document_select_stakeholder.trim()=='' ">Field value is
+                                            required</div>                                            
+                                    </div>
+                                    </div>
+
+                                </td>
+
+                                <td class="col-9">
+                                    <div class="form-group"> 
+
+                                        <textarea [value]="array_index.document_desc == 'No description' ? '' : array_index.document_desc" 
+                                        [ngClass]="{ 'is-invalid': ((submitted && array_index.document_desc.trim() == '') 
+                                         ) }" 
+                                            (input)="array_index.document_desc=$event.target.value"
+                                            class="form-control" rows="5"></textarea>
+                                            <div *ngIf="(submitted && array_index.document_desc.trim() == '')" class="invalid-feedback">
+                                                <div *ngIf="array_index.document_desc.trim()=='' ">Field value is
+                                                    required</div>
+                                                    <!-- <div *ngIf="(submitted &&  validateSpecialCharsAndNum(array_index.document_desc)) ">Only 
+                                                        Alphabets and Space allowed
+                                                    </div>
+                                                    <div *ngIf=" (submitted &&  validate100charactersallowed(array_index.document_desc)) "> 
+                                                        Total Characters within and equal to 5000 length only allowed.
+                                                     </div> -->
+                                            </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Dynamic added rows -->
+                            <tr class="d-flex" *ngFor="let array_index of efforttoaddressissue_array; let i = index">
+                                <td class="col-1 " (click)="onClickRemoveEfforttoAddressIssueRow(i)">
+                                    <div class="form-group">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                    </span>
+                                    </div>
+                                </td>
+                                <td class="col-2">
+
+                                    <div class="form-group">
+
+                                    <select class="form-control" [value]="array_index.document_select_stakeholder" 
+                                    [ngClass]="{ 'is-invalid': ((submitted && array_index.document_select_stakeholder.trim() == '')) }" 
+                                        (change)="array_index.document_select_stakeholder=$event.target.value">
+                                        <option *ngFor="let order of  all_stake_holders; let j = index"
+                                            [value]="all_stake_holders[j].document_id">
+                                            {{all_stake_holders[j].document_name}}
+                                        </option>
+                                    </select>
+
+                                    <div *ngIf="(submitted && array_index.document_select_stakeholder.trim() == '') " class="invalid-feedback">
+                                        <div *ngIf="array_index.document_select_stakeholder.trim()=='' ">Field value is
+                                            required</div>                                            
+                                    </div>
+                                    </div>
+                                </td>
+
+                                <td class="col-9">
+                                    <div class="form-group">
+
+                                        <textarea [value]="array_index.document_desc"  
+                                        [ngClass]="{ 'is-invalid': ((submitted && array_index.document_desc.trim() == '') 
+                                         ) }" 
+                                            (input)="array_index.document_desc=$event.target.value"
+                                            class="form-control" rows="5"></textarea>
+                                            <div *ngIf="(submitted && array_index.document_desc.trim() == '')" class="invalid-feedback">
+                                                <div *ngIf="array_index.document_desc.trim()=='' ">Field value is
+                                                    required</div>
+                                                    <!-- <div *ngIf="(submitted &&  validateSpecialCharsAndNum(array_index.document_desc)) ">Only 
+                                                        Alphabets and Space allowed
+                                                    </div>
+                                                    <div *ngIf=" (submitted &&  validate100charactersallowed(array_index.document_desc)) "> 
+                                                        Total Characters within and equal to 5000 length only allowed.
+                                                     </div> -->
+                                            </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- End of Dynamic Added Rows -->
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <!-- //Start Actual form here -->
+
+                <div class="table-responsive">
+                    <div style="margin-top:20px;"></div>
+
+                    <table id="state_policy_table" class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr class="d-flex">
+                                <th class="col-3">4.&nbsp;How To Enhance Engagement And Efficiency</th>
+                                <th class="col-9">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="d-flex"
+                                *ngFor="let array_index of customer.enhanceefficiency_array; let i = index">
+                                <td class="col-1 " *ngIf="i==0" (click)="onClickAddEnhanceEfficiencyRow(1)">
+                                    <div class="form-group">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                    </span>
+                                    </div>
+                                </td>
+                                <td class="col-1 " *ngIf="i!=0">
+
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-group">
+                                    <select class="form-control" [value]="array_index.document_select_stakeholder"  
+                                    [ngClass]="{ 'is-invalid': ((submitted && array_index.document_select_stakeholder.trim() == '')) }" 
+                                        (change)="array_index.document_select_stakeholder=$event.target.value">
+                                        <option *ngFor="let order of  all_stake_holders; let j = index"
+                                            [value]="all_stake_holders[j].document_id">
+                                            {{all_stake_holders[j].document_name}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="(submitted && array_index.document_select_stakeholder.trim() == '') " class="invalid-feedback">
+                                        <div *ngIf="array_index.document_select_stakeholder.trim()=='' ">Field value is
+                                            required</div>                                            
+                                    </div>
+                                    </div>
+                                </td>
+
+                                <td class="col-9">
+                                    <div class="form-group">
+
+                                        <textarea [value]="array_index.document_desc == 'No description' ? '' : array_index.document_desc" 
+                                        [ngClass]="{ 'is-invalid': ((submitted && array_index.document_desc.trim() == '') 
+                                         ) }" 
+                                            (input)="array_index.document_desc=$event.target.value"
+                                            class="form-control" rows="5"></textarea>
+                                            <div *ngIf="(submitted && array_index.document_desc.trim() == '')" class="invalid-feedback">
+                                                <div *ngIf="array_index.document_desc.trim()=='' ">Field value is
+                                                    required</div>
+                                                    <!-- <div *ngIf="(submitted &&  validateSpecialCharsAndNum(array_index.document_desc)) ">Only 
+                                                        Alphabets and Space allowed
+                                                    </div>
+                                                    <div *ngIf=" (submitted &&  validate100charactersallowed(array_index.document_desc)) "> 
+                                                        Total Characters within and equal to 5000 length only allowed.
+                                                     </div> -->
+                                            </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Dynamic Added Rows  -->
+
+                            <tr class="d-flex" *ngFor="let array_index of enhanceefficiency_array; let i = index">
+                                <td class="col-1 " (click)="onClickRemoveEnhanceEfficiencyRow(i)">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                    </span>
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-group">
+                                    <select class="form-control" [value]="array_index.document_select_stakeholder" 
+                                    [ngClass]="{ 'is-invalid': ((submitted && array_index.document_select_stakeholder.trim() == '')) }" 
+                                        (change)="array_index.document_select_stakeholder=$event.target.value">
+                                        <option *ngFor="let order of  all_stake_holders; let j = index"
+                                            [value]="all_stake_holders[j].document_id">
+                                            {{all_stake_holders[j].document_name}}
+                                        </option>
+                                    </select>
+
+                                    <div *ngIf="(submitted && array_index.document_select_stakeholder.trim() == '') " class="invalid-feedback">
+                                        <div *ngIf="array_index.document_select_stakeholder.trim()=='' ">Field value is
+                                            required</div>                                            
+                                    </div>
+                                    </div>
+                                </td>
+
+                                <td class="col-9">
+                                    <div class="form-group">
+
+                                        <textarea [value]="array_index.document_desc" 
+                                        [ngClass]="{ 'is-invalid': ((submitted && array_index.document_desc.trim() == '') ) }" 
+                                            (input)="array_index.document_desc=$event.target.value"
+                                            class="form-control" rows="5"></textarea>
+                                            <div *ngIf="(submitted && array_index.document_desc.trim() == '') " class="invalid-feedback">
+                                                <div *ngIf="array_index.document_desc.trim()=='' ">Field value is
+                                                    required</div>
+                                                    <!-- <div *ngIf="(submitted &&  validateSpecialCharsAndNum(array_index.document_desc)) ">Only 
+                                                        Alphabets and Space allowed
+                                                    </div>
+                                                    <div *ngIf=" (submitted &&  validate100charactersallowed(array_index.document_desc)) "> 
+                                                        Total Characters within and equal to 5000 length only allowed.
+                                                     </div> -->
+                                            </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- End of Dynamic Added Rows -->
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
+
+
+
+                <!-- //Start Actual form here -->
+
+                <div class="table-responsive">
+                    <div style="margin-top:20px;"></div>
+
+                    <table id="state_policy_table" class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr class="d-flex">
+                                <th class="col-3">
+                                    5.&nbsp;Theme Lead By Department</th>
+                                <th class="col-9">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="d-flex" *ngFor="let array_index of customer.themeleadbydpt_array; let i = index">
+                                <td class="col-1 " *ngIf="i==0" (click)="onClickAddThemeLeadbyDptRow(1)">
+                                        <div class="form-group">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                    </span>
+                                    </div>
+                                </td>
+                                <td class="col-1 " *ngIf="i!=0">
+
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-group">
+                                    <select class="form-control" [value]="array_index.document_select_stakeholder" 
+                                    [ngClass]="{ 'is-invalid': ((submitted && array_index.document_select_stakeholder.trim() == '')) }" 
+                                        (change)="array_index.document_select_stakeholder=$event.target.value">
+                                        <option *ngFor="let order of  all_stake_holders; let j = index"
+                                            [value]="all_stake_holders[j].document_id">
+                                            {{all_stake_holders[j].document_name}}
+                                        </option>
+                                    </select>
+
+                                    <div *ngIf="(submitted && array_index.document_select_stakeholder.trim() == '') " class="invalid-feedback">
+                                        <div *ngIf="array_index.document_select_stakeholder.trim()=='' ">Field value is
+                                            required</div>                                            
+                                    </div>
+                                    </div>
+
+                                </td>
+
+                                <td class="col-9">
+                                    <div class="form-group">
+
+                                        <textarea [value]="array_index.document_desc == 'No description' ? '' : array_index.document_desc" 
+                                        [ngClass]="{ 'is-invalid': ((submitted && array_index.document_desc.trim() == '') ) }" 
+                                            (input)="array_index.document_desc=$event.target.value"
+                                            class="form-control" rows="5"></textarea>
+                                            <div *ngIf="(submitted && array_index.document_desc.trim() == '') " class="invalid-feedback">
+                                                <div *ngIf="array_index.document_desc.trim()=='' ">Field value is
+                                                    required</div>
+                                                    <!-- <div *ngIf="(submitted &&  validateSpecialCharsAndNum(array_index.document_desc)) ">Only 
+                                                        Alphabets and Space allowed
+                                                    </div>
+                                                    <div *ngIf=" (submitted &&  validate100charactersallowed(array_index.document_desc)) "> 
+                                                        Total Characters within and equal to 5000 length only allowed.
+                                                     </div> -->
+                                            </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Dynamic Added Rows -->
+                            <tr class="d-flex" *ngFor="let array_index of themeleadbydpt_array; let i = index">
+                                <td class="col-1 " (click)="onClickRemoveThemeLeadbyDptRow(i)">
+                                    <div class="form-group">
+                                    <span class="fa-stack fa-lg">
+
+                                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                    </span>
+                                    </div>
+                                </td>
+                                <td class="col-2">
+                                    <div class="form-group">
+                                    <select class="form-control" [value]="array_index.document_select_stakeholder"  
+                                    [ngClass]="{ 'is-invalid': ((submitted && array_index.document_select_stakeholder.trim() == '')) }" 
+                                        (change)="array_index.document_select_stakeholder=$event.target.value">
+                                        <option *ngFor="let order of  all_stake_holders; let j = index"
+                                            [value]="all_stake_holders[j].document_id">
+                                            {{all_stake_holders[j].document_name}}
+                                        </option>
+                                    </select>
+
+                                    <div *ngIf="(submitted && array_index.document_select_stakeholder.trim() == '') " class="invalid-feedback">
+                                        <div *ngIf="array_index.document_select_stakeholder.trim()=='' ">Field value is
+                                            required</div>                                            
+                                    </div>
+                                    </div>
+
+                                </td>
+
+                                <td class="col-9">
+                                    <div class="form-group">
+
+                                        <textarea [value]="array_index.document_desc" 
+                                        [ngClass]="{ 'is-invalid': ((submitted && array_index.document_desc.trim() == '')  ) }" 
+                                            (input)="array_index.document_desc=$event.target.value"
+                                            class="form-control" rows="5"></textarea>
+                                            <div *ngIf="(submitted && array_index.document_desc.trim() == '') " class="invalid-feedback">
+                                                <div *ngIf="array_index.document_desc.trim() =='' ">Field value is
+                                                    required</div>
+                                                    <!-- <div *ngIf="(submitted &&  validateSpecialCharsAndNum(array_index.document_desc)) ">Only 
+                                                        Alphabets and Space allowed
+                                                    </div>
+                                                    <div *ngIf=" (submitted &&  validate100charactersallowed(array_index.document_desc)) "> 
+                                                        Total Characters within and equal to 5000 length only allowed.
+                                                     </div> -->
+                                            </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- End of Dynamic Added Rows -->
+                        </tbody>
+                    </table>
+
+
+
+                   
+                    <div style="clear:both"></div>
+                    <div class="col-sm-12 text-center form-footer"style="margin-bottom:20px;">
+
+                        <a (click)="partialSave()"><button type="button" [disabled]="completeClicked" [hidden]="customer.completed" _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"><i
+                            class="fa fa-edit"></i>Save</button></a>
+                            &nbsp;&nbsp;
+                            
+                                        <button type="submit" [disabled]="completeClicked"  _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary" id="update-form2engage"><i
+                                                class="fa fa-key fa-fw"></i>Complete</button>
+
+                                    
+                                        <a routerLink="/dashboard" routerLinkActive="active"><button type="submit"
+                                            _ngcontent-dbi-c224="" mat-raised-button="" color="warn" style="margin-left: 5px" class="mat-raised-button mat-button-base mat-warn"id="cancel-form2engage"
+                                                ><i
+                                                    class="fa fa-times fa-fw"></i>Cancel</button></a>
+                                  
+                        </div>
+
+
+
+
+                  
+                </div>
+
+
+            </div>
+           </div>
+
+        </div>
+    </form>
+</div>
+
+<ng-template #loading>
+    Loading Details...
+    <div id="coverScreen" class="LockOn">
+    </div>
+</ng-template>

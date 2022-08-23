@@ -1,0 +1,139 @@
+
+.sidebar-top-heading{
+  margin-top: 1%;
+  margin-bottom: 1%;
+  font-weight:bold; 
+  color: black;
+  font-size:medium; 
+  
+}
+.sidebar-menu-items{
+  margin-top: 1%;
+  font-weight:bold;
+  font-size:small; 
+}
+
+
+/* reset our lists to remove bullet points and padding */
+.mainmenu, .submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* make ALL links (main and submenu) have padding and background color */
+.mainmenu a {
+  display: block;
+  background-color: #11bfd8;
+  text-decoration: none;
+  padding: 10px;
+  color: #032d33;
+  border-bottom: 1px solid #0ca5bb;
+}
+
+#LockCycle{
+  padding: 10px;
+}
+
+/* add hover behaviour */
+.mainmenu a:hover {
+  background-color: #007c8e;
+    color:white;
+}
+
+
+/* when hovering over a .mainmenu item,
+  display the submenu inside it.
+  we're changing the submenu's max-height from 0 to 200px;
+*/
+
+.mainmenu li:hover .submenu {
+  display: block;
+  max-height: 200px;
+}
+
+/*
+  we now overwrite the background-color for .submenu links only.
+  CSS reads down the page, so code at the bottom will overwrite the code at the top.
+*/
+
+.submenu a {
+  background-color: #40c5d8;
+}
+
+/* hover behaviour for links inside .submenu */
+.submenu a:hover{
+  background-color: #007c8e;
+  color: white;
+
+}
+/* .submenu a:hover + .content{z-index: -999 !important;position: relative;} */
+/* //dash-div */
+
+
+
+/* this is the initial state of all submenus.
+  we set it to max-height: 0, and hide the overflowed content.
+*/
+/* .submenu {
+  overflow: hidden;
+  max-height: 0;
+  transition: all 1s ease-out;
+} */
+
+.submenu{
+  overflow: hidden;
+    max-height: 0;
+    transition: all 1s ease-out;
+    height: 500px;;
+    overflow: visible !important;
+    width: 300px;
+    float: left;
+    position: absolute;
+    left: 100%;
+    z-index: 999;
+    display: none;
+    margin-top: -43px;
+}
+
+/* .form-body{z-index: -2;} */
+
+#style-1::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: rgb(216, 211, 211);
+}
+
+
+/* .submenu{
+  margin-left: 200px;;
+  position: absolute;
+  width:500px;
+} */
+.menu-items-settings{
+  font-weight:bold;
+  font-size:120%;
+}
+.sidebar-top-logo .img-thumbnail{background: transparent; border:0; width: 63%;}
+.sidebar-top-heading{background: #0a98ad; padding:10px 0;}
+.sidebar-top-logo{background: #fff;}
+
+
+.frontpage_nav{width: 20%;
+  background: #ffffff61; padding: 11px 0;}
+
+

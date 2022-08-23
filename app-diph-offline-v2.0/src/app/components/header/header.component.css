@@ -1,0 +1,14 @@
+.dropdown-menu{left: -146px;}
+.btn-custom{color:#fff; background:none; border:0;}
+.navbar-center
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 20%;
+    text-align: center;
+    overflow: visible;
+    height: 0;
+    font-weight: bold;
+    color:white;
+}

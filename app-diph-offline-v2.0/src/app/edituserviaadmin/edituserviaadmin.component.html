@@ -1,0 +1,282 @@
+<div id="coverScreen" class="LockOn">
+</div>
+
+<!-- Floating button on right Side -->
+
+<!-- End of Floating button on right Side -->
+
+<div class="">
+
+    <div class="col-sm-12 sub-header">
+        <div class="wrapper" (click)="previouspage()" style="with:20px; float:left">
+            <!-- <button class="button">Back</button> -->
+            <div class="" id="button-5" style="margin: 0; width:100%">
+                <div id="translate"></div>
+                <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i
+                        _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left"
+                        style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+            </div>
+        </div>
+        <h4>Customer Edit User</h4>
+    </div>
+    <div class="col-sm-12 form-body lt">
+
+    <form  (ngSubmit)="onEditUserSubmit()">
+
+      <div class="col-sm-6 lt">
+      <div class="form-group"> 
+       <span style="font-weight: bold;color: darkgray;font-size: small;font-family: 'Open Sans', sans-serif;font-size: 16px;"> Username:</span><br/>
+        <input type="text" [value]="customer.username"   (input)="customer.username=$event.target.value" class="form-control form-control-sm" placeholder="Enter Username" id="username"
+          name="username"  required [attr.disabled]="true">
+      </div>
+      </div>
+      <div class="col-sm-6 lt">
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;font-family: 'Open Sans', sans-serif;font-size: 16px;"> Password (4 or more letters):</span><br/>
+        <input type="text"  [value]="customer.password"   (input)="customer.password=$event.target.value"  class="form-control form-control-sm" placeholder="Enter Password" id="user_password"
+          name="user_password" required>
+      </div>
+      </div>
+      <div class="col-sm-6 lt">
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;font-family: 'Open Sans', sans-serif;font-size: 16px;"> Email:</span><br/>
+          <input type="email"  [value]="customer.email"   (input)="customer.email=$event.target.value"     class="form-control form-control-sm" placeholder="Enter Valid Email-Id" id="email"
+          name="email" required> 
+        
+      </div>
+      </div>
+      <div class="col-sm-6 lt">
+
+      <div class="form-group">
+            <!-- <div class="input-group-prepend">
+                    <button class="btn btn-primary" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span class="sr-only">Loading...</span>
+                          </button>
+                    <button type="button" class="btn btn-outline-secondary">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                  </div>
+                    </button>                   
+                  </div> -->
+                  <span style="font-weight: bold;color: darkgray;font-size: small;font-family: 'Open Sans', sans-serif;font-size: 16px;"> Country:</span><br/>
+        <select class="form-control form-control-sm" id="country" name="country"
+        [value]="customer.country_id"   (change)="customer.country_id=$event.target.value"    required   [attr.disabled]="true">
+          <option value="" selected disabled>Select Country</option>
+          <option *ngFor="let country of countries" value={{country.id}}>{{country.name}}</option>
+        </select>
+      </div>
+      </div>
+      <div class="col-sm-6 lt">
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;font-family: 'Open Sans', sans-serif;font-size: 16px;"> Region:</span><br/>
+        <select class="form-control form-control-sm" id="region" name="region"   [value]="customer.region_id" 
+          (change)="onSelectRegion($event.target.value)" required >
+          <option value="" selected disabled>Select Region</option>
+          <option *ngFor="let region of regions" value={{region.region_id}}>{{region.region_name}}</option>
+        </select>
+      </div>
+      </div>
+      <div class="col-sm-6 lt">
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;font-family: 'Open Sans', sans-serif;font-size: 16px;"> Zone:</span><br/>
+        <select class="form-control form-control-sm" id="state" name="state"
+          (change)="onSelectState($event.target.value)"  [value]="customer.state_id"  required> 
+          <option value="" selected disabled>Select Zone</option>
+          <option *ngFor="let state of states" value={{state.cs_id}}>{{state.state_name}}</option>
+        </select>
+      </div>
+      </div>
+      <div class="col-sm-6 lt">
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;font-family: 'Open Sans', sans-serif;font-size: 16px;"> Woredas:</span><br/>
+        <select class="form-control form-control-sm" id="district" name="district"    
+          (change)="onSelectDistrict($event.target.value)" required multiple>
+          <option value="" selected disabled>Select Woreda</option>
+          <option [selected]="allowdistricts(district.district_id)"   *ngFor="let district of districts" value={{district.district_id}}>{{district.district_name}}</option>
+        </select>  
+      </div>
+    </div>
+    <div class="col-sm-6 lt">
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;font-family: 'Open Sans', sans-serif;font-size: 16px;"> Cycles:</span><br/>
+        <select class="form-control form-control-sm" id="cycle" name="cycle" 
+        (change)="onSelectCycle($event.target.value)"   required multiple>
+          <option value="" selected disabled>Select Cycle</option> 
+          <option  [selected]="allowcycles(cycle.cycle_id)"     *ngFor="let cycle of cycles" value={{cycle.cycle_id}}>{{cycle.cycle_name}}</option>
+        </select> 
+      </div>
+    </div>
+    <div class="col-sm-6 lt"> 
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;font-family: 'Open Sans', sans-serif;font-size: 16px;"> Year:</span><br/>
+        <select class="form-control  form-control-sm" id="year" name="year" 
+        (change)="onSelectYear($event.target.value)"  required multiple> 
+          <option value="" selected disabled>Select Year</option>
+          <option   [selected]="allowyears(year.year_id)"   *ngFor="let year of years" value={{year.year_id}}>{{year.year_name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-6 lt" style="visibility: hidden;">
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Create User:</span><br/>
+        <select class="form-control form-control-sm" id="createUser" name="createUser"  [value]="customer.can_create" >
+          <option value="" selected disabled>Grant create user privileges</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-6 lt"  style="visibility: hidden;">
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Edit User:</span><br/>
+        <select class="form-control form-control-sm" id="editUser" name="editUser"  [value]="customer.can_edit" >
+          <option value="" selected disabled>Grant edit user privileges</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-6 lt"  style="visibility: hidden;">
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> View User:</span><br/>
+        <select class="form-control form-control-sm" id="viewUser" name="viewUser"  [value]="customer.can_view" >
+          <option value="" selected disabled>Grant view user privileges</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-6 lt"  style="visibility: hidden;">
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Delete User:</span><br/>
+        <select class="form-control form-control-sm" id="deleteUser" name="deleteUser"  [value]="customer.can_delete" >
+          <option value="" selected disabled>Grant delete user privileges</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+    </div>
+   
+    <div style="clear:both"></div>
+    <div class="col-sm-12 text-center form-footer" >
+      <button type="submit" _ngcontent-dbi-c224="" mat-flat-button="" color="primary"
+      style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary">Update User</button> 
+      <!-- <button type="reset" id="reset_user_form" class="btn btn-primary">Reset Form</button> -->
+    </div>
+
+    </form>
+
+    <!-- <form #editUser_form="ngForm" (ngSubmit)="onEditUserSubmit(editUser_form)"> 
+      <h3>Edit User</h3>
+      <br>
+      <div class="form-group">
+       <span style="font-weight: bold;color: darkgray;font-size: small;"> Username:</span><br/>
+        <input type="text" class="form-control form-control-sm" placeholder="Enter Username" id="username"
+          name="username" ngModel required [attr.disabled]="true">
+      </div>
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Password:</span><br/>
+        <input type="text" class="form-control form-control-sm" placeholder="Enter Password" id="user_password"
+          name="user_password" ngModel required>
+      </div>
+
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Email:</span><br/>
+          <input type="email" class="form-control form-control-sm" placeholder="Enter Valid Email-Id" id="email"
+          name="email" ngModel required> 
+        
+      </div>
+
+      <div class="form-group">
+                  <span style="font-weight: bold;color: darkgray;font-size: small;"> Country:</span><br/>
+        <select class="form-control form-control-sm" id="country" name="country"
+            ngModel required   [attr.disabled]="true">
+          <option value="" selected disabled>Select Country</option>
+          <option *ngFor="let country of countries" value={{country.id}}>{{country.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Region:</span><br/>
+        <select class="form-control form-control-sm" id="region" name="region"
+          (change)="onSelectRegion($event.target.value)" ngModel required >
+          <option value="" selected disabled>Select Region</option>
+          <option *ngFor="let region of regions" value={{region.region_id}}>{{region.region_name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Zone:</span><br/>
+        <select class="form-control form-control-sm" id="state" name="state"
+          (change)="onSelectState($event.target.value)" ngModel required>
+          <option value="" selected disabled>Select Zone</option>
+          <option *ngFor="let state of states" value={{state.cs_id}}>{{state.state_name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Woredas:</span><br/>
+        <select class="form-control form-control-sm" id="district" name="district" ngModel
+          (change)="onSelectDistrict($event.target.value)" required multiple>
+          <option value="" selected disabled>Select Woreda</option>
+          <option *ngFor="let district of districts" value={{district.district_id}}>{{district.district_name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Cycles:</span><br/>
+        <select class="form-control form-control-sm" id="cycle" name="cycle" 
+        (change)="onSelectCycle($event.target.value)"   ngModel required multiple>
+          <option value="" selected disabled>Select Cycle</option>
+          <option *ngFor="let cycle of cycles" value={{cycle.cycle_id}}>{{cycle.cycle_name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Year:</span><br/>
+        <select class="form-control  form-control-sm" id="year" name="year" ngModel required multiple>
+          <option value="" selected disabled>Select Year</option>
+          <option *ngFor="let year of years" value={{year.year_id}}>{{year.year_name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Create User:</span><br/>
+        <select class="form-control form-control-sm" id="createUser" name="createUser" ngModel>
+          <option value="" selected disabled>Grant create user privileges</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Edit User:</span><br/>
+        <select class="form-control form-control-sm" id="editUser" name="editUser" ngModel>
+          <option value="" selected disabled>Grant edit user privileges</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> View User:</span><br/>
+        <select class="form-control form-control-sm" id="viewUser" name="viewUser" ngModel>
+          <option value="" selected disabled>Grant view user privileges</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <span style="font-weight: bold;color: darkgray;font-size: small;"> Delete User:</span><br/>
+        <select class="form-control form-control-sm" id="deleteUser" name="deleteUser" ngModel>
+          <option value="" selected disabled>Grant delete user privileges</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <br><br>
+      <button type="submit" class="btn btn-primary">Update User</button> &nbsp;&nbsp;      
+      <br>
+    </form> -->
+  
+  <br>
+</div>  
+</div>
+
+
+<ng-template #loading>
+  <img class="loading-img" src="assets/images/wait.gif" alt="">
+</ng-template>

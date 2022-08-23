@@ -1,0 +1,284 @@
+<div *ngIf="loading else loaded">
+    loading ...
+    <div id="coverScreen" class="LockOn">
+    </div>
+</div>
+
+<ng-template #loaded>
+
+    <!-- Floating button on right Side -->
+
+    <!-- End of Floating button on right Side -->
+
+    <div class="">
+        <form>
+            <div id="toPrint">
+            <div class="col-sm-12 sub-header">
+                <div class="wrapper" (click)="previouspage()" style="width:20px; float:left">
+                    <!-- <button class="button">Back</button> -->
+                    <div class="" id="button-5" style="margin: 0; width:100%">
+                        <div id="translate"></div>
+                        <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i
+                                _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left"
+                                style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+                    </div>
+                </div>
+                <h4>1A.1 Data Extraction From State AND District Health
+                    Policy Documents</h4>
+            </div>
+            <div class="" style="padding: 0%;margin:0%;">
+                <div class="col-sm-12 form-body lt">
+                    <!-- width:auto; overflow-x:scroll; overflow-y:scroll;height:auto; -->
+
+                    <!-- //Start Actual form here -->
+                    <!-- Key Stakeholder -->
+                    <div>
+
+
+
+                        <div style="background-color: #00AEC7;color: #FFFFFF; margin-bottom: 15px;">
+                            <div class="col-sm-12 text-center" style="padding:10px">PART - A</div>
+                        </div>
+                        <div class="col-sm-6 lt form-group">
+                            <label>Document Title: </label>
+                            <div class="form-control col-sm-12">
+                                <div class="">
+                                    {{jsonresponse.parta_document_title}}
+                                    <!-- <input type="text" class="form-control" formControlName="parta_document_title"
+                                        [ngClass]="{ 'is-invalid': submitted && f.parta_document_title.errors }">
+
+                                    <div *ngIf="submitted && f.parta_document_title.errors" class="invalid-feedback">
+                                        <div *ngIf="f.parta_document_title.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 lt form-group">
+                            <label>Date of release: </label>
+                            <div class="form-control col-sm-12">
+                                <div class="">
+                                    {{jsonresponse.parta_date_of_release}}
+                                    <!-- <input type="text" class="form-control" formControlName="parta_date_of_release"
+                                        [ngClass]="{ 'is-invalid': submitted && f.parta_date_of_release.errors }">
+
+                                    <div *ngIf="submitted && f.parta_date_of_release.errors" class="invalid-feedback">
+                                        <div *ngIf="f.parta_date_of_release.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 lt form-group">
+                            <label>Goal as Stated by the Document: </label>
+                            <div class="form-control col-sm-12">
+                                <div class="">
+                                    {{jsonresponse.parta_goal}}
+                                    <!-- <input type="text" class="form-control" formControlName="parta_goal"
+                                        [ngClass]="{ 'is-invalid': submitted && f.parta_goal.errors }">
+
+                                    <div *ngIf="submitted && f.parta_goal.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="f.parta_goal.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 lt form-group">
+                            <label>Primary Theme: </label>
+                            <div class="form-control col-sm-12">
+                                <div class="">
+                                    {{jsonresponse.parta_primary_theme}}
+                                    <!-- <input type="text" class="form-control" formControlName="parta_primary_theme"
+                                            [ngClass]="{ 'is-invalid': submitted && f.parta_primary_theme.errors }">
+    
+                                        <div *ngIf="submitted && f.parta_primary_theme.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.parta_primary_theme.errors.required">Field value is
+                                                required</div>
+                                        </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div style="clear:both"></div>
+                        <div style="background-color: #00AEC7;color: #FFFFFF;">
+                            <div class="col-sm-12 text-center" style="padding:10px">Action points specified by the
+                                document
+                            </div>
+                        </div>
+                        <div *ngFor="let array_index of jsonresponse.parta_da_action_point_array; let i = index"
+                            class="col-sm-12 lt form-group">
+                            <label> </label>
+                            <div class="form-control col-sm-12">
+                                <div class="">
+                                    {{array_index.document_name}}
+                                    <!-- <textarea formControlName="parta_da_action_point"
+                                            class="form-control" id="theme_lead_by_department_section_text"
+                                            rows="4"></textarea> -->
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--End of Key Stakeholder -->
+
+
+
+                    <!-- Key Stakeholder -->
+                    <div class="">
+
+
+                        <div style="clear:both"></div>
+                        <div style="background-color: #00AEC7;color: #FFFFFF; margin-bottom: 15px;">
+                            <div class="col-sm-12 text-center" style="padding:10px">PART - B</div>
+                        </div>
+                        <div class="col-sm-6 lt form-group">
+                            <label>Document Title:</label>
+                            <div class="form-control col-sm-12">
+                                <div class="">
+                                    {{jsonresponse.partb_document_title}}
+                                    <!-- <input type="text" class="form-control" formControlName="partb_document_title"
+                                            [ngClass]="{ 'is-invalid': submitted && f.partb_document_title.errors }">
+    
+                                        <div *ngIf="submitted && f.partb_document_title.errors" class="invalid-feedback">
+                                            <div *ngIf="f.partb_document_title.errors.required">Field value is
+                                                required</div>
+                                        </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 lt form-group">
+                            <label>Date of release: </label>
+                            <div class="form-control col-sm-12">
+                                <div class="">
+                                    {{jsonresponse.partb_date_of_release}}
+                                    <!-- <input type="text" class="form-control" formControlName="partb_date_of_release"
+                                            [ngClass]="{ 'is-invalid': submitted && f.partb_date_of_release.errors }">
+    
+                                        <div *ngIf="submitted && f.partb_date_of_release.errors" class="invalid-feedback">
+                                            <div *ngIf="f.partb_date_of_release.errors.required">Field value is
+                                                required</div>
+                                        </div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 lt form-group">
+                            <label>Goal as Stated by the Document: </label>
+                            <div class="form-control col-sm-12">
+                                <div class="">
+                                    {{jsonresponse.partb_goal}}
+                                    <!-- <input type="text" class="form-control" formControlName="partb_goal"
+                                            [ngClass]="{ 'is-invalid': submitted && f.partb_goal.errors }">
+    
+                                        <div *ngIf="submitted && f.partb_goal.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.partb_goal.errors.required">Field value is
+                                                required</div>
+                                        </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 lt form-group">
+                            <label>Secondary Theme: </label>
+                            <div class="form-control col-sm-12">
+                                <div class="">
+                                    {{jsonresponse.partb_primary_theme}}
+                                    <!-- <input type="text" class="form-control" formControlName="partb_primary_theme"
+                                                [ngClass]="{ 'is-invalid': submitted && f.partb_primary_theme.errors }">
+        
+                                            <div *ngIf="submitted && f.partb_primary_theme.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.partb_primary_theme.errors.required">Field value is
+                                                    required</div>
+                                            </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div style="clear:both"></div>
+                        <div style="background-color: #00AEC7;color: #FFFFFF;">
+                            <div class="col-sm-12 text-center" style="padding:10px">Action points specified by the
+                                document
+                            </div>
+                        </div>
+                        <div *ngFor="let array_index of jsonresponse.partb_da_action_point_array; let i = index"
+                            class="col-sm-12 lt form-group">
+                            <label> </label>
+                            <div class="form-control col-sm-12">
+                                <div class="">
+                                    {{array_index.document_name}}
+                                    <!-- <textarea  formControlName="partb_da_action_point"
+                                                class="form-control" id="partb_da_action_point"
+                                                rows="4"></textarea> -->
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--End of Key Stakeholder -->
+
+
+
+
+
+
+
+
+
+
+
+                </div></div></div><div style="clear:both"></div>
+                    <div class="col-sm-12 text-center form-footer" style="margin-bottom:20px;">
+
+                        <a routerLink="/dashboard/secondaryforms" routerLinkActive="active"><button type="submit"
+                                _ngcontent-dbi-c224="" mat-raised-button="" color="warn" style="margin-right: 5px"
+                                class="mat-raised-button mat-button-base mat-warn" id="cancel-form1a"><i
+                                    class="fa fa-times fa-fw"></i>Close</button>
+                        </a>
+
+                        <a (click)="onPrint()"><button type="submit" _ngcontent-dbi-c224="" mat-flat-button=""
+                                color="primary" style="margin-left: 5px"
+                                class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"><i
+                                    class="fa fa-print fa-fw"></i>Print</button>
+                        </a>
+
+                        <a (click)="onPrintExcel()"><button type="submit" _ngcontent-dbi-c224="" mat-flat-button=""
+                            color="primary" style="margin-left: 5px"
+                            class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"><i
+                                class="fa fa-print fa-fw"></i>Excel</button>
+                    </a>
+                    </div>
+
+                    <!--End of Action Points -->
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        </form>
+    </div>
+
+    <!-- <div [hidden]="!savedform">
+    <h4>You submitted successfully!</h4>
+</div> -->
+
+</ng-template>

@@ -1,0 +1,203 @@
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/css/multi-select.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/js/jquery.multi-select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/img/switch.png"></script> -->
+
+<!-- Modal content -->
+
+<div class="container">
+    <br>
+    <hr>
+
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="height:90%;max-width: 100%;max-height: 100%;">
+
+            <div style="max-width: 600px;">
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <select class="form-control" id="area_name"
+                        (change)="onchangerefreshindicators($event.target.value)">
+                        <option value="0" selected> Select Area Name</option>
+                        <option *ngFor="let order of  area_indicator_obj.all_area_id_names; let i = index"
+                            [value]="area_indicator_obj.all_area_id_names[i].area_id">
+                            {{area_indicator_obj.all_area_id_names[i].area_name}}
+                        </option>
+                    </select>
+                </div> <!-- form-group end.// -->
+
+
+                <ng-multiselect-dropdown [placeholder]="'Select Area Indicators'" [data]="dropdownList"
+                    [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)" 
+                    (onDeSelect)="onItemDeSelect($event,this)"
+                    (onDeSelectAll)="onDeSelectAll($event)">
+                </ng-multiselect-dropdown>
+
+                <!-- <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                </div>
+                <select class="form-control" id="indicator_val" multiple>
+                    <option *ngFor="let order of  all_indicator_name_per_area; let i = index"
+                        [value]="all_indicator_name_per_area[i].indicator_val">
+                        {{all_indicator_name_per_area[i].indicator_val}}
+                    </option>
+                </select>
+            </div> -->
+            </div>
+
+            <div style="margin-top: 10%;"></div>
+            <div class="form-group col-sm-12 text-center">
+                <button (click)="save()" _ngcontent-dbi-c224="" mat-flat-button="" color="primary" class="mat-flat-button mat-button-base mat-primary" id="update-form1a"><i
+                    class="fa fa-key fa-fw"></i>Save</button> &nbsp;&nbsp;
+                    <button (click)="cancel()"
+                      _ngcontent-dbi-c224="" mat-raised-button="" color="warn" class="mat-raised-button mat-button-base mat-warn" id="cancel-form1a"><i
+                  class="fa fa-times fa-fw"></i>Cancel</button>
+                <!-- <mat-dialog-actions>
+                    <button mat-raised-button class="btn btn-outline-primary" (click)="save()">Save</button>
+                    <button mat-raised-button class="btn btn-outline-danger" (click)="cancel()">cancel</button>
+                </mat-dialog-actions> -->
+            </div>
+
+
+
+        </article>
+    </div> <!-- card.// -->
+
+    <br>
+    <hr>
+
+    <!--<div class="col-sm-12 form-body">
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="switch1" name="example">
+            <label class="custom-control-label font-italic" for="switch1" data-toggle="collapse"
+                data-target="#new_indicator_form">
+                <strong>Create Indicator</strong></label>
+           
+            <div style="margin: 4%;"></div>
+            <article  id="new_indicator_form" class="col-sm-12 form-body  collapse">
+                <form>
+
+                    <div class="form-group">
+                        <label for="sel_area_name">Area Name</label>
+                        <select id="sel_area_name" class="form-control"
+                            [ngClass]="{ 'is-invalid': (submitted &&  IndicatorBean.new_indicator_area_id=='') || (submitted &&  IndicatorBean.new_indicator_area_id=='0')}"
+                            (change)="IndicatorBean.new_indicator_area_id=$event.target.value">
+                            <option value="0" selected> Choose Area Name</option>
+                            <option *ngFor="let order of  area_indicator_obj.all_area_id_names; let i = index"
+                                [value]="area_indicator_obj.all_area_id_names[i].area_id">
+                                {{area_indicator_obj.all_area_id_names[i].area_name}}
+                            </option>
+                        </select>
+                        <div *ngIf=" (submitted &&  IndicatorBean.new_indicator_area_id=='') || (submitted &&  IndicatorBean.new_indicator_area_id=='0') "
+                            class="invalid-feedback" style="font-style: italic;">
+                            <div *ngIf="IndicatorBean.new_indicator_area_id=='' ">*Field value is
+                                required</div>
+                            <div *ngIf="IndicatorBean.new_indicator_area_id=='0' " style="font-style: italic;">
+                                *Please select one of the Area Names.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indi_name">Indicator Name</label>
+                        <input type="text" class="form-control" id="indi_name"
+                            [value]="IndicatorBean.new_indicator_name"
+                            [ngClass]="{ 'is-invalid': (submitted &&  IndicatorBean.new_indicator_name=='')}"
+                            (input)="IndicatorBean.new_indicator_name=$event.target.value"
+                            placeholder="Enter Indicator Name">
+                        <div *ngIf="submitted &&  IndicatorBean.new_indicator_name=='' " class="invalid-feedback"
+                            style="font-style: italic;">
+                            <div *ngIf="IndicatorBean.new_indicator_name=='' ">*Field value is
+                                required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indi_desc">Indicator Description</label>
+                        <textarea class="form-control" id="indi_desc" rows="5" placeholder="Enter Indicator Description"
+                            [value]="IndicatorBean.new_indicator_desc"
+                            [ngClass]="{ 'is-invalid': (submitted &&  IndicatorBean.new_indicator_desc=='')}"
+                            (input)="IndicatorBean.new_indicator_desc=$event.target.value"></textarea>
+                        <div *ngIf="submitted &&  IndicatorBean.new_indicator_desc=='' " class="invalid-feedback"
+                            style="font-style: italic;">
+                            <div *ngIf="IndicatorBean.new_indicator_desc=='' ">*Field value is
+                                required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indi_numerator">Indicator Numerator</label>
+                        <textarea class="form-control" id="indi_numerator" rows="5"
+                            [ngClass]="{ 'is-invalid': (submitted &&  IndicatorBean.new_indicator_numerator=='')}"
+                            placeholder="Enter Indicator Numerator" [value]="IndicatorBean.new_indicator_numerator"
+                            (input)="IndicatorBean.new_indicator_numerator=$event.target.value"></textarea>
+                        <div *ngIf="submitted &&  IndicatorBean.new_indicator_numerator=='' " class="invalid-feedback"
+                            style="font-style: italic;">
+                            <div *ngIf="IndicatorBean.new_indicator_numerator=='' ">*Field value is
+                                required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indi_denominator">Indicator Denominator</label>
+                        <textarea class="form-control" id="indi_denominator" rows="5"
+                            [ngClass]="{ 'is-invalid': (submitted &&  IndicatorBean.new_indicator_denominator=='')}"
+                            placeholder="Enter Indicator Denominator" [value]="IndicatorBean.new_indicator_denominator"
+                            (input)="IndicatorBean.new_indicator_denominator=$event.target.value"></textarea>
+                        <div *ngIf="submitted &&  IndicatorBean.new_indicator_denominator=='' " class="invalid-feedback"
+                            style="font-style: italic;">
+                            <div *ngIf="IndicatorBean.new_indicator_denominator=='' ">*Field value is
+                                required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indi_source">Indicator Source</label>
+                        <input type="text" [value]="IndicatorBean.new_indicator_source"
+                            [ngClass]="{ 'is-invalid': (submitted &&  IndicatorBean.new_indicator_source=='')}"
+                            (input)="IndicatorBean.new_indicator_source=$event.target.value" class="form-control"
+                            id="indi_source" placeholder="Enter Indicator Source">
+                        <div *ngIf="submitted &&  IndicatorBean.new_indicator_source=='' " class="invalid-feedback"
+                            style="font-style: italic;">
+                            <div *ngIf="IndicatorBean.new_indicator_source=='' ">*Field value is
+                                required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indi_freq">Indicator Frequency</label>
+                       
+                        <select id="indi_freq" class="form-control"
+                            [ngClass]="{ 'is-invalid': (submitted &&  IndicatorBean.new_indicator_frequency=='') || (submitted &&  IndicatorBean.new_indicator_frequency=='0')}"
+                            (change)="IndicatorBean.new_indicator_frequency=$event.target.value">
+                            <option value="0" selected> Choose Indicator Frequency</option>
+                            <option value="QUARTERLY">QUARTERLY</option>
+                            <option value="MONTHLY">MONTHLY</option>
+                            <option value="ANNUALY">ANNUALY</option>
+                        </select>
+                        <div *ngIf="(submitted &&  IndicatorBean.new_indicator_frequency=='') || (submitted &&  IndicatorBean.new_indicator_frequency=='0') "
+                            class="invalid-feedback">
+                            <div *ngIf="IndicatorBean.new_indicator_frequency=='' ">Field value is
+                                required</div>
+                            <div *ngIf="IndicatorBean.new_indicator_frequency=='0' " style="font-style: italic;">
+                                *Please select one of the Indicator Frequency.
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12 text-center form-footer">
+ 
+                        <button type="submit"   (click)="save_indicator()"  _ngcontent-dbi-c224="" mat-flat-button="" color="primary" class="mat-flat-button mat-button-base mat-primary"><i
+                            class="fa fa-key fa-fw"></i>Save</button>
+                      &nbsp;&nbsp;
+                        <button type="submit"  (click)="cancel()"  _ngcontent-dbi-c224="" mat-raised-button="" color="warn" class="mat-raised-button mat-button-base mat-warn" id="cancel-form1a"><i
+                              class="fa fa-times fa-fw"></i>Cancel</button>
+      
+                 
+                </div> 
+                  
+                </form>
+            </article>
+        </div>
+    </div>-->
+
+</div>
+<!--container end.//-->
+

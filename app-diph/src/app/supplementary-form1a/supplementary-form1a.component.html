@@ -1,0 +1,413 @@
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
+
+<!-- Floating button on right Side -->
+
+<!-- End of Floating button on right Side -->
+
+
+<div [hidden]="savedform" class="">
+    <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+        <div class="col-sm-12 sub-header">
+            <div class="wrapper" (click)="previouspage()" style="with:20px; float:left">
+                <!-- <button class="button">Back</button> -->
+                <div class="" id="button-5" style="margin: 0; width:100%">
+                    <div id="translate"></div>
+                    <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i
+                            _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left"
+                            style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+                </div>
+            </div>
+            <h4>1A.1 Data Extraction From State AND District Health
+                Policy Documents</h4>
+        </div>
+        <div class="" style="padding: 0%;margin:0%;">
+            <div class="col-sm-12 form-body lt">
+                <!-- width:auto; overflow-x:scroll; overflow-y:scroll;height:auto; -->
+
+                <!-- //Start Actual form here -->
+                <!-- Key Stakeholder -->
+                <div class="table-responsive">
+
+
+
+                    <div style="background-color: #00AEC7;color: #FFFFFF; margin-bottom: 15px;">
+                        <div class="col-sm-12 text-center" style="padding:10px">PART - A</div>
+                    </div>
+                    <div class="col-sm-6 lt">
+                        <label>Document Title: </label>
+                        <div>
+                            <div class="form-group">
+                                <!-- Promotion of exclusive breast feeding and early initiation of breastfeeding (within 1 hour of birth) -->
+                                <input type="text" class="form-control" formControlName="parta_document_title"
+                                    [ngClass]="{ 'is-invalid': submitted && f.parta_document_title.errors }">
+
+                                <div *ngIf="submitted && f.parta_document_title.errors" class="invalid-feedback">
+                                    <div *ngIf="f.parta_document_title.errors.required">Field value is
+                                        required</div>
+                                    <!--<div *ngIf="f.parta_document_title.errors.pattern">Alphabets and spaces only
+                                        allowed</div>-->
+                                    <div *ngIf="f.parta_document_title.errors.maxlength">Total Characters within and
+                                        equal to 10000 length only allowed.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 lt form-group">
+                        <label>Date of release:</label>
+                        <div class="col-sm-12 form-control">
+                            <div class="">
+                                <div class="example-container" style="background-color:white;color:black;">
+                                    <mat-form-field>
+                                        <input matInput [formControl]="date" [matDatepicker]="picker" [min]="minDate"
+                                            placeholder="" (click)="picker.open()" (keypress)="picker.open()" readonly
+                                            name='date_of_verification'>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <!-- <input type="text" class="form-control" formControlName="parta_date_of_release"
+                                        [ngClass]="{ 'is-invalid': submitted && f.parta_date_of_release.errors }">
+
+                                    <div *ngIf="submitted && f.parta_date_of_release.errors" class="invalid-feedback">
+                                        <div *ngIf="f.parta_date_of_release.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 lt">
+                        <label>Goal as Stated by the Document: </label>
+                        <div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="parta_goal"
+                                    [ngClass]="{ 'is-invalid': submitted && f.parta_goal.errors }">
+
+                                <div *ngIf="submitted && f.parta_goal.errors" class="invalid-feedback">
+                                    <div *ngIf="f.parta_goal.errors.required">Field value is
+                                        required</div>
+                                    <!--<div *ngIf="f.parta_goal.errors.pattern">Alphabets and spaces only
+                                        allowed</div>-->
+                                    <div *ngIf="f.parta_goal.errors.maxlength">Total Characters within and equal to 100
+                                        length only allowed.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 lt">
+                        <label>Primary Theme:</label>
+                        <div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="parta_primary_theme"
+                                    [ngClass]="{ 'is-invalid': submitted && f.parta_primary_theme.errors }">
+
+                                <div *ngIf="submitted && f.parta_primary_theme.errors" class="invalid-feedback">
+                                    <div *ngIf="f.parta_primary_theme.errors.required">Field value is
+                                        required</div>
+                                    <!--<div *ngIf="f.parta_primary_theme.errors.pattern">Alphabets and spaces only
+                                        allowed</div>-->
+                                    <div *ngIf="f.parta_primary_theme.errors.maxlength">Total Characters within and
+                                        equal to 10000 length only allowed.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear:both"></div>
+                    <div style="background-color: #00AEC7;color: #FFFFFF; margin-bottom: 15px;">
+                        <div class="col-sm-12 text-center" style="padding:10px">Action points specified by the document
+                        </div>
+                    </div>
+                    <div class="col-sm-12 lt">
+
+                        <!-- <span class="fa-stack fa-lg">
+                                    <i class="fa fa-plus-circle  fa-fw" style="color:greenyellow"></i>
+                                </span> -->
+
+                        <div>
+                            <div  class="form-group">
+                                <div class="input-group">
+                                    <div>
+                                        <span class="fa-stack fa-lg" (click)="onClickAddPartAActionArrayRow(1)">
+                                            <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                        </span>
+                                    </div>
+                                    <textarea formControlName="parta_da_action_point" class="form-control"
+                                        id="theme_lead_by_department_section_text" rows="4"
+                                        [ngClass]="{ 'is-invalid': submitted && f.parta_da_action_point.errors }"></textarea>
+                                    <div *ngIf="submitted && f.parta_da_action_point.errors" class="invalid-feedback">
+                                        <div *ngIf="f.parta_da_action_point.errors.required">Field value is
+                                            required</div>
+                                        <!--<div *ngIf="f.parta_da_action_point.errors.pattern">Alphabets and spaces only
+                                            allowed</div>-->
+                                        <div *ngIf="f.parta_da_action_point.errors.maxlength">Total Characters within
+                                            and equal to 10000 length only allowed.</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- <div class="form-group">
+                                    <textarea formControlName="parta_da_action_point" class="form-control"
+                                        id="theme_lead_by_department_section_text" rows="4"></textarea>
+                                </div> -->
+                        </div>
+
+
+                        <!-- style="background-color: #007b5e;color: #FFFFFF"> -->
+
+                        <div *ngFor="let array_index of parta_da_action_point_array.controls; let i = index">
+                            <div [formGroup]="array_index" class="form-group">
+                                <div class="input-group">
+                                    <div (click)="onClickRemovePartAActionArrayRow(i)">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                        </span>
+                                    </div>
+                                    <textarea formControlName="document_name" class="form-control" rows="4"
+                                        [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_name.errors }"></textarea>
+                                    <div *ngIf="submitted && array_index.controls.document_name.errors "
+                                        class="invalid-feedback">
+                                        <div *ngIf="array_index.controls.document_name.errors.required">Field value
+                                            is
+                                            required</div>
+                                        <!--<div *ngIf="array_index.controls.document_name.errors.pattern">Alphabets and
+                                            spaces only
+                                            allowed</div>-->
+                                        <div *ngIf="array_index.controls.document_name.errors.maxlength">Total
+                                            Characters within and equal to 10000 length only allowed.</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <!--End of Key Stakeholder -->
+
+
+
+                <!-- Key Stakeholder -->
+                <div class="table-responsive">
+
+
+                    <div style="background-color: #00AEC7;color: #FFFFFF; margin-bottom: 15px;">
+                        <div class="col-sm-12 text-center" style="padding:10px">PART - B</div>
+                    </div>
+                    <div class="col-sm-6 lt">
+                        <label>Document Title: </label>
+                        <div>
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" formControlName="partb_document_title"
+                                    [ngClass]="{ 'is-invalid': submitted && f.partb_document_title.errors }">
+
+                                <div *ngIf="submitted && f.partb_document_title.errors" class="invalid-feedback">
+                                    <div *ngIf="f.partb_document_title.errors.required">Field value is
+                                        required</div>
+                                    <!--<div *ngIf="f.partb_document_title.errors.pattern">Alphabets and spaces only
+                                        allowed</div>-->
+                                    <div *ngIf="f.partb_document_title.errors.maxlength">Total Characters within
+                                        and equal to 10000 length only allowed.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 lt form-group">
+                        <label>Date of release: </label>
+                        <div class="form-control col-sm-12">
+                            <div class="">
+                                <div class="example-container" style="background-color:white;color:black;">
+                                    <mat-form-field>
+                                        <input matInput [formControl]="date_2" [matDatepicker]="picker2" [min]="minDate"
+                                            placeholder="" (click)="picker2.open()" (keypress)="picker2.open()" readonly
+                                            name='date_of_verification2'>
+                                        <mat-datepicker-toggle matSuffix [for]="picker2">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <!-- <input type="text" class="form-control" formControlName="partb_date_of_release"
+                                        [ngClass]="{ 'is-invalid': submitted && f.partb_date_of_release.errors }">
+
+                                    <div *ngIf="submitted && f.partb_date_of_release.errors" class="invalid-feedback">
+                                        <div *ngIf="f.partb_date_of_release.errors.required">Field value is
+                                            required</div>
+                                    </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 lt">
+                        <label>Goal as Stated by the Document: </label>
+                        <div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="partb_goal"
+                                    [ngClass]="{ 'is-invalid': submitted && f.partb_goal.errors }">
+
+                                <div *ngIf="submitted && f.partb_goal.errors" class="invalid-feedback">
+                                    <div *ngIf="f.partb_goal.errors.required">Field value is
+                                        required</div>
+                                    <!--<div *ngIf="f.partb_goal.errors.pattern">Alphabets and spaces only
+                                        allowed</div>-->
+                                    <div *ngIf="f.partb_goal.errors.maxlength">Total Characters within and equal
+                                        to 10000 length only allowed.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 lt">
+                        <label>Secondary Theme: </label>
+                        <div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="partb_primary_theme"
+                                    [ngClass]="{ 'is-invalid': submitted && f.partb_primary_theme.errors }">
+
+                                <div *ngIf="submitted && f.partb_primary_theme.errors" class="invalid-feedback">
+                                    <div *ngIf="f.partb_primary_theme.errors.required">Field value is
+                                        required</div>
+                                    <!--<div *ngIf="f.partb_primary_theme.errors.pattern">Alphabets and spaces only
+                                        allowed</div>-->
+                                    <div *ngIf="f.partb_primary_theme.errors.maxlength">Total Characters within
+                                        and equal to 10000 length only allowed.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear:both"></div>
+                    <div style="background-color: #00AEC7;color: #FFFFFF; margin-bottom: 15px;">
+                        <div class="col-sm-12 text-center" style="padding:10px">Action points specified by the document
+                        </div>
+                    </div>
+                    <div class="col-sm-12 lt">
+
+                        <div>
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div>
+                                        <span class="fa-stack fa-lg" (click)="onClickAddPartBActionArrayRow(1)">
+                                            <i class="fa fa-plus-circle  fa-fw" style="color:#00BF6F"></i>
+                                        </span>
+                                    </div>
+                                    <textarea formControlName="partb_da_action_point" class="form-control" rows="4"
+                                        [ngClass]="{ 'is-invalid': submitted && f.partb_da_action_point.errors }"></textarea>
+                                    <div *ngIf="submitted && f.partb_da_action_point.errors" class="invalid-feedback">
+                                        <div *ngIf="f.partb_da_action_point.errors.required">Field value is
+                                            required</div>
+                                        <!--<div *ngIf="f.partb_da_action_point.errors.pattern">Alphabets and spaces
+                                            only
+                                            allowed</div>-->
+                                        <div *ngIf="f.partb_da_action_point.errors.maxlength">Total Characters
+                                            within and equal to 10000 length only allowed.</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- <div class="form-group">
+                                    <textarea formControlName="partb_da_action_point" class="form-control"
+                                        id="partb_da_action_point" rows="4"></textarea>
+                                </div> -->
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-12 lt"
+                        *ngFor="let array_index of partb_da_action_point_array.controls; let i = index"
+                        >
+                    
+                    <div>
+                        <div [formGroup]="array_index" class="form-group">
+                            <div class="input-group">
+                                <div (click)="onClickRemovePartBActionArrayRow(i)">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-minus-circle  fa-fw" style="color:red"></i>
+                                    </span>
+                                </div>
+                                <textarea formControlName="document_name" class="form-control" rows="4"
+                                    [ngClass]="{ 'is-invalid': submitted && array_index.controls.document_name.errors }"></textarea>
+                                <div *ngIf="submitted && array_index.controls.document_name.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="array_index.controls.document_name.errors.required">Field
+                                        value is
+                                        required</div>
+                                    <!--<div *ngIf="array_index.controls.document_name.errors.pattern">Alphabets
+                                        and
+                                        spaces only
+                                        allowed</div>-->
+                                    <div *ngIf="array_index.controls.document_name.errors.maxlength">Total
+                                        Characters within and equal to 10000 length only allowed.</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!--End of Key Stakeholder -->
+
+
+
+
+
+
+
+
+
+
+
+            <div style="clear:both"></div>
+            <div class="col-sm-12 text-center form-footer" style="margin-bottom:20px;">
+
+                <a (click)="partialSave()"><button type="button" [disabled]="completeClicked" _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"><i
+                    class="fa fa-edit"></i>Save</button></a>
+                    &nbsp;&nbsp;
+
+                <button type="submit" [disabled]="completeClicked" _ngcontent-dbi-c224="" mat-flat-button="" color="primary"
+                    style="margin-right: 5px" class="mat-flat-button mat-button-base mat-primary"
+                    id="update-form2engage"><i class="fa fa-key fa-fw"></i>Completed</button>
+
+
+
+                <a routerLink="/dashboard/secondaryforms" routerLinkActive="active"><button type="submit"
+                        _ngcontent-dbi-c224="" mat-raised-button="" color="warn" style="margin-left: 5px"
+                        class="mat-raised-button mat-button-base mat-warn" id="cancel-form2engage"><i
+                            class="fa fa-times fa-fw"></i>Cancel</button></a>
+
+            </div>
+
+            <!--End of Action Points -->
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</form>
+</div>
+
+<div [hidden]="!savedform">
+    <h4>You submitted successfully!</h4>
+</div>

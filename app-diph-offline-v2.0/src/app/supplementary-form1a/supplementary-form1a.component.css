@@ -1,0 +1,69 @@
+/* Button Styles */
+
+#button-5 {
+    /* display: inline-flex; */
+    height: 40px;
+    width: 150px;
+    
+    margin: 20px 20px 20px 20px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: .8em;
+    letter-spacing: 1.5px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  #button-5 a {
+    color: #BFC0C0;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: bold;
+    padding: 15px;
+  }
+  
+  
+    /* Fifth Button */
+  
+  /* #button-5 {
+     
+      position: fixed;
+      bottom: 5%;
+    left: 2%;
+      text-align: center;
+      overflow: hidden;
+      cursor: pointer;
+      background-color: crimson;
+    }
+    
+    #button-5 a {
+      position: relative; 
+      text-align: center;
+    line-height: 35px;
+      padding: 2px;
+      transition: all .45s ease-Out;
+    }
+    
+    #translate {
+      transform: rotate(50deg);
+      width: 100%;
+      height: 250%;
+      left: -200px;
+      top: -30px;
+      background: darkcyan;
+      position: absolute;
+      transition: all .3s ease-Out;
+    }
+    
+    #button-5:hover #translate {
+      left: 0;
+    }
+    
+    #button-5:hover a {
+      color: white;
+      font-weight: bold;
+    } */

@@ -1,0 +1,443 @@
+<div *ngIf="loading else loaded">
+  loading ...
+  <div id="coverScreen" class="LockOn">
+  </div>
+</div>
+
+<ng-template #loaded>
+  <!-- <div *ngFor="let user of users">{{user.name}}</div> -->
+
+  <!-- Floating button on right Side -->
+ 
+<!-- End of Floating button on right Side -->
+
+  <div class="">
+<div id="toPrint">
+    <div class="col-sm-12 sub-header"> 
+     <div class="wrapper" (click)="previouspage()" style="width:20px; float:left">
+            <!-- <button class="button">Back</button> -->
+            <div class="" id="button-5" style="margin: 0; width:100%">
+                <div id="translate"></div>
+                <a _ngcontent-fvy-c11="" style="font-size:18px; padding:0; margin-right: 5px;"><i _ngcontent-fvy-c11="" aria-hidden="true" class="fa fa-long-arrow-left" style="color:#5d5d5d;"></i><span _ngcontent-fvy-c11=""></span></a>
+            </div>
+     </div>   
+      <h4>Form - 1 Part A: Document And Database Checklist</h4>   
+    </div>
+    
+
+      <div class="col-sm-12 form-body lt">
+        <form>
+          <div id="form1aview_table">
+
+            
+            <div class="col-sm-6 lt">
+              <label>Date of the meeting </label>
+              <div  class="col-sm-12 form-control">
+                  <div class="">{{jsonresponse.date_of_verification}}</div>
+              </div>
+              </div>
+              <div class="col-sm-6 lt">
+                <label>Venue of the meeting </label>
+                <div  class="col-sm-12 form-control">
+                  <div class="">{{jsonresponse.filled_by}}</div>
+                </div>
+              </div>
+              <div class="col-sm-6 lt">
+                <label>Chairperson of the meeting </label>
+                <div  class="col-sm-12 form-control">
+                  <div class="">{{jsonresponse.verified_by_name}}</div>
+                </div>
+              </div>
+
+            
+            </div>
+        </form>
+
+      </div>
+      
+      <div class="col-sm-12 form-body lt" style="margin-top:20px;">
+      <div class="table-responsive">
+      
+
+        <table id="dashboard_table" class="table table-sm table-striped" style="border: 1px solid #e2e2e2;">
+          <thead class="thead-dark">
+            <tr >
+              <th >SI.No</th>
+              <th >Document</th>
+              <th >Availability<br/>(Yes/No)</th>
+              <th >Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+              <td  colspan="4">1: Policy And Planning Documents</td>
+            </tr>
+            <tr class="" style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td  colspan="4">1.1: State Policy</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.state_policy_array; let i = index" class="">
+              <td >1.1.{{i+1}}</td>
+              <td >{{array_index.document_val}}</td>
+              <td >
+                <div *ngIf="array_index.document_availability == 1">
+                  Yes
+                </div>
+                <div *ngIf="array_index.document_availability == 2">
+                  No
+                </div>
+
+              </td>
+              <td >
+                
+                <div *ngIf="array_index.document_availability == 1">
+                  {{array_index.document_source}}
+                </div>
+                <div *ngIf="array_index.document_availability == 2">
+                 
+                </div>
+                
+                </td>
+            </tr>
+            <tr class="" style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td  colspan="4">1.2: District Policy</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.district_policy_array; let i = index" class="">
+              <td >1.2.{{i+1}}</td>
+              <td >{{array_index.document_val}}</td>
+              <td >
+                  <div *ngIf="array_index.document_availability == 1">
+                    Yes
+                  </div>
+                  <div *ngIf="array_index.document_availability == 2">
+                    No
+                  </div>
+  
+                </td>
+              <td >
+                <div *ngIf="array_index.document_availability == 1">
+                  {{array_index.document_source}}
+                </div>
+                <div *ngIf="array_index.document_availability == 2">
+                 
+                </div>
+                </td>
+            </tr>
+            <tr  style="background-color: #00AEC7;color: #FFFFFF">
+              <td  colspan="4">2: Management And Services Provision</td>
+            </tr>
+            <tr  style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td  colspan="4">2.1: Health Department</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.health_dept_array; let i = index" >
+              <td >2.1.{{i+1}}</td>
+              <td >{{array_index.document_val}}</td>
+              <td >
+                  <div *ngIf="array_index.document_availability == 1">
+                    Yes
+                  </div>
+                  <div *ngIf="array_index.document_availability == 2">
+                    No
+                  </div>
+  
+                </td>
+                <td >
+                  <div *ngIf="array_index.document_availability == 1">
+                    {{array_index.document_source}}
+                  </div>
+                  <div *ngIf="array_index.document_availability == 2">
+                   
+                  </div>
+                  </td>
+            </tr>
+            <tr  style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td  colspan="4">2.2: Non-Health Department</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.non_health_dept_array; let i = index" >
+              <td >2.2.{{i+1}}</td>
+              <td >{{array_index.document_val}}</td>
+              <td >
+                  <div *ngIf="array_index.document_availability == 1">
+                    Yes
+                  </div>
+                  <div *ngIf="array_index.document_availability == 2">
+                    No
+                  </div>
+  
+                </td>
+                <td >
+                  <div *ngIf="array_index.document_availability == 1">
+                    {{array_index.document_source}}
+                  </div>
+                  <div *ngIf="array_index.document_availability == 2">
+                   
+                  </div>
+                  </td>
+            </tr>
+            <tr  style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td  colspan="4">2.3: Private Sector (For Profit And Non-Governmental Organisation)</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.private_sec_array; let i = index" class="">
+              <td >2.3.{{i+1}}</td>
+              <td >{{array_index.document_val}}</td>
+              <td >
+                  <div *ngIf="array_index.document_availability == 1">
+                    Yes
+                  </div>
+                  <div *ngIf="array_index.document_availability == 2">
+                    No
+                  </div>
+  
+                </td>
+                <td >
+                  <div *ngIf="array_index.document_availability == 1">
+                    {{array_index.document_source}}
+                  </div>
+                  <div *ngIf="array_index.document_availability == 2">
+                   
+                  </div>
+                  </td>
+            </tr>
+            <tr style="background-color: #00AEC7;color: #FFFFFF">
+              <td  colspan="4">3: Large Scale District Level Surveys</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.large_scale_district_array; let i = index" class="">
+              <td >3.{{i+1}}</td>
+              <td >{{array_index.document_val}}</td>
+              <td >
+                  <div *ngIf="array_index.document_availability == 1">
+                    Yes
+                  </div>
+                  <div *ngIf="array_index.document_availability == 2">
+                    No
+                  </div>
+  
+                </td>
+               <td >
+                <div *ngIf="array_index.document_availability == 1">
+                  {{array_index.document_source}}
+                </div>
+                <div *ngIf="array_index.document_availability == 2">
+                 
+                </div>
+                </td>
+            </tr> 
+          </tbody>
+        </table>
+
+
+        <!-- <table id="dashboard_table" class="table table-sm table-striped" style="border: 1px solid #e2e2e2;width:1000px;">
+          <thead class="thead-dark">
+            <tr class="">
+              <th>SI.No</th>
+              <th style="width:200px;">Document</th>
+              <th>Availability<br/>(Yes/No)</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+              <td colspan="4">1: Policy and Planning documents</td>
+            </tr>
+            <tr style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">1.1: State Policy</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.state_policy_array; let i = index" >
+              <td>1.1.{{i+1}}</td>
+              <td>{{array_index.document_val}}</td>
+              <td>
+                <div *ngIf="array_index.document_availability == 1">
+                  Yes
+                </div>
+                <div *ngIf="array_index.document_availability == 2">
+                  No
+                </div>
+
+              </td>
+              <td>{{array_index.document_source}}</td>
+            </tr>
+            <tr style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">1.2: District Policy</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.district_policy_array; let i = index" >
+              <td>1.2.{{i+1}}</td>
+              <td>{{array_index.document_val}}</td>
+              <td>
+                  <div *ngIf="array_index.document_availability == 1">
+                    Yes
+                  </div>
+                  <div *ngIf="array_index.document_availability == 2">
+                    No
+                  </div>
+  
+                </td>
+              <td>{{array_index.document_source}}</td>
+            </tr>
+            <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+              <td colspan="4">1: Policy and Planning documents</td>
+            </tr>
+            <tr style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">1.1: State Policy</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.state_policy_array; let i = index" >
+              <td>1.1.{{i+1}}</td>
+              <td>{{array_index.document_val}}</td>
+              <td>
+                <div *ngIf="array_index.document_availability == 1">
+                  Yes
+                </div>
+                <div *ngIf="array_index.document_availability == 2">
+                  No
+                </div>
+
+              </td>
+              <td>{{array_index.document_source}}</td>
+            </tr>
+            <tr style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">1.2: District Policy</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.district_policy_array; let i = index" >
+              <td>1.2.{{i+1}}</td>
+              <td>{{array_index.document_val}}</td>
+              <td>
+                  <div *ngIf="array_index.document_availability == 1">
+                    Yes
+                  </div>
+                  <div *ngIf="array_index.document_availability == 2">
+                    No
+                  </div>
+  
+                </td>
+              <td>{{array_index.document_source}}</td>
+            </tr>
+            <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+              <td colspan="4">1: Policy and Planning documents</td>
+            </tr>
+            <tr style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">1.1: State Policy</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.state_policy_array; let i = index" >
+              <td>1.1.{{i+1}}</td>
+              <td>{{array_index.document_val}}</td>
+              <td>
+                <div *ngIf="array_index.document_availability == 1">
+                  Yes
+                </div>
+                <div *ngIf="array_index.document_availability == 2">
+                  No
+                </div>
+
+              </td>
+              <td>{{array_index.document_source}}</td>
+            </tr>
+            <tr style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">1.2: District Policy</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.district_policy_array; let i = index" >
+              <td>1.2.{{i+1}}</td>
+              <td>{{array_index.document_val}}</td>
+              <td>
+                  <div *ngIf="array_index.document_availability == 1">
+                    Yes
+                  </div>
+                  <div *ngIf="array_index.document_availability == 2">
+                    No
+                  </div>
+  
+                </td>
+              <td>{{array_index.document_source}}</td>
+            </tr>
+            <tr class="" style="background-color: #00AEC7;color: #FFFFFF">
+              <td colspan="4">1: Policy and Planning documents</td>
+            </tr>
+            <tr style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">1.1: State Policy</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.state_policy_array; let i = index" >
+              <td>1.1.{{i+1}}</td>
+              <td>{{array_index.document_val}}</td>
+              <td>
+                <div *ngIf="array_index.document_availability == 1">
+                  Yes
+                </div>
+                <div *ngIf="array_index.document_availability == 2">
+                  No
+                </div>
+
+              </td>
+              <td>{{array_index.document_source}}</td>
+            </tr>
+            <tr style="background-color: #d0e9f9; color: #2b5c6b;">
+              <td colspan="4">1.2: District Policy</td>
+            </tr>
+            <tr *ngFor="let array_index of jsonresponse.district_policy_array; let i = index" >
+              <td>1.2.{{i+1}}</td>
+              <td>{{array_index.document_val}}</td>
+              <td>
+                  <div *ngIf="array_index.document_availability == 1">
+                    Yes
+                  </div>
+                  <div *ngIf="array_index.document_availability == 2">
+                    No
+                  </div>
+  
+                </td>
+              <td>{{array_index.document_source}}</td>
+            </tr>
+            
+          </tbody>
+        </table> -->
+      </div>
+      </div>
+    </div>
+      <div>
+      <div style="clear:both"></div>
+        <div class="col-sm-12 text-center form-footer"style="margin-bottom:20px;">
+
+          
+                <button type="button" routerLink="/dashboard" routerLinkActive="active"  _ngcontent-dbi-c224="" mat-raised-button="" color="warn" style="margin-right: 5px" class="mat-raised-button mat-button-base mat-warn" id="cancel-form1a"><i
+                      class="fa fa-times fa-fw"></i>Close</button>
+              
+               <button type="button"  (click)="onPrint()"  _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-left: 5px" class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"
+                   ><i class="fa fa-print fa-fw"></i>Print</button>
+                
+                   <button type="button"  (click)="onPrintExcel()"  _ngcontent-dbi-c224="" mat-flat-button="" color="primary" style="margin-left: 5px" class="mat-flat-button mat-button-base mat-primary" id="cancel-form1a"
+                   ><i class="fa fa-print fa-fw"></i>Excel</button>
+              
+        </div>
+        
+
+
+
+
+
+      </div>
+    
+
+  </div>
+
+
+
+
+
+</ng-template>
+
+<!-- <table class="table">
+  <thead>
+    <tr>
+      <td>#</td>
+      <td>Name</td>
+      <td>Genre</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let game of games; let i = index">
+      <td>{{i}}</td>
+      <td>{{game.name}}</td>
+      <td>{{game.genre}}</td>
+    </tr>
+  </tbody>
+
+</table>
+<div *ngIf="loading else loaded">
+  loading ...
+</div> -->
